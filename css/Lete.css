@@ -4,9 +4,9 @@
     text-decoration: none;
 }
 /* 博主昵称颜色 */
-/*.author-info__name {
-    color: #990033;
-} */
+.author-info__name {
+    color: #00BFFF;
+} 
 
 /* 评论框 --------------------------------------------- */
 

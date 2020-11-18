@@ -1,0 +1,10 @@
+/*.icon-bilibili:before {
+  content: "\e600";
+} */
+/* 卡片处小图标 */
+.card_icon {
+  /* 修改颜色 */
+  color: #00BFFF;
+  /* 修改大小 */
+  font-size: 24px;
+}
