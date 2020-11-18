@@ -68,44 +68,41 @@
 }
 
 /* a标签默认颜色 */
-
+/*
 #article-container a {
     color: #00c4b6;
     text-decoration: none;
 }
 
 /* 鼠标悬停时的颜色 */
-
+/*
 #article-container a:hover {
     color: #e58a8a;
     text-decoration: none;
 }
 /*a标签颜色*/
+/*
 a {
     color: #00c4b6;
 }
 
 /* 首页中间打字效果上方 */
+/*
 #page-header #site_title {
     color: #80bdab;
 }
 /* 顶部导航栏 */
+/*
 #nav a {
     color: #f9f2f4;
 }
 
 /*页脚a标签字体颜色*/
+/*
 #footer-wrap a {
     color: #00c4b6;
 }
 
-/*移动端优化：去除归档、标签、最新文章、公告、、只保留网站统计*/
-@media screen and (max-width: 800px) {
-    #aside_content div:not(:last-child) {
-        display: none;
-        font-size: 13px;
-    }
-}
 
 /* 鼠标图标 */
 
@@ -115,14 +112,14 @@ a {
 
 
 /*a标签*/
-
+/*
 a:hover {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
 
 
 /*按钮*/
-
+/*
 button:hover {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
@@ -144,14 +141,14 @@ button:hover {
 
 
 /* 文章标签 */
-
+/*
 .layout_post .tag_share .post-meta__tags {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
 
 
 /* 评论区 */
-
+/*
 .vcol * {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
@@ -166,14 +163,14 @@ button:hover {
 
 
 /* 回复 */
-
+/*
 .vat {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
 
 
 /*i标签*/
-
+/*
 i:hover {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
@@ -182,7 +179,7 @@ i:hover {
 
 
 /*页脚a标签*/
-
+/*
 #footer-wrap a:hover {
     text-decoration: none;
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
@@ -190,17 +187,18 @@ i:hover {
 
 
 /*分页器*/
-
+/*
 #pagination .page-number:hover {
     cursor: url(https://cdn.jsdelivr.net/gh/lete114/CDN@1.0/Use/JkuClT.png), auto;
 }
 /* 分页器的三个点(...) */
+/*
 .space {
     color: #00c4b6;
 }
 
 /* 打字效果渐变 */
-
+/*
 @-webkit-keyframes Gradient {
     0% {
         background-position: 0 50%;
@@ -236,4 +234,4 @@ i:hover {
         background-position: 0 50%;
     }
 }
-
+*/
