@@ -53,14 +53,14 @@
 
   
   <url>
-    <loc>http://example.com/tags/Hexo-GitHub/</loc>
+    <loc>http://example.com/tags/Java%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2020-11-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Java%E5%9F%BA%E7%A1%80/</loc>
+    <loc>http://example.com/tags/Hexo-GitHub/</loc>
     <lastmod>2020-11-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -76,14 +76,14 @@
 
   
   <url>
-    <loc>http://example.com/categories/Hexo/</loc>
+    <loc>http://example.com/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2020-11-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%90%8E%E7%AB%AF/</loc>
+    <loc>http://example.com/categories/Hexo/</loc>
     <lastmod>2020-11-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
