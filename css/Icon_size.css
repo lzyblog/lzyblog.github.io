@@ -7,7 +7,9 @@
   color: #FF69B4;
   /* 修改大小 */
   font-size: 24px;
+   
 }
+
 .card_icon_git{
   /* 修改颜色 */
   color: #6495ED;
@@ -17,7 +19,7 @@
 
 .card_icon_qq{
   /* 修改颜色 */
-  color: #FF8C00;
+  color:#FF8C00 ;
   /* 修改大小 */
   font-size: 24px;
 }
