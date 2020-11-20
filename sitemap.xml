@@ -102,13 +102,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/JavaWeb/</loc>
-    <lastmod>2020-11-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/Dos%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
@@ -117,6 +110,13 @@
   
   <url>
     <loc>http://example.com/tags/Hexo-GitHub/</loc>
+    <lastmod>2020-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/JavaWeb/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -132,13 +132,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2020-11-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/categories/Dos%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
@@ -147,6 +140,13 @@
   
   <url>
     <loc>http://example.com/categories/Hexo/</loc>
+    <lastmod>2020-11-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2020-11-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
