@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-11-26T04:34:48.896Z</updated>
+  <updated>2020-11-26T04:38:10.033Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JavaSE程序设计项目</title>
-    <link href="http://example.com/2020/11/26/Java%E5%9F%BA%E7%A1%80/"/>
-    <id>http://example.com/2020/11/26/Java%E5%9F%BA%E7%A1%80/</id>
-    <published>2020-11-26T04:34:01.581Z</published>
-    <updated>2020-11-26T04:34:48.896Z</updated>
+    <title>JavaSEss程序设计项目</title>
+    <link href="http://example.com/2020/11/26/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/"/>
+    <id>http://example.com/2020/11/26/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3/</id>
+    <published>2020-11-26T04:37:39.882Z</published>
+    <updated>2020-11-26T04:38:10.033Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744">Java基础回顾</a></p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Java最早是由SUN公司（已被Oracle收购）的<code>詹姆斯·高斯林</code>（高司令，人称Java之父）在上个世纪90年代初开发的一种编程语言，最初被命名为Oak，目标是针对小型家电设备的嵌入式应用，结果市场没啥反响。谁料到互联网的崛起，让Oak重新焕发了生机，于是SUN公司改造了Oak，在1995年以Java的名称正式发布，原因是Oak已经被人注册了，因此SUN注册了Java这个商标。随着互联网的高速发展，Java逐渐成为最重要的网络编程语言。<br><a href="https://www.java.com/zh-CN/download/help/index_installing.html">Java技术帮助</a></p>]]></content>
     
