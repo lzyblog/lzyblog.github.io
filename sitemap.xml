@@ -4,7 +4,28 @@
   <url>
     <loc>http://example.com/2020/11/21/JavaScript%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE/</loc>
     
-    <lastmod>2020-12-20</lastmod>
+    <lastmod>2020-12-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/12/02/Butterfly%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9/</loc>
+    
+    <lastmod>2020-12-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/11/16/JavaSE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE/</loc>
+    
+    <lastmod>2020-12-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2020/12/21/UML%E8%BD%AF%E4%BB%B6%E5%BB%BA%E6%A8%A1%E6%8A%80%E6%9C%AF/</loc>
+    
+    <lastmod>2020-12-21</lastmod>
     
   </url>
   
@@ -54,20 +75,6 @@
     <loc>http://example.com/2020/12/09/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2020-12-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/2020/11/16/JavaSE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE/</loc>
-    
-    <lastmod>2020-12-04</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/2020/12/02/Butterfly%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9/</loc>
-    
-    <lastmod>2020-12-04</lastmod>
     
   </url>
   
@@ -221,13 +228,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/JavaSctipt/</loc>
-    <lastmod>2020-12-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/JavaWeb/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
@@ -256,6 +256,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/UML/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
@@ -270,14 +277,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://example.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://example.com/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -305,6 +312,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/JavaSctipt/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/Java/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
@@ -322,13 +336,6 @@
   
   <url>
     <loc>http://example.com/categories/Hexo/</loc>
-    <lastmod>2020-12-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -363,6 +370,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/categories/UML/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/categories/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
@@ -377,14 +391,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://example.com/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://example.com/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -406,6 +420,13 @@
   
   <url>
     <loc>http://example.com/categories/Buffterfly/</loc>
+    <lastmod>2020-12-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2020-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
