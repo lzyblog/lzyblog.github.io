@@ -1,0 +1,661 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>详谈前端开发路线 | Lzy_Blog</title><meta name="keywords" content="前端"><meta name="author" content="Lzy_Blog"><meta name="copyright" content="Lzy_Blog"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="学习路线路线图来源 资料推荐 qianguyihao_Web前端开发资料  感谢知乎前端开发路线   工具推荐 文本编辑器 VSCode（推荐使用）下载网盘链接提取码：97p1官方网址:https:&#x2F;&#x2F;code.visualstudio.com&#x2F;VSCode常用插件和技巧教程 Sublime WebStorm Atom   图像编辑器 PhotoShop Illustrator   FTP&#x2F;SSH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详谈前端开发路线">
+<meta property="og:url" content="http://example.com/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/index.html">
+<meta property="og:site_name" content="Lzy_Blog">
+<meta property="og:description" content="学习路线路线图来源 资料推荐 qianguyihao_Web前端开发资料  感谢知乎前端开发路线   工具推荐 文本编辑器 VSCode（推荐使用）下载网盘链接提取码：97p1官方网址:https:&#x2F;&#x2F;code.visualstudio.com&#x2F;VSCode常用插件和技巧教程 Sublime WebStorm Atom   图像编辑器 PhotoShop Illustrator   FTP&#x2F;SSH">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png">
+<meta property="article:published_time" content="2021-01-02T02:58:10.172Z">
+<meta property="article:modified_time" content="2021-01-02T05:03:47.155Z">
+<meta property="article:author" content="Lzy_Blog">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/271630092855cb87b3143aaa847373e6.png"><link rel="canonical" href="http://example.com/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#49B1F5&quot;,&quot;paginator&quot;:&quot;#00c4b6&quot;,&quot;button_hover&quot;:&quot;#FF7242&quot;,&quot;text_selection&quot;:&quot;#00c4b6&quot;,&quot;link_color&quot;:&quot;#99a9bf&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#00c4b6&quot;,&quot;blockquote_padding_color&quot;:&quot;#49b1f5&quot;,&quot;blockquote_background_color&quot;:&quot;#49b1f5&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: '',
+  enable_page_level_ads: 'true'
+});</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Lzy_Blog","link":"链接: ","source":"来源: Lzy_Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-02 13:03:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/social_Icon.css"><link rel="stylesheet" href="/css/Icon_size.css"><link rel="stylesheet" href="/css/Myidea.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Lzy_Blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/1f52735f41052a8a163fbef9101b879e.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home  faa-float animated"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive  faa-float animated"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link  faa-float animated"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags  faa-float animated"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane   faa-float animated"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list faa-float animate"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music faa-float animated"></i><span> 音乐</span></a></li><li><a class="site-page" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-float animated"></i><span> 说说</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://obde5x2383.mf.98yi.top/"><i class="fa-fw fas fa-images  faa-float animated"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart faa-float animated"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lzy_Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home  faa-float animated"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive  faa-float animated"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link  faa-float animated"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags  faa-float animated"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane   faa-float animated"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list faa-float animate"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music faa-float animated"></i><span> 音乐</span></a></li><li><a class="site-page" href="/artitalk/"><i class="fa-fw fas fa-comment-dots faa-float animated"></i><span> 说说</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://obde5x2383.mf.98yi.top/"><i class="fa-fw fas fa-images  faa-float animated"></i><span> 图床</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart faa-float animated"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">详谈前端开发路线</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-02T02:58:10.172Z" title="发表于 2021-01-02 10:58:10">2021-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-02T05:03:47.155Z" title="更新于 2021-01-02 13:03:47">2021-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/web-developer-learn-path.html">路线图来源</a><br><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2021/01/02/12c348da56f463bd8b0f213a75367d22.png"></p>
+<h1 id="资料推荐"><a href="#资料推荐" class="headerlink" title="资料推荐"></a>资料推荐</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/qianguyihao/Web?utm_source=qq&utm_medium=social&utm_oi=619975022605897728">qianguyihao_Web前端开发资料</a><br><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2021/01/02/ee9c7786b0c050b1fd1d4d3041d16735.png"></p>
+</li>
+<li><p>感谢知乎<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/164701269?utm_source=qq&utm_medium=social&utm_oi=619975022605897728">前端开发路线</a></p>
+</li>
+</ul>
+<h1 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h1><ul>
+<li><strong>文本编辑器</strong><ul>
+<li><strong>VSCode</strong>（推荐使用）<br>下载网盘链接<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1iQaivCqQV6RpWKrOj7eTbg">提取码：97p1</a><br>官方网址:<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a><br><a target="_blank" rel="noopener" href="https://www.jspang.com/detailed?id=60">VSCode常用插件和技巧教程</a></li>
+<li><strong>Sublime</strong></li>
+<li>WebStorm</li>
+<li>Atom</li>
+</ul>
+</li>
+<li><strong>图像编辑器</strong><ul>
+<li>PhotoShop</li>
+<li>Illustrator</li>
+</ul>
+</li>
+<li><strong>FTP/SSH工具</strong><ul>
+<li>Filezilla</li>
+<li>Putty</li>
+</ul>
+</li>
+<li><strong>浏览器</strong><ul>
+<li>Chrome</li>
+</ul>
+</li>
+<li><strong>云盘</strong><ul>
+<li>Dropbox</li>
+<li>Google Drive</li>
+<li>Box</li>
+</ul>
+</li>
+</ul>
+<h1 id="HTML-CSS-JS"><a href="#HTML-CSS-JS" class="headerlink" title="HTML/CSS/JS"></a>HTML/CSS/JS</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><ul>
+<li>常用标签</li>
+<li>表单</li>
+<li>HTML</li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/html/html-tutorial.html">HTML|菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14J4114768?from=search&seid=7000402704669507889">2019年黑马程序员前端入门视频教程 HTML5+CSS3-简单有趣好玩-pink老师</a></li>
+</ul>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ul>
+<li>基本语法</li>
+<li>布局（浮动float、定位position、盒模型、flex、grid/layout)</li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/css/css-tutorial.html">CSS|菜鸟教程</a></li>
+</ul>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ul>
+<li><p>基本语法</p>
+</li>
+<li><p>函数</p>
+</li>
+<li><p>面向对象</p>
+</li>
+<li><p>JSON</p>
+</li>
+<li><p>jQuery框架</p>
+</li>
+<li><p>ES6+<br><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/">ES6 入门教程</a></p>
+</li>
+<li><p>接口请求Ajax<br><a target="_blank" rel="noopener" href="https://zh.javascript.info/">现代Javascript教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YW411T7GX?from=search&seid=10104038366788666376">尚硅谷最新版JavaScript基础全套教程完整版(140集实战教学,JS从入门到精通</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312">JavaScript学习博客</a></p>
+</li>
+</ul>
+<h1 id="JS-CSS框架"><a href="#JS-CSS框架" class="headerlink" title="JS/CSS框架"></a>JS/CSS框架</h1><h2 id="JS框架"><a href="#JS框架" class="headerlink" title="JS框架"></a>JS框架</h2><ul>
+<li><p><strong>React</strong>(推荐）</p>
+<ol>
+<li>Redux</li>
+<li>Mobx</li>
+<li>React-router</li>
+<li><a target="_blank" rel="noopener" href="https://react.docschina.org/docs/getting-started.html">React文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://jspang.com/detailed?id=56">React学习路线</a></li>
+</ol>
+</li>
+<li><p><strong>Vue</strong>(推荐)</p>
+<ol>
+<li>Vuex</li>
+<li>Vue-router</li>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/">Vue文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://jspang.com/detailed?id=57">Vue学习路线</a></li>
+</ol>
+</li>
+<li><p><strong>Angular</strong></p>
+<ol>
+<li>RxJS（异步优化）</li>
+<li>NgRx</li>
+</ol>
+</li>
+</ul>
+<h2 id="CSS框架"><a href="#CSS框架" class="headerlink" title="CSS框架"></a>CSS框架</h2><ul>
+<li><strong>Bootstrap(推荐)</strong><br><a target="_blank" rel="noopener" href="https://www.bootcss.com/">Bootstrap中文网</a></li>
+<li> Antd(推荐)<br><a target="_blank" rel="noopener" href="https://ant.design/index-cn">Ant Design—企业级UI设计语言和React组件库</a></li>
+<li>Element UI（推荐）<br><a target="_blank" rel="noopener" href="https://element.eleme.cn/#/zh-CN">Element UI–网站快速成型工具</a></li>
+<li>Material UI<br><a target="_blank" rel="noopener" href="https://material-ui.com/zh/">Material-UI A popular React UI framework</a></li>
+<li>semantic UI<br><a target="_blank" rel="noopener" href="https://semantic-ui.com/">Semantic UI</a></li>
+<li>vant (移动端）<br><a target="_blank" rel="noopener" href="https://youzan.github.io/vant/#/zh-CN/">Vant中文网</a></li>
+</ul>
+<h1 id="CSS预处理"><a href="#CSS预处理" class="headerlink" title="CSS预处理"></a>CSS预处理</h1><ul>
+<li><strong>Sass(推荐)</strong><br><a target="_blank" rel="noopener" href="https://www.sass.hk/docs/">Sass教程</a></li>
+<li>PostCss</li>
+<li>Stylus</li>
+<li>Less</li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9d84bb5043bb">CSS 预处理器 sass,less,stylus优缺点</a></li>
+</ul>
+<h1 id="CSS优化方案"><a href="#CSS优化方案" class="headerlink" title="CSS优化方案"></a>CSS优化方案</h1><ul>
+<li>Styled Component(推荐)<br><a target="_blank" rel="noopener" href="https://styled-components.com/">Styled Components</a></li>
+<li>CSS Modules（推荐）</li>
+<li>Styled JSX</li>
+</ul>
+<h1 id="服务器端编程语言"><a href="#服务器端编程语言" class="headerlink" title="服务器端编程语言"></a>服务器端编程语言</h1><ul>
+<li><strong>Node.jS</strong><ul>
+<li><a target="_blank" rel="noopener" href="http://nodejs.cn/learn">NodeJs入门教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://nqdeng.github.io/7-days-nodejs/">七天学会NodeJS</a></li>
+<li>express.js (node.js 的优化版）<br><a target="_blank" rel="noopener" href="https://www.expressjs.com.cn/">Express 中文网</a></li>
+<li>koa (基于node.js的web开发框架)<br><a target="_blank" rel="noopener" href="https://koa.bootcss.com/">web 框架——Koa</a></li>
+</ul>
+</li>
+<li>PHP</li>
+<li>Ruby on Rails </li>
+<li>Python</li>
+</ul>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ul>
+<li>关系型数据库: MySQL 和 PostgreSQL</li>
+<li>非机构化数据库: MongoDB 和 CouchDB</li>
+<li>建议选择一个以下的组合:<ul>
+<li>PHP/ MySQL</li>
+<li>Node.js/ MongoDB</li>
+</ul>
+</li>
+</ul>
+<h1 id="端技术"><a href="#端技术" class="headerlink" title="端技术"></a>端技术</h1><ul>
+<li>Git &amp; Github<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Mf4y117f3?from=search&seid=10987880512517365800">千锋教育-2020最新Git教程（2小时从入门到精通）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程</a></li>
+</ul>
+</li>
+<li>SSH(安全外壳协议) &amp; Basic Command Line</li>
+<li>CSS 预编译器: Sass/Less</li>
+<li>APIS / REST Service</li>
+<li>HTTPS / SSL<h1 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h1></li>
+<li>专用服务器/ VPS</li>
+<li>应用云平台: Heroku, Digital Ocean, AWS</li>
+<li>部署工具</li>
+<li>Linux命令行</li>
+<li>维护和升级</li>
+</ul>
+<h1 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h1><ul>
+<li><p>自动化构建<br>npm script<br>npm 允许在 package.json 文件里面，使用 scripts 字段定义脚本命令<br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html">npm scripts 使用指南</a></p>
+</li>
+<li><p>gulp</p>
+</li>
+<li><p>模块化打包</p>
+</li>
+<li><p>webpack（推荐）<br><a target="_blank" rel="noopener" href="https://www.webpackjs.com/concepts/">webpack中文网</a><br><a target="_blank" rel="noopener" href="https://github.com/ruanyf/webpack-demos">https://github.com/ruanyf/webpack-demos</a></p>
+</li>
+<li><p>Rollup</p>
+</li>
+<li><p>Snowpack</p>
+</li>
+<li><p>Parcel</p>
+</li>
+<li><p>grunt<br><a target="_blank" rel="noopener" href="https://grunt.docschina.org/">Grunt中文网</a></p>
+</li>
+</ul>
+<h1 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h1><p>白屏、卡顿、页面加载失败、页面跳转慢、图片空窗、崩溃、耗电等问题一直都是用户频繁舆情反馈的痛点。</p>
+<ul>
+<li><p>性能指标</p>
+<ol>
+<li>白屏时间</li>
+<li>首屏时间</li>
+<li>用户可操作时间</li>
+<li>页面总下载时间</li>
+<li>请求数量</li>
+</ol>
+</li>
+<li><p>RAIL模型<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010512899">web性能优化——使用RAIL模型评估性能</a></p>
+</li>
+<li><p>LightHouse指标<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Napoleonxxx/article/details/85077418">玩转Lighthouse—全方位提高网站各项指标的实践</a></p>
+</li>
+<li><p>DevTools</p>
+</li>
+<li><p>PWA<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wt411E7QD?from=search&seid=7258704753153037754">【黑马程序员】PWA-3小时带你实现渐进式WebAPP</a></p>
+</li>
+<li><p>Service Worker</p>
+</li>
+<li><p>骨架屏（骨架屏(Skeleton Screen)是指在页面数据加载完成前，先给用户展示出页面的大致结构（灰色占位图），在拿到接口数据后渲染出实际页面内容然后替换掉。）<br><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2021/01/02/27e14b697f3f27e89e21f94b7e56728f.png"></p>
+</li>
+<li><p>gzip<br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012571492">前端性能优化之gzip</a></p>
+</li>
+<li><p>懒加载和预加载</p>
+</li>
+<li><p>包分析工具（构建代码之后，明白到底是什么占用了那么多空间？可以使用 webpack-bundle-analyzer）</p>
+</li>
+</ul>
+<h1 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h1><ul>
+<li>ECharts(推荐)<br>实例：<a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/index.html">Examples-Apache Echarts</a><br><a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/index.html">Apache Echarts</a></li>
+<li>AntV<br><a target="_blank" rel="noopener" href="https://antv.vision/zh/">蚂蚁集团数据可视化</a></li>
+<li>HighChat</li>
+<li>ucharts(小程序)</li>
+</ul>
+<h1 id="移动端应用-Android-Studio-XCode）"><a href="#移动端应用-Android-Studio-XCode）" class="headerlink" title="移动端应用(Android Studio / XCode）)"></a>移动端应用(Android Studio / XCode）)</h1><ul>
+<li><p>React Native(推荐)<br><a target="_blank" rel="noopener" href="https://reactnative.cn/docs/getting-started">React Native中文网</a></p>
+<blockquote>
+<p>插件汇总</p>
+</blockquote>
+</li>
+<li><p>react-native-linear-gradient 颜色渐变处理</p>
+</li>
+<li><p>react-native-login 视频界面登录</p>
+</li>
+<li><p>react-native-keyboard-aware-scroll-view 键盘显示处理</p>
+</li>
+<li><p>react-native-popup-dialog 弹窗</p>
+</li>
+<li><p>react-native-dropdownalert 一种非常漂亮的alert弹窗方式，从状态栏往下弹窗；</p>
+</li>
+<li><p>react-native-simple-radio-button 单选按钮；</p>
+</li>
+<li><p>react-native-swiper</p>
+</li>
+<li><p>react-native-macos macos桌面应用</p>
+</li>
+<li><p>react-native-wechat 集成微信相关SDK</p>
+</li>
+<li><p>react-native-modalbox 模态弹窗</p>
+</li>
+<li><p>react-native-touch-id 指纹登录</p>
+</li>
+<li><p>react-native-prompt 可输入文字的弹窗</p>
+</li>
+<li><p>react-native-sqlite-storage sqlite数据库存储</p>
+</li>
+<li><p>react-native-permissions 权限检查</p>
+</li>
+<li><p>react-native-progress-hud loading圈</p>
+</li>
+<li><p>react-native-snackbar 类似toast的弹窗模式</p>
+</li>
+<li><p>react-native-qrcode-svg 二维码生产工具</p>
+</li>
+<li><p>native-base UI组件</p>
+</li>
+<li><p>react-native-busy-indicator loading圈</p>
+</li>
+<li><p>react-native-fit-image 图片展示优化</p>
+</li>
+<li><p>react-native-timer 定时器管理</p>
+</li>
+<li><p>react-native-scrollable-tab-view 可以左右滑动的tab</p>
+</li>
+<li><p>react-native-zip-archive 解压工具</p>
+</li>
+<li><p>react-native-xml2js</p>
+</li>
+<li><p>react-native-spinkit 好看的loading圈</p>
+</li>
+<li><p>react-native-interactable 有很强交互效果的table视图</p>
+</li>
+<li><p>react-native-pull-to-refresh 下拉刷新效果</p>
+</li>
+<li><p>react-native-deck-swiper 不错的swiper效果</p>
+</li>
+<li><p>react-native-prefix-picker select效果</p>
+</li>
+<li><p>react-native-gesture-helper 手势 向上还是向下 还是向左</p>
+</li>
+<li><p>react-native-drawer-layout 抽屉效果</p>
+</li>
+<li><p>react-native-sortable-listview 可拖拽排序的列表视图</p>
+</li>
+<li><p>react-native-progress 进度条 长方形 圆形</p>
+</li>
+<li><p>react-native-splash-screen 启动屏处理</p>
+</li>
+<li><p>react-native-masked-text 指定格式的输入框</p>
+</li>
+<li><p>react-native-keyboard-manager 针对IOS 键盘遮挡的问题 俺可以这么用android:windowSoftInputMode=”adjustResize”</p>
+</li>
+<li><p>react-native-beacons-manager 蓝牙处理</p>
+</li>
+<li><p>react-native-fetch-blob 文件获取</p>
+</li>
+<li><p>react-native-popup-menu 弹出菜单</p>
+</li>
+<li><p>react-native-pathjs-charts 图表</p>
+</li>
+<li><p>react-native-dates 日历日期选择工具</p>
+</li>
+<li><p>react-native-calendar-strip 一种简单的日历处理</p>
+</li>
+<li><p>react-native-simple-markdown 简单的markdown文本编辑器</p>
+</li>
+<li><p>react-native-image-progress 进度条</p>
+</li>
+<li><p>react-native-img-cache 图片缓存技术</p>
+</li>
+<li><p>rn-placeholder 在展示具体的文字和图片之前有个加载样式处理</p>
+</li>
+<li><p>react-native-pie-chart 饼状图</p>
+</li>
+<li><p>react-native-maps 地图</p>
+</li>
+<li><p>react-native-loading-overlay loading圈加载遮罩</p>
+</li>
+<li><p>react-native-progress 圆形进度条<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d0742d421b7c">react-native 圆形进度条</a></p>
+</li>
+<li><p>react-native-modal 弹窗插件 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/react-native-modal">react-native-modal</a></p>
+</li>
+<li><p>react-native-extra-dimensions-android 安卓水滴屏获取屏幕高度 <a target="_blank" rel="noopener" href="https://github.com/Sunhat/react-native-extra-dimensions-android">Sunhat/react-native-extra-dimensions-android</a></p>
+</li>
+<li><p>Weex(阿里巴巴旗下的跨平台移动开发解决方案)<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wx411s7PC?from=search&seid=7952335917735607106">技术胖的WEEX入门到实战视频教程</a></p>
+</li>
+<li><p>Flutter<br><a target="_blank" rel="noopener" href="https://flutterchina.club/get-started/install/"> Flutter中文网</a><br><a target="_blank" rel="noopener" href="https://jspang.com/detailed?id=58">Flutter学习路线</a></p>
+</li>
+</ul>
+<h1 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h1><ul>
+<li>原生<ol>
+<li>微信<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">微信开发文档</a></li>
+<li>支付宝</li>
+<li>头条</li>
+</ol>
+</li>
+<li>跨端</li>
+<li>Taro<br><a target="_blank" rel="noopener" href="https://taro-docs.jd.com/taro/docs/README/index.html">Taro文档</a><br>基于 Taro 框架开发的多端 UI 组件库:<a target="_blank" rel="noopener" href="https://taro-ui.jd.com/#/docs/introduction">Taro UI</a></li>
+<li>uni-app<br><a target="_blank" rel="noopener" href="https://uniapp.dcloud.io/">uni-app文档</a></li>
+</ul>
+<h1 id="桌面开发"><a href="#桌面开发" class="headerlink" title="桌面开发"></a>桌面开发</h1><ul>
+<li>Electron （推荐）<br><a target="_blank" rel="noopener" href="http://www.electronjs.org/">Electron文档</a></li>
+<li>Flutter</li>
+</ul>
+<h1 id="网站分享"><a href="#网站分享" class="headerlink" title="网站分享"></a>网站分享</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://litterwang.gitee.io/web-navigation/#/">https://litterwang.gitee.io/web-navigation/#/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.alloyteam.com/nav/">Web前端导航</a></li>
+<li><a target="_blank" rel="noopener" href="https://docschina.org/">权威Web开发文档合集</a></li>
+<li><a target="_blank" rel="noopener" href="https://guide.aotu.io/index.html">前端代码规范–Aotu</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3cplus.com/">打造前端精品</a></li>
+<li><a target="_blank" rel="noopener" href="https://weekly.75.team/">奇舞周刊</a></li>
+<li><a target="_blank" rel="noopener" href="https://codepen.io/">在线代码测试–Cdepen</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/">掘金–大神技术分享社区</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.lovebug.cn/">工具，网站导航，各种插件</a></li>
+<li><a target="_blank" rel="noopener" href="https://yuchengkai.cn/">前端进阶之道</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Lzyblog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://lzyblog.github.io">https://lzyblog.github.io</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Lzy_Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">详谈Java后端开发路线</div></div></a></div><div class="next-post pull-right"><a href="/2021/01/01/%E5%90%8E%E7%AB%AF/PHP%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/20/806f8f8d2aec9935f2c96e634a6c9cec.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PHP程序设计</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/1f52735f41052a8a163fbef9101b879e.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Lzy_Blog</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/lzyblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="https://github.com/lzyblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="tencent://message/?uin=2312057536&amp;Site=Senlon.Net&amp;Menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a><a class="social-icon" href="https://www.zhihu.com/people/xue-ba-oil" target="_blank" title="知乎"><i class="iconfont icon-zhihu card_icon_zhihu"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">城市的轮廓，你的孤独<img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/33a1542ce0a798e62e404f0bd948149f.png"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">学习路线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%84%E6%96%99%E6%8E%A8%E8%8D%90"><span class="toc-number">2.</span> <span class="toc-text">资料推荐</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90"><span class="toc-number">3.</span> <span class="toc-text">工具推荐</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML-CSS-JS"><span class="toc-number">4.</span> <span class="toc-text">HTML&#x2F;CSS&#x2F;JS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-number">4.1.</span> <span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">4.2.</span> <span class="toc-text">CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS"><span class="toc-number">4.3.</span> <span class="toc-text">JS</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JS-CSS%E6%A1%86%E6%9E%B6"><span class="toc-number">5.</span> <span class="toc-text">JS&#x2F;CSS框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS%E6%A1%86%E6%9E%B6"><span class="toc-number">5.1.</span> <span class="toc-text">JS框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E6%A1%86%E6%9E%B6"><span class="toc-number">5.2.</span> <span class="toc-text">CSS框架</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">CSS预处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-number">7.</span> <span class="toc-text">CSS优化方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">8.</span> <span class="toc-text">服务器端编程语言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">9.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AB%AF%E6%8A%80%E6%9C%AF"><span class="toc-number">10.</span> <span class="toc-text">端技术</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8"><span class="toc-number">11.</span> <span class="toc-text">部署应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7"><span class="toc-number">12.</span> <span class="toc-text">构建工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%A7%E8%83%BD"><span class="toc-number">13.</span> <span class="toc-text">性能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-number">14.</span> <span class="toc-text">数据可视化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BA%94%E7%94%A8-Android-Studio-XCode%EF%BC%89"><span class="toc-number">15.</span> <span class="toc-text">移动端应用(Android Studio &#x2F; XCode）)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-number">16.</span> <span class="toc-text">小程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E5%BC%80%E5%8F%91"><span class="toc-number">17.</span> <span class="toc-text">桌面开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB"><span class="toc-number">18.</span> <span class="toc-text">网站分享</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈后端开发路线"><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="详谈后端开发路线"/></a><div class="content"><a class="title" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88Java%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈后端开发路线">详谈后端开发路线</a><time datetime="2021-01-02T05:05:30.237Z" title="发表于 2021-01-02 13:05:30">2021-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈Java后端开发路线"><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="详谈Java后端开发路线"/></a><div class="content"><a class="title" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈Java后端开发路线">详谈Java后端开发路线</a><time datetime="2021-01-02T02:58:32.522Z" title="发表于 2021-01-02 10:58:32">2021-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈前端开发路线"><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/12/12/0e21ca2167b2e53cf4f4f7a36c65a0e7.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="详谈前端开发路线"/></a><div class="content"><a class="title" href="/2021/01/02/%E5%85%B6%E4%BB%96/%E8%AF%A6%E8%B0%88%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF/" title="详谈前端开发路线">详谈前端开发路线</a><time datetime="2021-01-02T02:58:10.172Z" title="发表于 2021-01-02 10:58:10">2021-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/01/%E5%90%8E%E7%AB%AF/PHP%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="PHP程序设计"><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/20/806f8f8d2aec9935f2c96e634a6c9cec.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="PHP程序设计"/></a><div class="content"><a class="title" href="/2021/01/01/%E5%90%8E%E7%AB%AF/PHP%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="PHP程序设计">PHP程序设计</a><time datetime="2021-01-01T10:39:54.294Z" title="发表于 2021-01-01 18:39:54">2021-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/01/%E5%90%8E%E7%AB%AF/Python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="Python程序设计"><img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2021/01/01/7a09a00902f771773d14c04acbe63ed7.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Python程序设计"/></a><div class="content"><a class="title" href="/2021/01/01/%E5%90%8E%E7%AB%AF/Python%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="Python程序设计">Python程序设计</a><time datetime="2021-01-01T10:11:11.026Z" title="发表于 2021-01-01 18:11:11">2021-01-01</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Lzy_Blog</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png"align="absmiddle" width="59px" height="30px" /></a><span>提供加速服务</span></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>浙ICP备12345678号</span></a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-11-02 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='本站已安全运行 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '54O2OYplcci4GjXUK0GjalFz-gzGzoHsz',
+      appKey: 'sB0Y5Ydm1XnlyKUY5uR3RxsW',
+      placeholder: '请留下你的足迹（昵称栏输入QQ后按下Tab键，可以自动获取昵称和邮箱）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/',
+      emojiMaps: {"QQ1":"QQ/aini.gif","QQ2":"QQ/aixin.gif","QQ3":"QQ/aoman.gif","QQ4":"QQ/baiyan.gif","QQ5":"QQ/bangbangtang.gif","QQ6":"QQ/baojin.gif","QQ7":"QQ/baoquan.gif","QQ8":"QQ/bishi.gif","QQ9":"QQ/bizui.gif","QQ11":"QQ/cahan.gif","QQ12":"QQ/caidao.gif","QQ13":"QQ/chi.gif","QQ14":"QQ/ciya.gif","QQ15":"QQ/dabing.gif","QQ16":"QQ/daku.gif","QQ17":"QQ/dan.gif","QQ18":"QQ/deyi.gif","QQ19":"QQ/doge.gif","QQ20":"QQ/fadai.gif","QQ21":"QQ/fanu.gif","QQ22":"QQ/fendou.gif","QQ23":"QQ/ganga.gif","QQ24":"QQ/gouyin.gif","QQ25":"QQ/guzhang.gif","QQ26":"QQ/haixiu.gif","QQ27":"QQ/hanxiao.gif","QQ28":"QQ/haobang.gif","QQ29":"QQ/haqian.gif","QQ30":"QQ/hecai.gif","QQ31":"QQ/hexie.gif","QQ32":"QQ/huaixiao.gif","QQ33":"QQ/jie.gif","QQ34":"QQ/jingkong.gif","QQ35":"QQ/jingxi.gif","QQ36":"QQ/jingya.gif","QQ37":"QQ/juhua.gif","QQ38":"QQ/keai.gif","QQ39":"QQ/kelian.gif","QQ40":"QQ/koubi.gif","QQ41":"QQ/ku.gif","QQ42":"QQ/kuaikule.gif","QQ43":"QQ/kulou.gif","QQ44":"QQ/kun.gif","QQ45":"QQ/lanqiu.gif","QQ46":"QQ/leiben.gif","QQ47":"QQ/lenghan.gif","QQ48":"QQ/liuhan.gif","QQ49":"QQ/liulei.gif","QQ50":"QQ/nanguo.gif","QQ51":"QQ/OK.gif","QQ52":"QQ/penxue.gif","QQ53":"QQ/piezui.gif","QQ54":"QQ/pijiu.gif","QQ55":"QQ/qiang.gif","QQ56":"QQ/qiaoda.gif","QQ57":"QQ/qinqin.gif","QQ58":"QQ/qiudale.gif","QQ59":"QQ/quantou.gif","QQ60":"QQ/saorao.gif","QQ61":"QQ/se.gif","QQ62":"QQ/shengli.gif","QQ63":"QQ/shouqiang.gif","QQ64":"QQ/shuai.gif","QQ65":"QQ/shui.gif","QQ66":"QQ/tiaopi.gif","QQ67":"QQ/touxiao.gif","QQ68":"QQ/tu.gif","QQ69":"QQ/tuosai.gif","QQ70":"QQ/weiqu.gif","QQ71":"QQ/weixiao.gif","QQ72":"QQ/woshou.gif","QQ73":"QQ/wozuimei.gif","QQ74":"QQ/wunai.gif","QQ75":"QQ/xia.gif","QQ76":"QQ/xiaojiujie.gif","QQ77":"QQ/xiaoku.gif","QQ78":"QQ/xiaoyanger.gif","QQ79":"QQ/xieyanxiao.gif","QQ80":"QQ/xigua.gif","QQ81":"QQ/xu.gif","QQ82":"QQ/yangtuo.gif","QQ83":"QQ/yinxian.gif","QQ84":"QQ/yiwen.gif","QQ85":"QQ/youhengheng.gif","QQ86":"QQ/youling.gif","QQ87":"QQ/yun.gif","QQ88":"QQ/zaijian.gif","QQ89":"QQ/zhayanjian.gif","QQ90":"QQ/zhemo.gif","QQ91":"QQ/zhouma.gif","QQ92":"QQ/zhuakuang.gif","QQ93":"QQ/zuohengheng.gif"},
+      enableQQ: true,
+      path: window.location.pathname,
+      master: '42822f7dda988c94f749472918825122'.split(','),
+      friends: 'acd4a1034596c734eeea4d7df453c3b1,01044a97464b0eb17520ce75b4c341bb'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://player.lmih.cn/player/js/player.js" id="myhk" key="160561664166" m="1"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
