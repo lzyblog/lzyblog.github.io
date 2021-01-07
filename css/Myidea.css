@@ -177,9 +177,9 @@ a {
 #footer:before {
     background-color: rgba(0, 0, 0, 0);
 }
-/*代码块美化*/
+/*代码块美化#a9a9a9*/
 #article-container figure.highlight,#article-container pre{
-   color:#a9a9a9;background:#f3f3f3
+   color:#a9a9a9 ;background:#f3f3f3
 }
 #article-container figure.highlight .highlight-tools{
    color:#a9a9a9;background:#eee
@@ -189,4 +189,4 @@ a {
 }
 #article-container figure.highlight figcaption a{
    color:#f3f3f3!important
-}
+} 
