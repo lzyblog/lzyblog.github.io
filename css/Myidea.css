@@ -105,10 +105,10 @@ a {
 /*页脚a标签字体颜色*/
 
 #footer-wrap{
-    color: black;
+    color: #4B4B4B;
 }
 #footer-wrap a{
-    color: black;
+    color: #4B4B4B;
 }
 
 /* 分页器的三个点(...) */

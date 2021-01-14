@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiaoliblog.cn/2021/01/14/Hexo/Hexo+Github%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2021-01-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/2020/12/02/Hexo/Butterfly%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9/</loc>
+    
+    <lastmod>2021-01-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/2020/11/21/%E5%89%8D%E7%AB%AF/JavaScript%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A1%B9%E7%9B%AE/</loc>
+    
+    <lastmod>2021-01-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/about/index.html</loc>
+    
+    <lastmod>2021-01-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/2020/11/21/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2021-01-14</lastmod>
@@ -226,13 +254,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/2020/12/02/Hexo/Butterfly%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9/</loc>
-    
-    <lastmod>2021-01-14</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/2021/01/04/Hexo/Font%20Awesome%E5%9B%BE%E6%A0%87/</loc>
     
     <lastmod>2021-01-14</lastmod>
@@ -241,13 +262,6 @@
   
   <url>
     <loc>http://xiaoliblog.cn/2021/01/13/Hexo/github+jsDelivr%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/</loc>
-    
-    <lastmod>2021-01-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/2021/01/14/Hexo/Hexo+Github%20%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2021-01-14</lastmod>
     
@@ -303,13 +317,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/about/index.html</loc>
-    
-    <lastmod>2021-01-05</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/categories/index.html</loc>
     
     <lastmod>2021-01-05</lastmod>
@@ -354,34 +361,6 @@
 
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Hexo/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/Vercel/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/Git/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/Markdown/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
@@ -396,7 +375,42 @@
   </url>
   
   <url>
+    <loc>http://xiaoliblog.cn/tags/Hexo/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/Vercel/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/Markdown/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/tags/HTML-CSS-JS/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/Git/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/MySQL/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -425,13 +439,6 @@
   
   <url>
     <loc>http://xiaoliblog.cn/tags/Python/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/MySQL/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,6 +487,13 @@
   </url>
   
   <url>
+    <loc>http://xiaoliblog.cn/tags/JavaSctipt/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/tags/JavaSE/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
@@ -489,42 +503,14 @@
 
   
   <url>
+    <loc>http://xiaoliblog.cn/categories/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/categories/Hexo/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Vercel/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Font-Awesome/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Valine/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2021-01-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Git/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -538,14 +524,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9F%9F%E5%90%8D/</loc>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Font-Awesome/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E6%9D%82%E8%B0%88/</loc>
+    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9B%BE%E5%BA%8A/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -559,7 +545,35 @@
   </url>
   
   <url>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Git/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9F%9F%E5%90%8D/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/DataBase/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/categories/Linux/</loc>
+    <lastmod>2021-01-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Vercel/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -580,14 +594,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Python/</loc>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Valine/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/DataBase/</loc>
+    <loc>http://xiaoliblog.cn/categories/Python/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -615,14 +629,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Butterfly/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Butterfly/</loc>
     <lastmod>2021-01-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
