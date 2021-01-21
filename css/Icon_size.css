@@ -10,6 +10,13 @@
    
 }
 
+.card_icon_gitee{
+  /* 修改颜色 */
+  color: #FF0000;
+  /* 修改大小 */
+  font-size: 24px;
+   
+}
 .card_icon_git{
   /* 修改颜色 */
   color: #6495ED;
