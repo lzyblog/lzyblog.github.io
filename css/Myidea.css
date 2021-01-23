@@ -190,3 +190,8 @@ a {
 #article-container figure.highlight figcaption a{
    color:#f3f3f3!important
 } 
+#article-container figure.highlight .code pre {
+    padding-right: .5rem;
+    padding-left: .5rem;
+    width: 100%;
+}
