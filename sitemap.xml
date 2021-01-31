@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xiaoliblog.cn/about/index.html</loc>
+    
+    <lastmod>2021-01-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/2021/01/31/tool/Git/Git_GitHub%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2021-01-31</lastmod>
@@ -24,13 +31,6 @@
   
   <url>
     <loc>http://xiaoliblog.cn/2021/01/30/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</loc>
-    
-    <lastmod>2021-01-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/about/index.html</loc>
     
     <lastmod>2021-01-31</lastmod>
     
