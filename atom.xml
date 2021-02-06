@@ -6,7 +6,7 @@
   <link href="http://xiaoliblog.cn/atom.xml" rel="self"/>
   
   <link href="http://xiaoliblog.cn/"/>
-  <updated>2021-02-06T08:32:05.638Z</updated>
+  <updated>2021-02-06T11:01:58.915Z</updated>
   <id>http://xiaoliblog.cn/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>计算机网络🌈数据链路层</title>
-    <link href="http://xiaoliblog.cn/2021/02/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"/>
-    <id>http://xiaoliblog.cn/2021/02/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</id>
+    <link href="http://xiaoliblog.cn/shujulianlu"/>
+    <id>http://xiaoliblog.cn/shujulianlu</id>
     <published>2021-02-06T05:20:50.487Z</published>
-    <updated>2021-02-06T08:32:05.638Z</updated>
+    <updated>2021-02-06T11:01:58.915Z</updated>
     
     <content type="html"><![CDATA[<h1 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul><li><strong>结点</strong>：主机、路由器</li><li><strong>链路</strong>：网络中两个结点之间的<strong>物理通道</strong>，链路的传输介质主要有双绞线、光纤和微波。分为有线链路、无线链路</li><li><strong>数据链路</strong>：网络中两个结点之间的<strong>逻辑通道</strong>，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路</li><li><strong>帧</strong>：链路层的协议数据单元， 封装网络层数据报</li><li><strong>数据链路层</strong>负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报</li></ul><h2 id="基本功能概述"><a href="#基本功能概述" class="headerlink" title="基本功能概述"></a>基本功能概述</h2><ul><li>数据链路层在物理层提供服务的基础，上<strong>向网络层提供服务</strong>，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。其主要作用是<strong>加强物理层传输原始比特流的功能</strong>，将物理层提供的可能出错的物理连接改造成为<strong>逻辑上无差错的数据链路</strong>，使之对网络层表现为一条无差错的链路。</li><li>功能一：为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面向连接服务。有连接一定有确认!</li><li>功能二：链路管理，即连接的建立、维持、释放(用于面向连接的服务)。</li><li>功能三：组帧。</li><li>功能四：流量控制。限制发送方哦~</li><li>功能五：差错控制(帧错/位错)。</li></ul><h1 id="封装成帧与透明传输"><a href="#封装成帧与透明传输" class="headerlink" title="封装成帧与透明传输"></a>封装成帧与透明传输</h1><ul><li><strong>封装成帧</strong>就是加将数据加头加尾，相当于将数据打包</li><li><strong>透明传输</strong>就是为了<strong>防止特殊的数据无法正常传输</strong>的的情况的发生，比如说在封装成帧的过程中出现数据中的某些标记符与开始/结束标记符恰巧重复等等情况<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@26a8906736021c8d06cf5dd27ec65b50c6fe74fc/2021/02/06/c911dcf160fedf68d7db4fb33841e953.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@752a22fa4e8bac6498bfde656cde04a59499eb54/2021/02/06/f646549c68b3862b0a1c131f9cbaef82.png"></li></ul><h2 id="透明传输的应用"><a href="#透明传输的应用" class="headerlink" title="透明传输的应用"></a>透明传输的应用</h2><h3 id="字符计数法"><a href="#字符计数法" class="headerlink" title="字符计数法"></a>字符计数法</h3><ul><li>就是在帧的首部做计数，看看数据是否错误</li><li>缺点：如果在某一个帧内，标记位后面的某个字节的数据丢失，那么会影响后面的帧<br>  比如3 1 1 和 4 2 2 2，如果前面的帧丢失变成 3 1，那么后面的4就会被补到前面变成 3 1 4导致错误</li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7f049ed8d7a0cb65ed0d417dd2f7fdd092274364/2021/02/06/cb0db7002ca3f584e221ed26c0391267.png"></p><h3 id="字符填充法"><a href="#字符填充法" class="headerlink" title="字符填充法"></a>字符填充法</h3><ul><li><p>就是加头加尾分别标记开始结束，和零比特填充法（见下）对比，<strong>开始和结束的对应的字符不一样</strong></p></li><li><p>但有可能出现数据内某段比特流数据正好<strong>与标记字段重复</strong>，从而导致误判断的情况<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b3e2e2a75a626a48abca9eb86f43657a9f1e659e/2021/02/06/bd7109973c8f3f216b7bc33f96f14abe.png"></p></li><li><p>解决方法：<strong>添加转义字符</strong>，接收端删掉转义字符<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@330b426959077bd0e3ed58861042ac98e3ce7df0/2021/02/06/ea96953d1572368d38615ada0f3debd2.png"></p></li></ul><h3 id="零比特填充法"><a href="#零比特填充法" class="headerlink" title="零比特填充法"></a>零比特填充法</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f60d059807260729e61e20fb76866dae2e60e1c0/2021/02/06/1b93cffc409cb1e91af1b6001a0ddbff.png"></p><h3 id="违规编码法"><a href="#违规编码法" class="headerlink" title="违规编码法"></a>违规编码法</h3><ul><li>因为曼彻斯特编码不使用高-高，低-低来表示，所以如果使用高-高，低-低来表示帧起始和终止就不会与数据冲突</li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f82091d3f4c9faa9eb7c18fed01ea250b2a31bbf/2021/02/06/fb71c3e4bfd1ef5ff6805036e751e276.png"></p><h1 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h1><h2 id="差错的出现"><a href="#差错的出现" class="headerlink" title="差错的出现"></a>差错的出现</h2><ul><li>数据链路层的差错检测的是<strong>比特</strong>的错误</li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@a5101659cdeaafd0ec2e7893e5a894aa81ad5f01/2021/02/06/1f4addaeb81feafdeb4517b45d1b861c.png"></p><h2 id="检错编码"><a href="#检错编码" class="headerlink" title="检错编码"></a>检错编码</h2><h3 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h3><ul><li>缺点：只能检测出1，3，5，7…等等奇位数错误，检测成功率位50%</li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@bcc15263c0260efc3829d83677464c11dfae35a3/2021/02/06/cdcb44f33dad9ae6f8bda62f3420b6cc.png"></p><h3 id="循环冗余码CRC"><a href="#循环冗余码CRC" class="headerlink" title="循环冗余码CRC"></a>循环冗余码CRC</h3><ul><li>就是用传输数据除以生成多项式得到冗余码<ul><li>阶数就是最高位是哪位，然后位数-1，如10011就是5-1=4,1011就是4-1=3</li><li>异或运算就是相同得0，不同得1，比如100和101做异或，结果就是001</li><li>除数和最后的余数添加到要发送的数据后面，称为帧检验序列FCS</li></ul></li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@16a4aae8ece18d88ed259cf0240fa817aaf79362/2021/02/06/9cad85cc5e41df15823d38e1ee50999a.png"></p><ul><li>接收方收到数据后进行检测</li></ul><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7042ab6728922243b911833a6e424532798ebea9/2021/02/06/7291f0568049eefbd86db1980cb87f67.png"></p><ul><li>在数据链路层仅仅使用循环冗余检验CRC差错检测技术，只能做到对帧的无差错接收，即“凡是接收端数据链路层接受的帧，我们都能以非常接近于1的概率认为这些帧在传输过程中没有产生差错”。接收端丢弃的帧虽然曾收到了，但是最终还是因为有差错被丢弃。“ 凡是接收端数据链路层接收的帧均无差错”。</li><li>“可靠传输”：数据链路层发送端发送什么，接收端就收到什么。链路层使用CRC检验，能够实现无比特差错的传输，但这还不是可靠传输。</li></ul><h2 id="纠错编码-海明码"><a href="#纠错编码-海明码" class="headerlink" title="纠错编码-海明码"></a>纠错编码-海明码</h2><ul><li>海明码:发现<strong>双比特</strong>错，纠正<strong>单比特</strong>错<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@3e3a3832b4e6151fe84e22cc51f420765d46ec88/2021/02/06/f577080a725d3c58ba1efde4f5dbc8d5.png"></li></ul><p style="font-size:18px;font-weight:bold;">第一步 确认校验码位数r</p><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5b305e397dccfee6ef095cfbce9d679ccece825a/2021/02/06/ee0134dcb26149a5ca3ea19cf241c12c.png"></p><p style="font-size:18px;font-weight:bold;">第二步 确定校验码和数据的位置</p><ul><li>为什么是10为数据位？因为4位校验码+6位信息位=10位</li><li>校验码放到<strong>2的几次方的位置</strong>(1,2,4,8)，其他的地方按顺序放已知的信息位<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e868e1d9fe90fce4cc4d1f443020620b9af94351/2021/02/06/4907272d81c930fe86f2d67007136172.png"></li></ul><p style="font-size:18px;font-weight:bold;">第三步 求出校验码的值</p><ul><li><p>先是通过二进制位确定有几位。本题中因为最大位10的二进制是1010，所以是4位，将其标注</p></li><li><p>然后从p1开始看，看p1的二进制位的数值和所有信息位的对应位置的数值是否相同，然后找出来这些位。这里有点难理解，这里以p1为例辅助理解,p1第四位为1，这里找出最后第四位为1来的就是P1,D1,D2,D4,D5<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@010a3e3349f63e82b991a967046fb7405030bc12/2021/02/06/e79087df9a7823a6db1c139c3bc9a42e.png"></p></li><li><p>然后计算异或值，比如说这里D1=1,D2=0,D4=1,D5=0,就是p1要同时和<code>0,1，0,1</code>进行异或之后得到0</p></li><li><p>举例：0和1异或得1，1和0异或得1，1和1异或得0，那么p1和0异或得0，p1就是0了</p></li><li><p>其他同理，按顺序计算出P2，P3，P4，然后填入表格<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c28f84de7740533f932e5bf7ab7f0753d6d54ae2/2021/02/06/5c16a566fe88a53385fbef81283e0f6a.png"></p></li></ul><p style="font-size:18px;font-weight:bold;">第四步 检测并纠错</p><ul><li>就是和上面一样，将所有校验位进行运算，得出的结果的值就是错误的位<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f141805950c056a86e8597630bb09c198fc732c7/2021/02/06/216d30947466a36d684a93db204b6f78.png"></li></ul><h1 id="流量控制和可靠传输"><a href="#流量控制和可靠传输" class="headerlink" title="流量控制和可靠传输"></a>流量控制和可靠传输</h1>]]></content>
     
@@ -44,8 +44,8 @@
   
   <entry>
     <title>计算机网络🌈物理层</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E7%89%A9%E7%90%86%E5%B1%82/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E7%89%A9%E7%90%86%E5%B1%82/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztr9004fx0u6e2wx12so/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztr9004fx0u6e2wx12so/</id>
     <published>2021-02-05T09:10:53.096Z</published>
     <updated>2021-02-06T05:19:58.022Z</updated>
     
@@ -71,8 +71,8 @@
   
   <entry>
     <title>计算机网络🌈计算机网络体系结构</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztqx004ax0u662bt8jpz/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztqx004ax0u662bt8jpz/</id>
     <published>2021-02-05T06:44:50.003Z</published>
     <updated>2021-02-05T09:10:30.101Z</updated>
     
@@ -97,8 +97,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻输入输出系统</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztqq0048x0u659tudl7q/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztqq0048x0u659tudl7q/</id>
     <published>2021-02-05T04:52:26.277Z</published>
     <updated>2021-02-05T06:51:12.366Z</updated>
     
@@ -116,8 +116,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻总线</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%80%BB%E7%BA%BF/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%80%BB%E7%BA%BF/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztq70040x0u6cnlw11de/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztq70040x0u6cnlw11de/</id>
     <published>2021-02-05T04:51:32.226Z</published>
     <updated>2021-02-05T06:50:51.285Z</updated>
     
@@ -135,8 +135,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻中央处理器</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztpt003vx0u69rta70rz/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztpt003vx0u69rta70rz/</id>
     <published>2021-02-05T04:50:44.409Z</published>
     <updated>2021-02-05T06:50:56.786Z</updated>
     
@@ -154,8 +154,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻指令系统</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztqd0043x0u683yj3117/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztqd0043x0u683yj3117/</id>
     <published>2021-02-05T04:49:55.100Z</published>
     <updated>2021-02-05T06:51:01.415Z</updated>
     
@@ -173,8 +173,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻存储系统</title>
-    <link href="http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/"/>
-    <id>http://xiaoliblog.cn/2021/02/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztq0003yx0u6ee8a6kxj/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztq0003yx0u6ee8a6kxj/</id>
     <published>2021-02-05T04:48:52.469Z</published>
     <updated>2021-02-05T06:51:23.002Z</updated>
     
@@ -192,8 +192,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻数据的表示和运算</title>
-    <link href="http://xiaoliblog.cn/2021/02/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/"/>
-    <id>http://xiaoliblog.cn/2021/02/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E8%BF%90%E7%AE%97/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzud600efx0u654x5hveh/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzud600efx0u654x5hveh/</id>
     <published>2021-02-03T09:09:56.903Z</published>
     <updated>2021-02-05T06:51:07.002Z</updated>
     
@@ -218,8 +218,8 @@
   
   <entry>
     <title>计算机组成原理👨‍💻计算机基础</title>
-    <link href="http://xiaoliblog.cn/2021/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    <id>http://xiaoliblog.cn/2021/02/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86_%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztqj0045x0u63lwy4wy2/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztqj0045x0u63lwy4wy2/</id>
     <published>2021-02-02T08:41:45.034Z</published>
     <updated>2021-02-05T06:51:17.412Z</updated>
     
@@ -244,8 +244,8 @@
   
   <entry>
     <title>Music Theory</title>
-    <link href="http://xiaoliblog.cn/2021/02/01/Guitar/music%20theory/"/>
-    <id>http://xiaoliblog.cn/2021/02/01/Guitar/music%20theory/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzu7a00bfx0u66ta2hab9/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzu7a00bfx0u66ta2hab9/</id>
     <published>2021-02-01T02:28:38.538Z</published>
     <updated>2021-02-02T08:17:49.715Z</updated>
     
@@ -270,8 +270,8 @@
   
   <entry>
     <title>Git💥GitHub操作</title>
-    <link href="http://xiaoliblog.cn/2021/01/31/tool/Git/Git_GitHub%E6%93%8D%E4%BD%9C/"/>
-    <id>http://xiaoliblog.cn/2021/01/31/tool/Git/Git_GitHub%E6%93%8D%E4%BD%9C/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztic0014x0u6cvx99wa8/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztic0014x0u6cvx99wa8/</id>
     <published>2021-01-31T08:30:10.141Z</published>
     <updated>2021-01-31T08:53:43.213Z</updated>
     
@@ -298,8 +298,8 @@
   
   <entry>
     <title>Git💥Git环境配置及使用</title>
-    <link href="http://xiaoliblog.cn/2021/01/31/tool/Git/Git_Git%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    <id>http://xiaoliblog.cn/2021/01/31/tool/Git/Git_Git%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztim0018x0u6ft9t96p1/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztim0018x0u6ft9t96p1/</id>
     <published>2021-01-30T16:00:00.000Z</published>
     <updated>2021-01-31T08:29:17.855Z</updated>
     
@@ -325,8 +325,8 @@
   
   <entry>
     <title>Web移动开发📲Bootstrap响应式布局</title>
-    <link href="http://xiaoliblog.cn/2021/01/30/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/"/>
-    <id>http://xiaoliblog.cn/2021/01/30/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzub300d9x0u6hxp8en45/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzub300d9x0u6hxp8en45/</id>
     <published>2021-01-30T08:52:12.058Z</published>
     <updated>2021-01-31T05:21:57.967Z</updated>
     
@@ -353,8 +353,8 @@
   
   <entry>
     <title>Web移动开发📲less+rem+媒体查询布局</title>
-    <link href="http://xiaoliblog.cn/2021/01/30/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_Less+%20rem+%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%B8%83%E5%B1%80/"/>
-    <id>http://xiaoliblog.cn/2021/01/30/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_Less+%20rem+%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%B8%83%E5%B1%80/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzuay00d6x0u64trydgjx/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzuay00d6x0u64trydgjx/</id>
     <published>2021-01-30T03:43:22.705Z</published>
     <updated>2021-01-30T08:52:01.642Z</updated>
     
@@ -381,8 +381,8 @@
   
   <entry>
     <title>Web移动开发📲移动端流式+flex布局</title>
-    <link href="http://xiaoliblog.cn/2021/01/29/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E6%B5%81%E5%BC%8F+flex%E5%B8%83%E5%B1%80/"/>
-    <id>http://xiaoliblog.cn/2021/01/29/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E6%B5%81%E5%BC%8F+flex%E5%B8%83%E5%B1%80/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktm0b3z00g8x0u65h1c1xex/"/>
+    <id>http://xiaoliblog.cn/2021/ckktm0b3z00g8x0u65h1c1xex/</id>
     <published>2021-01-29T03:11:02.017Z</published>
     <updated>2021-01-30T04:29:26.225Z</updated>
     
@@ -410,8 +410,8 @@
   
   <entry>
     <title>Web移动开发📲移动端基础</title>
-    <link href="http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80/"/>
-    <id>http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/Web%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91_%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9F%BA%E7%A1%80/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlztnk0030x0u6bzu6ey45/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlztnk0030x0u6bzu6ey45/</id>
     <published>2021-01-28T07:45:00.343Z</published>
     <updated>2021-01-29T03:11:31.428Z</updated>
     
@@ -436,8 +436,8 @@
   
   <entry>
     <title>前端实例🥳登录表单样式</title>
-    <link href="http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E7%99%BB%E5%BD%95%E8%A1%A8%E5%8D%95%E6%A0%B7%E5%BC%8F/"/>
-    <id>http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E7%99%BB%E5%BD%95%E8%A1%A8%E5%8D%95%E6%A0%B7%E5%BC%8F/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzu9i00ccx0u6c8lk71q3/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzu9i00ccx0u6c8lk71q3/</id>
     <published>2021-01-28T05:16:26.422Z</published>
     <updated>2021-02-03T02:21:51.443Z</updated>
     
@@ -462,8 +462,8 @@
   
   <entry>
     <title>前端实例🥳导航栏选项卡实例</title>
-    <link href="http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%80%89%E9%A1%B9%E5%8D%A1%E6%A0%B7%E5%BC%8F/"/>
-    <id>http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%80%89%E9%A1%B9%E5%8D%A1%E6%A0%B7%E5%BC%8F/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktm0b3h00g0x0u6eg1w5izt/"/>
+    <id>http://xiaoliblog.cn/2021/ckktm0b3h00g0x0u6eg1w5izt/</id>
     <published>2021-01-28T05:15:30.382Z</published>
     <updated>2021-01-28T07:10:12.355Z</updated>
     
@@ -488,8 +488,8 @@
   
   <entry>
     <title>前端实例🥳按钮及鼠标悬浮特效</title>
-    <link href="http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E6%8C%89%E9%92%AE%E5%8F%8A%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E7%89%B9%E6%95%88/"/>
-    <id>http://xiaoliblog.cn/2021/01/28/%E5%89%8D%E7%AB%AF/CSS/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B_%E6%8C%89%E9%92%AE%E5%8F%8A%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E7%89%B9%E6%95%88/</id>
+    <link href="http://xiaoliblog.cn/2021/ckktlzu9d00c9x0u6cycgcu4p/"/>
+    <id>http://xiaoliblog.cn/2021/ckktlzu9d00c9x0u6cycgcu4p/</id>
     <published>2021-01-28T03:13:00.469Z</published>
     <updated>2021-01-28T04:40:12.926Z</updated>
     
