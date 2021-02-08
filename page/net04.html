@@ -1,11 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络🌈网络层 | 小李博客</title><meta name="keywords" content="计算机网络"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="article">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络🌈网络层 | 小李博客</title><meta name="keywords" content="计算机网络"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="网络层概述 主要任务是把分组从源端传到目的端，为分组交换网上的不同主机提供通信服务 网络层传输单位是数据报 数据报和分组的关系：分组是一段比较长的数据，将它进行切割成一段段之后就得到数据报 网络层功能 路由选择与分组转发最佳路径：就是让数据在路由器之间走最佳的路径 异构网络互联：就是让不同的设备（手机，电脑，平板等）都能正常连接 拥塞控制：若所有结点都来不及接受分组，而要丢弃大量分组的话，网络就处">
+<meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络🌈网络层">
 <meta property="og:url" content="http://xiaoliblog.cn/page/net04.html">
 <meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="网络层概述 主要任务是把分组从源端传到目的端，为分组交换网上的不同主机提供通信服务 网络层传输单位是数据报 数据报和分组的关系：分组是一段比较长的数据，将它进行切割成一段段之后就得到数据报 网络层功能 路由选择与分组转发最佳路径：就是让数据在路由器之间走最佳的路径 异构网络互联：就是让不同的设备（手机，电脑，平板等）都能正常连接 拥塞控制：若所有结点都来不及接受分组，而要丢弃大量分组的话，网络就处">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png">
 <meta property="article:published_time" content="2021-02-07T09:17:41.914Z">
-<meta property="article:modified_time" content="2021-02-07T09:18:17.929Z">
+<meta property="article:modified_time" content="2021-02-08T05:08:03.125Z">
 <meta property="article:author" content="小李博客">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -79,8 +81,8 @@ var saveToLocal = {
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2021-02-07 17:18:17'
+  isToc: true,
+  postUpdate: '2021-02-08 13:08:03'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -146,7 +148,476 @@ if (asideStatus !== undefined) {
      document.documentElement.classList.remove('hide-aside')
    }
 }})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/social_Icon.css"><link rel="stylesheet" href="/css/Icon_size.css"><link rel="stylesheet" href="/css/Myidea.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">109</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">计算机网络🌈网络层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-07T09:17:41.914Z" title="发表于 2021-02-07 17:17:41">2021-02-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-07T09:18:17.929Z" title="更新于 2021-02-07 17:18:17">2021-02-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">0</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoliblog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/page/net02.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络🌈数据链路层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/net01.html" title="计算机网络🌈计算机网络体系结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈计算机网络体系结构</div></div></a></div><div><a href="/page/net03.html" title="计算机网络🌈物理层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈物理层</div></div></a></div><div><a href="/page/net02.html" title="计算机网络🌈数据链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="title">计算机网络🌈数据链路层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">109</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="tencent://message/?uin=2312057536&amp;Site=Senlon.Net&amp;Menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">城市的轮廓，你的孤独<img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/33a1542ce0a798e62e404f0bd948149f.png"></div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/net04.html" title="计算机网络🌈网络层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈网络层"/></a><div class="content"><a class="title" href="/page/net04.html" title="计算机网络🌈网络层">计算机网络🌈网络层</a><time datetime="2021-02-07T09:17:41.914Z" title="发表于 2021-02-07 17:17:41">2021-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net02.html" title="计算机网络🌈数据链路层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈数据链路层"/></a><div class="content"><a class="title" href="/page/net02.html" title="计算机网络🌈数据链路层">计算机网络🌈数据链路层</a><time datetime="2021-02-06T05:20:50.487Z" title="发表于 2021-02-06 13:20:50">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net03.html" title="计算机网络🌈物理层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈物理层"/></a><div class="content"><a class="title" href="/page/net03.html" title="计算机网络🌈物理层">计算机网络🌈物理层</a><time datetime="2021-02-05T09:10:53.096Z" title="发表于 2021-02-05 17:10:53">2021-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net01.html" title="计算机网络🌈计算机网络体系结构"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈计算机网络体系结构"/></a><div class="content"><a class="title" href="/page/net01.html" title="计算机网络🌈计算机网络体系结构">计算机网络🌈计算机网络体系结构</a><time datetime="2021-02-05T06:44:50.003Z" title="发表于 2021-02-05 14:44:50">2021-02-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/composition03.html" title="计算机组成原理👨‍💻输入输出系统"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@538827960e9ac8b0d7bc07412bb7f4edf1167cb6/2021/02/02/fc75ac77d27fb303f29da68143d2eb20.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机组成原理👨‍💻输入输出系统"/></a><div class="content"><a class="title" href="/page/composition03.html" title="计算机组成原理👨‍💻输入输出系统">计算机组成原理👨‍💻输入输出系统</a><time datetime="2021-02-05T04:52:26.277Z" title="发表于 2021-02-05 12:52:26">2021-02-05</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🌟Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><a target="_blank" href="https://su.baidu.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/6a2bc771a2ead2434fa80740eaa22924.png" align="absmiddle" width="70px" height="20px"></a><span>&nbsp;&&nbsp;&nbsp;</span><a target="_blank"  href="https://www.jsdelivr.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/7b059f8e9de1a268fdeb80109a192925.png" align="absmiddle" width="70px" height="20px"></a></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘公安网备43092302000139号</span></a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-11-02 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='🌎本站已安全运行 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒🌎';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">111</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">计算机网络🌈网络层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-07T09:17:41.914Z" title="发表于 2021-02-07 17:17:41">2021-02-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-08T05:08:03.125Z" title="更新于 2021-02-08 13:08:03">2021-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="网络层概述"><a href="#网络层概述" class="headerlink" title="网络层概述"></a>网络层概述</h1><ul>
+<li>主要任务是把<strong>分组</strong>从源端传到目的端，为分组交换网上的不同主机提供通信服务</li>
+<li>网络层传输单位是<strong>数据报</strong></li>
+<li>数据报和分组的关系：分组是一段比较长的数据，将它进行切割成一段段之后就得到数据报</li>
+<li>网络层功能<ul>
+<li><strong>路由选择与分组转发最佳路径</strong>：就是让数据在路由器之间走最佳的路径</li>
+<li><strong>异构网络互联</strong>：就是让不同的设备（手机，电脑，平板等）都能正常连接</li>
+<li><strong>拥塞控制</strong>：若所有结点都来不及接受分组，而要丢弃大量分组的话，网络就处于<strong>拥塞</strong>状态。因此要采取一定措施,缓解这种拥塞。</li>
+</ul>
+</li>
+<li><strong>开环控制</strong>就是在拥塞之前就提前设计解决</li>
+<li><strong>闭环控制</strong>就是在拥塞时自动调整解决问题</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">OSI参考模型</th>
+<th align="center">各层次的传输单元</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">应用层</td>
+<td align="center">报文</td>
+</tr>
+<tr>
+<td align="center">传输层</td>
+<td align="center">报文段</td>
+</tr>
+<tr>
+<td align="center">网络层</td>
+<td align="center">IP数据报，分组（如果IP数据报太大就切割成分组）</td>
+</tr>
+<tr>
+<td align="center">数据链路层</td>
+<td align="center">帧</td>
+</tr>
+<tr>
+<td align="center">物理层</td>
+<td align="center">比特流</td>
+</tr>
+</tbody></table>
+<h1 id="数据交换方式"><a href="#数据交换方式" class="headerlink" title="数据交换方式"></a>数据交换方式</h1><ul>
+<li>为什么要进行数据交换？因为每个节点之间都拉网线太麻烦了也不实际，所以通过大量交换设备互联进行数据交换</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b7b692aa21fb111f6181e73d62143ee74173cbb9/2021/02/08/489d7c2c1431390f8fd5a74b26131a15.png"></p>
+<h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><ul>
+<li>常见的例子：打电话</li>
+<li>链路支持多路复用（可参考数据链路层的TDM等）</li>
+<li>特点是<strong>独占资源</strong>，因为两者建立了连接</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5ad8e18375746806eae2704cb0bbf2646c054533/2021/02/08/fc775ba8cd0b29f0a2c1c920a0f1a78a.png"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c69cb640bbbc46b0cc6748b57affa9e60c82ce00/2021/02/08/3922e29ea0181d3652d069f5efb76421.png"></p>
+<h2 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h2><ul>
+<li>报文发送的过程<ol>
+<li>源先根据报文加上ip地址，物理地址等，通过物理层发送</li>
+<li>交换机收到报文之后，先进行存储，等待链路空闲之后进行转发，但是转发的路径不是固定的，是比较随机的</li>
+<li>最后通过许多交换机最终到达目的地</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e9634bbc201a1c2cadbb31e5418e89f783cef41d/2021/02/08/3d6575181f6102dac659f362e73445e0.png"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e30f51649104e6eee6437018e19508f200ba498e/2021/02/08/97b85813a3e779fc18c163f9b560ce2c.png"></p>
+<h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><ul>
+<li>分组交换和报文交换基本相同，就是将报文切割之后再进行发送</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@98215f7213e67fbd43dfa9b621eb6c3c11c7ae3a/2021/02/08/fbd78c955eac1337ea353eea82bb0526.png"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@56cea5bcac8e39b8cbcfd6568520c0172a37c777/2021/02/08/dbb7957718b877b30049c1602605f2a3.png"></p>
+<h2 id="方式的选择"><a href="#方式的选择" class="headerlink" title="方式的选择"></a>方式的选择</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@cb4d928b53a38b1e37983bce7256dfc3d3bce278/2021/02/08/9bb8ed84646aec226114e6bf2f59cb4d.png"></p>
+<h2 id="数据报与虚电路"><a href="#数据报与虚电路" class="headerlink" title="数据报与虚电路"></a>数据报与虚电路</h2><ul>
+<li><strong>数据报</strong>与<strong>虚电路方式</strong>是分组交换的两种形式</li>
+<li><strong>数据报方式</strong>为网络层提供<code>无连接服务</code><ul>
+<li>无连接服务:不事先为分组的传输确定传输路径，每个分组独立确定传输路径，不同分组传输路径可能不同</li>
+</ul>
+</li>
+<li><strong>虚电路方式</strong>为网络层提供<code>连接服务</code><ul>
+<li>连接服务:首先为分组的传输确定传输路径(建立连接)，然后沿该路径(连接)传输系列分组，系列分组传输路径相同，传输结束后拆除连接</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@711712f6053c7d5e528b21e84e2e6ffa7ee9e079/2021/02/08/832753d13ba4a3b54e5f898bc304510d.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2ac226ac72daf820ce2328b6f8bbb4730ffe46e8/2021/02/08/4d4cbcec3c6cf21b2792d0249d40248a.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@dd43e62ba701954339796b8aa1d64be4b14b5ad6/2021/02/08/51c537911cb48c71059fac4630c837ee.png"></p>
+<h1 id="路由算法和路由协议"><a href="#路由算法和路由协议" class="headerlink" title="路由算法和路由协议"></a>路由算法和路由协议</h1><ul>
+<li>路由算法就是让路由知道收到报文之后下一步怎么走</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@df34d95b9f8634301a71397191ab9eb8f66e5e54/2021/02/08/4e20b29d521a96cfdd68f8c7956ac8f8.png"></p>
+<ul>
+<li><code>AS</code>就是多个路由器之间构成的单独的小圈子，圈子内使用自己的协议，圈子和圈子之间用的是BGP协议</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e48a914538a9251d108bbca9c086270833a87c33/2021/02/08/f7d73919ac88c61dcce0266745e017d1.png"></p>
+<h2 id="RIP协议和距离向量算法"><a href="#RIP协议和距离向量算法" class="headerlink" title="RIP协议和距离向量算法"></a>RIP协议和距离向量算法</h2><h3 id="RIP协议概述"><a href="#RIP协议概述" class="headerlink" title="RIP协议概述"></a>RIP协议概述</h3><p>通过交换信息构建路由表<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0d1ed2a400f11ba13f319b7e89009567dd6c6c40/2021/02/08/3eb67ebe8096be20376914dfec6edfae.png"></p>
+<h3 id="如何建立路由表"><a href="#如何建立路由表" class="headerlink" title="如何建立路由表"></a>如何建立路由表</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@25933228033e871e41098974539e0847dea4d22d/2021/02/08/66c50f6ec2d41e95ffb067f90d08d962.png"></p>
+<h3 id="距离向量算法"><a href="#距离向量算法" class="headerlink" title="距离向量算法"></a>距离向量算法</h3><ul>
+<li>为什么改地址？<br>  因为图中是从x得到的信息</li>
+<li>为什么距离固定+1？<br>  因为路由器只从相邻路由器之间获取RIP报文，举例只会是1</li>
+<li>为什么下一跳是x就要替换？<br>  因为网络环境不断变化，可能这次某个节点挂掉，所以保持最新的</li>
+<li>为什么下一跳不是x时有更新和不处理两种手段？<br>  因为这样可以提高效率，比原来快就换，比原来慢就保留原来的，也可以理解</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ea67f8ef1fb1a5644103b14b01e0c2660b612aa0/2021/02/08/58a5a2e6b30172603567f80497cb9e79.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@cdaeea0f74b6fbc43f963928339db8771986f9d3/2021/02/08/bb69ad4c474fb795967de47f95bc9c33.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ca5b1242fd6ff4ad6e64d32118b9bef5adc30e06/2021/02/08/9c6cfe7e7153b554a99aee624081c2cc.png"></p>
+<h3 id="RIP协议报文格式"><a href="#RIP协议报文格式" class="headerlink" title="RIP协议报文格式"></a>RIP协议报文格式</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@a10b5c6b7d8f5da956f4f5410cafcec032cf3d1f/2021/02/08/a40235108237028ed756d00837a6b018.png"></p>
+<h3 id="RIP协议特点"><a href="#RIP协议特点" class="headerlink" title="RIP协议特点"></a>RIP协议特点</h3><ul>
+<li>RIP协议来回更新路由表，错误信息被覆盖，导致直至达到距离上限强制错误时才可以得知出错</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@35e7e864b08ede13f9d905ce51fb9e7bec17f752/2021/02/08/15adb0896b6f457f563538641f25e80f.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@3405a4de3bb3c0bcda8093188a579b7d2c2cb84c/2021/02/08/976e85474af3dfe8bc9939326949a144.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@923f58d6b9b9b0b03762b11668af98ded2acbb4c/2021/02/08/50e54a19ed1bbef0ee1bba3aa5ca1ed2.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7abfb323b3ab9837fda07f694118c3572b799e46/2021/02/08/477d06d250be272cbcf2a9b088e3bb18.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b8c882f5108a146e296baeaddfc12ed88a326042/2021/02/08/86e7f368c6ca631af70828d0312209d1.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@efd4b622c6ec5e7c745f4d4a6ffb6043b5810480/2021/02/08/20f016aafa9b3b2261e495710d05e97f.png"></p>
+<h2 id="OSPF协议和链路状态算法"><a href="#OSPF协议和链路状态算法" class="headerlink" title="OSPF协议和链路状态算法"></a>OSPF协议和链路状态算法</h2><h3 id="OSPF协议概述"><a href="#OSPF协议概述" class="headerlink" title="OSPF协议概述"></a>OSPF协议概述</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c0ec5336d1097177905c85d7d1f3d6609b052af1/2021/02/08/f84b5b5adc351ff4320d63bbc7919c11.png"></p>
+<h3 id="链路状态路由算法"><a href="#链路状态路由算法" class="headerlink" title="链路状态路由算法"></a>链路状态路由算法</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ee9269a12fb40bfa7b85a4d2c882a0ed64503340/2021/02/08/d5f54b58872e46336cf6ff3de8e30d75.png"></p>
+<h3 id="OSPF区域"><a href="#OSPF区域" class="headerlink" title="OSPF区域"></a>OSPF区域</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@70343c2c5e282703154177ec5a0b84334df71ddb/2021/02/08/e31fd639533926c164e0eefe8f8ab8f5.png"></p>
+<h3 id="OSPF分组"><a href="#OSPF分组" class="headerlink" title="OSPF分组"></a>OSPF分组</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2154b724b84412fd6b4f90e4ddfb80a3de4a0e0a/2021/02/08/fed694832ebe02592574ca6af777e62a.png"></p>
+<h3 id="OSPF其他特点"><a href="#OSPF其他特点" class="headerlink" title="OSPF其他特点"></a>OSPF其他特点</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f586da90dce0230e60e3c68e61b6406fbe8a543a/2021/02/08/e7f86d6ff08f4a25b9707b0a4da9547c.png"></p>
+<h2 id="BGP协议"><a href="#BGP协议" class="headerlink" title="BGP协议"></a>BGP协议</h2><h3 id="BGP协议概述"><a href="#BGP协议概述" class="headerlink" title="BGP协议概述"></a>BGP协议概述</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@454c8e0fa47f2f40cc1b83680615dbc662efaf81/2021/02/08/4053cadd3732b50e28a18b3e98bb7f2e.png"></p>
+<h3 id="BGP协议交换信息的过程"><a href="#BGP协议交换信息的过程" class="headerlink" title="BGP协议交换信息的过程"></a>BGP协议交换信息的过程</h3><ul>
+<li>BGP所交换的网络可达性的信息就是<strong>要到达某个网络所要经过的一系列AS</strong>。当BGP发言人互相交换了网络可达性的信息后，各BGP发言人就根据所采用的策略从收到的路由信息中找出到达各AS的较好路由。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7ff62da73bcd51ed24bffe3f8e7baba7af9f1a61/2021/02/08/3bf659c092d787025188601595fd40c8.png"></p>
+<h3 id="BGP协议报文格式"><a href="#BGP协议报文格式" class="headerlink" title="BGP协议报文格式"></a>BGP协议报文格式</h3><ul>
+<li>BGP是<strong>应用层</strong>协议</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2c9f22db2dce206884228131261a424dd54a1c1e/2021/02/08/57f63797fc081f677aaa0c3359fccddb.png"></p>
+<h3 id="BGP协议特点"><a href="#BGP协议特点" class="headerlink" title="BGP协议特点"></a>BGP协议特点</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@841881ce7900e63bf9d3daedaaaf29d5dae1e435/2021/02/08/16a59bb6b8f4f318e56b8efe2b36cecb.png"></p>
+<h3 id="BGP四种报文"><a href="#BGP四种报文" class="headerlink" title="BGP四种报文"></a>BGP四种报文</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@02ea97ce972631a65488c73e9f3b53084f92843c/2021/02/08/594ba08a771241da0fa6427f69f6a0c0.png"></p>
+<h2 id="三种路由协议的笔记"><a href="#三种路由协议的笔记" class="headerlink" title="三种路由协议的笔记"></a>三种路由协议的笔记</h2><ul>
+<li><code>RIP</code>是一种分布式的基于距离向量的内部网关路由选择协议，通过广播<code>UDP</code>报文来交换路由信息。</li>
+<li><code>OSPF</code>是一个内部网关协议，要交换的信息量较大，应使报文的长度尽量短，所以不使用传输层协议(如UDP或TCP)，而是直接采用<code>IP</code></li>
+<li><code>BGP</code>是一个外部网关协议，在不同的自治系统之间交换路由信息，由于网络环境复杂，需要保证可靠传输，所以采用<code>TCP</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5d80c7cf04aa746103bf66c022fa68ba6faefacc/2021/02/08/00d9591f38c936e523eb4e28f7954a47.png"></p>
+<h1 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h1><h2 id="IP数据报格式"><a href="#IP数据报格式" class="headerlink" title="IP数据报格式"></a>IP数据报格式</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">注释</th>
+<th align="center">大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">版本 Version</td>
+<td align="center">ipv4或者ipv6</td>
+<td align="center">4位</td>
+</tr>
+<tr>
+<td align="center">首部长度 IHL</td>
+<td align="center">此处数值再乘以4才是真正大小，同时因为IP数据报固定长度为20字节，所以此处最小值为5，即二进制的0101</td>
+<td align="center">4位</td>
+</tr>
+<tr>
+<td align="center">区分服务 DSCP + ECN</td>
+<td align="center">希望获得哪种服务，用的比较少</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">总长度 Total Length</td>
+<td align="center">首部+数据的长度，最大为2^16-1=65535</td>
+<td align="center">16位</td>
+</tr>
+<tr>
+<td align="center">标识 Identification</td>
+<td align="center">用来表示是哪一个数据报的分片，不同的分片标识各不相同</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">标志 Flags</td>
+<td align="center">用来表示是否分片和分片是否结束</td>
+<td align="center">3位，但实际有用的只有后两位</td>
+</tr>
+<tr>
+<td align="center">片偏移 Fragment Offset</td>
+<td align="center">用来标记分片之后，该分片在原来的数据报的位置，以8字节为单位</td>
+<td align="center">13位</td>
+</tr>
+<tr>
+<td align="center">生存时间 Time To Live</td>
+<td align="center">即TTL，没经过一个路由器TTL-1,0时自动放弃，根据系统不同默认的TTL不同</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">协议 Protocol</td>
+<td align="center">用来标记协议名的字段值，如TCP,UDP,ICMP等等</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">首部检验和 Header Checksum</td>
+<td align="center">检验首部的字段是否出错，出错就丢弃此数据报</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">源地址 Source IP Address</td>
+<td align="center">发送方ip地址</td>
+<td align="center">32位</td>
+</tr>
+<tr>
+<td align="center">目的地址 Destination IP Address</td>
+<td align="center">接收方ip地址</td>
+<td align="center">32位</td>
+</tr>
+<tr>
+<td align="center">可选字段 Options</td>
+<td align="center">用来排错等安全检测</td>
+<td align="center">未知，可在0-40位之间</td>
+</tr>
+<tr>
+<td align="center">填充</td>
+<td align="center">将数据报对齐成4字节的整数倍，数值全部为0</td>
+<td align="center">未知，根据可选字段来定</td>
+</tr>
+</tbody></table>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e424bda1f0d08d8611348f8a604405deae71b9eb/2021/02/08/a912f1ba78a3af877b309d61bcf14afd.png"></p>
+<h2 id="IP数据报分片"><a href="#IP数据报分片" class="headerlink" title="IP数据报分片"></a>IP数据报分片</h2><ul>
+<li><strong>最大传送单元MTU</strong>：链路层数据帧可封装<strong>数据</strong>的上限。例如以太网的MTU是1500字节。</li>
+<li>如果所传送的数据报长度超过某链路的MTU值，就需要引入分片</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@69200848c99f1b29779548f35a4edfedbd88e47d/2021/02/08/376f57e93cfe2fe5052e4925ccf699c9.png"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@bbad0b111d850df4185b7e582edc7d0ec1ec09d9/2021/02/08/56108943531a137de392bd47be01f31d.png"></p>
+<h1 id="IP概述"><a href="#IP概述" class="headerlink" title="IP概述"></a>IP概述</h1><h2 id="IPv4"><a href="#IPv4" class="headerlink" title="IPv4"></a>IPv4</h2><ul>
+<li><strong>全球唯一的</strong>表示某一个主机或者路由器接口的编码</li>
+<li>IP编制的方法<ul>
+<li>分类的IP地址</li>
+<li>子网的划分</li>
+<li>构成超网(无分类编址方法)、</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@9c9cd4acd35966b69bf9d04994671fa2cc320e0c/2021/02/08/2e6a1ff60e559bf3dab8657e3fbca575.png"></p>
+<h3 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e0969dce71915bd8a6f6e7937ebc89fb953f4e48/2021/02/08/2795f8b434cc3f5c6525f8dd138f4e75.png"></p>
+<h3 id="特殊IP地址"><a href="#特殊IP地址" class="headerlink" title="特殊IP地址"></a>特殊IP地址</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c7d1ac1e4323e45d77dea0958d3dd63630ed75fb/2021/02/08/b8d83e5e7c09fc54f620a6b75746ca7a.png"></p>
+<h3 id="私有IP地址"><a href="#私有IP地址" class="headerlink" title="私有IP地址"></a>私有IP地址</h3><ul>
+<li>私有IP地址也叫本地IP地址，</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@182a1e4a0a1a814d0b0c06a858f1679022979df5/2021/02/08/9058a39a9517f71597a8e228750d4ded.png"></p>
+<ul>
+<li>为什么A类最大是126.xxx.xxx.xxx？<br>  因为网络号最开始第一位是0，一共八位，所以二进制表示位0xxxxxxx，最大就是2<sup>7</sup>-1=127，但是因为127.xxx.xxx.xxx是特殊ip地址，所以将其去掉</li>
+<li>为什么B类最大是191.255.xxx.xxx？<br>  因为网络号最开始第一位是10，一共八位，所以二进制表示位10xxxxxx，最大就是10111111=191，最小就是10000000=128，无特殊ip地址</li>
+<li>为什么C类最大是223.255.xxx.xxx？<br>  因为网络号最开始第一位是110，一共八位，所以二进制表示位110xxxxx，最大就是11011111=223，最小就是10000000=192，无特殊ip地址</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0707a1abddb59e6e06afc5008aa1fe943b0d9b25/2021/02/08/52165d7b7e6de0f76bb5ada9d28cc57f.png"></p>
+<h2 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a>网络地址转换NAT</h2><ul>
+<li>路由器对目的地址是私有IP地址的数据报一律不进行转发</li>
+<li>连接内网和外网，就是找个代理的用它的ip地址与外面收发数据</li>
+<li>NAT需要构建NAT转换表，既要存广域网（WAN，外网）也要存局域网（LAN，内网）的ip地址和端口号</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@98d26b0cedbb412d1db950f6dad97b8120907785/2021/02/08/b856999d167fa6763d7d1a7fa0d5d713.png"></p>
+<h2 id="子网划分和子网掩码"><a href="#子网划分和子网掩码" class="headerlink" title="子网划分和子网掩码"></a>子网划分和子网掩码</h2><h3 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h3><ul>
+<li>分类的IP地址的弱点<ul>
+<li>IP地址空间的利用率有时很低</li>
+<li>两级IP地址不够灵活。</li>
+<li>总结：就是IP不够用，需要额外整个子网扩展IP，所以引出子网划分</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@4400496dbea714f72398383881392d1cbc8cd5da/2021/02/08/8576eeb352b04eacde60dfd1bb0d9e4d.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@3c065c31d109d9deaf5c56cd90c660117d210fae/2021/02/08/e27f86a549f046d45a6796c8074e9975.png"></p>
+<h3 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h3><ul>
+<li>子网掩码就是用来和IP地址一起计算子网的地址的<ul>
+<li><strong>子网掩码逐位写成二进制然后而原来IP地址进行与运算，就可以得到子网IP地址</strong></li>
+<li>因为255是11111111，所以如果写着255的话，IP地址和子网IP地址对应的地方的数值就相同</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5938a21909e8c22f3289cb2e468e437c2e078aab/2021/02/08/0f18054f084f8af11f01316cefcf9b2e.png"></p>
+<ul>
+<li><p>子网掩码习题1<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@a58b18783bd4e002962921939f8f9aa7217e6077/2021/02/08/2194e08a0caa4a8b0a612fd523d72f86.png"></p>
+</li>
+<li><p>IP地址与子网掩码相与，72对应二进制：0100 1000 ，192对应二进制： 1100 0000，相与得到： 0100 0000（64），网络地址为：141.14.64.0</p>
+</li>
+<li><p>如果子网掩码为255.255.224.0，所求的网络地址也是141.14.64.0</p>
+</li>
+<li><p>可以看出来，即使子网掩码不同，相同IP地址对应的子网IP地址也可能相同，但是子网掩码不同，划分的子网数目不同</p>
+</li>
+<li><p>为什么划分的子网数目不同？或者说怎么算划分的子网位数目？</p>
+<ul>
+<li>以255.255.192.0为例，255是11111111即八个1,192是11000000即2个1，一共是82+2=18个1，一共有32位地址，所以剩余有32-18=14位</li>
+<li>以255.255.224.0为例，255是11111111即八个1,224是11100000即3个1，一共是82+3=19个1，一共有32位地址，所以剩余有32-19=13位</li>
+</ul>
+</li>
+<li><p>子网掩码习题2<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@daaf1a85eeb6f5e0dd713db46f267244061355e7/2021/02/08/7b2d9d7d80bbdab36da7158f1c3f0ea2.png"></p>
+</li>
+<li><p>这道题先将255.255.252.0计算出一共有8+8+6=22位网络号位，所以就有32-22=10位主机号位</p>
+</li>
+<li><p>将180.80.77.55解析，可以知道在77部分某部分开始会用来表示主机号位</p>
+</li>
+<li><p>77的二进制是0100 1101，因为一共有22位网络号位，所以010011 （此处分开） 01，从这个01开始是主机号位。</p>
+</li>
+<li><p>所以用来表示子网ip地址的应该是180.80.76（010011 00）.xxx PS注意76括号内后两位二进制00</p>
+</li>
+<li><p>但是本体是发布广播地址，所以主机号全部都要是1，所以应该是180.80.79（010011 11）.255（11111111）注意79括号内后两位二进制11</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ef63cae0eb806a4708e6c118560912dc9e80aa61/2021/02/08/2373ce6290a58c322d1db5f2cb3b7bfd.png"></p>
+<ul>
+<li>这里特定主机路由就是指找特定的处理这里这个ip地址的路由</li>
+<li>默认路由会将这个数据报发给另一个路由，直至找到对应的路由，或者TTL耗尽被丢弃</li>
+</ul>
+<h2 id="无分类编制CIDR"><a href="#无分类编制CIDR" class="headerlink" title="无分类编制CIDR"></a>无分类编制CIDR</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@91b339fff2d6d0134685a85d46d0da42d032804b/2021/02/08/c97f450ea075a990482f5f6494a8f912.png"></p>
+<ul>
+<li>使用CIDR可以聚合网络<ul>
+<li>如图，通过缩短前缀，R1和R2就可以合并在206.1.0.0/16的子网下</li>
+<li>但是这样转发表之中就会有多个匹配结果，所以我们使用<strong>最长前缀匹配</strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23f0f79b75d27b8d457b6a4330952bc4f1842915/2021/02/08/2b2441d38c88f3bf4bc41b285a8d38dd.png"></p>
+<ul>
+<li>最长前缀匹配就是在计算后符合同一子网的时候，选前缀越长的，这道题选B</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@76de6dc3f61b3289c21a6c0fdba4e474ede9cdf0/2021/02/08/8ee2ad3ba88c71a14992d7397415b274.png"></p>
+<ul>
+<li>因为本网络是192.168.5.0/24，就是192.168.5.（0000 0000）/24，将248写成二进制是11111 000，有五个1，所以前五位都可以作为子网的编号，剩下的三位就是用来分配子网内剩余的地址了，因为不能全0或者全1，所以还要减2</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@54e3d46cfd4f60d0dc05b681f77e5745226f6bd7/2021/02/08/b5b1bd13a63460a280a3886a55a3ff6d.png"></p>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f4c4e6e30811373120c4532f1b51d1fa217e69e3/2021/02/08/1b0f24152006fd6db081ed022d137828.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ef9972baaeca9727d835aa3c54bd0bac5acbbcc9/2021/02/08/65f1e66e63417f66a565961666627650.png"></p>
+<h2 id="DHCP协议"><a href="#DHCP协议" class="headerlink" title="DHCP协议"></a>DHCP协议</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@efd179a8dcf7248b82d9c06e807f37c07f4128cf/2021/02/08/37dd7a5be6ec2818035e168182b03944.png"></p>
+<h2 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h2><h3 id="ICMP协议概述"><a href="#ICMP协议概述" class="headerlink" title="ICMP协议概述"></a>ICMP协议概述</h3><ul>
+<li>ICMP，IGMP处于网络层和传输层之间，就是为了更好地转发IP数据报和提高交互成功的几率</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ace9587966725a87ab7e1c40232f2592325d0bb3/2021/02/08/c13d3c08e8eb000431cedc8b6c131db1.png"></p>
+<h3 id="ICMP差错报告报文"><a href="#ICMP差错报告报文" class="headerlink" title="ICMP差错报告报文"></a>ICMP差错报告报文</h3><p>ICMP差错报告报文如何与IP数据报结合<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@96cc2bfc3ef66b4bd9bee333bff9a0dc16e21d15/2021/02/08/21fb77d36f6e92c5fbc76ad1e87b5e5d.png"></p>
+<ul>
+<li>五种ICMP差错报告报文<ol>
+<li><strong>终点不可达</strong>:当路由器或主机不能交付数据报时就向源点发送终点不可达报文。（无法交付）</li>
+<li><del>源点抑制</del>（已取消）:当路由器或主机由于拥塞而丢弃数据报时，就向源点发送源点抑制报文，使源点知道应当把数据报的发送速率放慢。（拥塞丢数据）</li>
+<li><strong>时间超过</strong>：当路由器收到生存时间TTL=0的数据报时，除丢弃该数据报外，还要向源点发送时间超过报文。当终点在预先规定的时间内不能收到一个数据报的全部数据报片时，就把已收到的数据报片都丢弃，并向源点发送时间超过报文。（TTL=0）</li>
+<li><strong>参数问题</strong>：当路由器或目的主机收到的数据报的首部中有的字段的值不正确时，就丢弃该数据报，并向源点发送参数问题报文。（首部字段有问题）</li>
+<li><strong>改变路由(重定向)</strong> ：路由器把改变路由报文发送给主机，让主机知道下次应将数据报发送给另外的路由器(可通过更好的路由)。（值得更好的路由）</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>四种不发送ICMP差错报文的情况<ol>
+<li>对<strong>ICMP差错报告报文</strong>不再发送ICMP差错报告报文。</li>
+<li>对第一个分片的数据报片的所有<strong>后续数据报片</strong>都不发送ICMP差错报告报文。</li>
+<li>对具有<strong>组播地址</strong>的数据报都不发送ICMP差错报告报文。</li>
+<li>对具有<strong>特殊地址</strong>(如127.0.0.0或0.0.0.0)的数据报不发送ICMP差错报告报文。</li>
+</ol>
+</li>
+</ul>
+<h3 id="ICMP询问报文"><a href="#ICMP询问报文" class="headerlink" title="ICMP询问报文"></a>ICMP询问报文</h3><ul>
+<li>四种ICMP询问报文<ol>
+<li>回送请求和回答报文<br>主机或路由器向特定目的主机发出的询问，收到此报文的主机必须给源主机或路由器发送ICMP回送回答报文。测试目的站是否可达以及了解其相关状态。</li>
+<li>时间戳请求和回答报文请某个主机或路 由器回答当前的日期和时间。用来进行时钟同步和测量时间。</li>
+<li><del>掩码地址请求和回答报文</del></li>
+<li><del>路由器询问和通告报文</del></li>
+</ol>
+</li>
+</ul>
+<div class="note warning flat"><p>后两种是掩码地址请求和回答报文，路由器询问和通告报文，这两个已经废弃不再使用</p>
+</div>
+
+<h3 id="ICMP的应用"><a href="#ICMP的应用" class="headerlink" title="ICMP的应用"></a>ICMP的应用</h3><ul>
+<li><code>ping</code>命令：测试两个主机之间连通性，使用了ICMP回送请求和回答报文</li>
+<li><code>traceroute</code>命令：跟踪一个分组从原点到终点的路径，使用了ICMP时间超过差错报告报文<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/llq_200/article/details/81034345">traceroute命令讲解</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="IPV6"><a href="#IPV6" class="headerlink" title="IPV6"></a>IPV6</h1><ul>
+<li>IPv6的出现：IPV4地址用完了，从根本上增加IP地址数目，之前讲的NAT和CIDR也只是在IPV4的基础上扩展了IPV4地址数目，治标不治本</li>
+</ul>
+<h2 id="IPV6地址表示形式"><a href="#IPV6地址表示形式" class="headerlink" title="IPV6地址表示形式"></a>IPV6地址表示形式</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@3f4ce7bee0973cc3492acd0009903be8f1eb93f9/2021/02/08/fa89b13a974d826e329736bc4d7d29a1.png"></p>
+<h2 id="IPV6数据报格式"><a href="#IPV6数据报格式" class="headerlink" title="IPV6数据报格式"></a>IPV6数据报格式</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">作用</th>
+<th align="center">位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">版本 Version</td>
+<td align="center">知名协议版本，此处因为是ipv6所以总是6</td>
+<td align="center">4位</td>
+</tr>
+<tr>
+<td align="center">优先级 Traffic Class</td>
+<td align="center">又来区分数据报的类型和优先级</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">流标签 Flow Label</td>
+<td align="center">和ipv4标识某个数据报分片不同，这是对于一整个数据报流的标记</td>
+<td align="center">19位</td>
+</tr>
+<tr>
+<td align="center">有效载荷长度 Payload Length</td>
+<td align="center">指的是扩展首部+数据部分的大小，和ipv4的总长度和首部长度都不同，ipv6的首部长度是固定的40字节</td>
+<td align="center">16位</td>
+</tr>
+<tr>
+<td align="center">下一个首部 Next Header</td>
+<td align="center">基本首部的下一个首部指的是有效载荷里标记的的扩展首部，有效载荷里的扩展首部再指向有效载荷里标记的的扩展首部，直至最后指向数据</td>
+<td align="center">8位</td>
+</tr>
+<tr>
+<td align="center">跳数限制 Hop Limit</td>
+<td align="center">基本相当于ipv4当中的TTL，每到一个路由器-1.减到0时丢弃</td>
+<td align="center">7位</td>
+</tr>
+<tr>
+<td align="center">源地址 Source Address</td>
+<td align="center">发送方ipv6地址</td>
+<td align="center">128位</td>
+</tr>
+<tr>
+<td align="center">目标地址 Destination Address</td>
+<td align="center">接收方ipv6地址</td>
+<td align="center">128位</td>
+</tr>
+</tbody></table>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@14f21368a1c77e03b48379294b1e294fa3d9b993/2021/02/08/d2de530a74b814ac28ba0fc81fb1abb2.png"></p>
+<h2 id="IPV4和IPV6的区别"><a href="#IPV4和IPV6的区别" class="headerlink" title="IPV4和IPV6的区别"></a>IPV4和IPV6的区别</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b3d154949cc675209a064dd75343eb625ea7318/2021/02/08/4c05e070cc5d02a62a0725aee7f65320.png"></p>
+<h2 id="IPV6基本地址类型"><a href="#IPV6基本地址类型" class="headerlink" title="IPV6基本地址类型"></a>IPV6基本地址类型</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">作用</th>
+<th align="center">要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单播</td>
+<td align="center">一对一通信</td>
+<td align="center">可做源地址，目的地址</td>
+</tr>
+<tr>
+<td align="center">多播</td>
+<td align="center">一对多通信，以前的广播地址当做覆盖所有主机的多播</td>
+<td align="center">可做目的地址</td>
+</tr>
+<tr>
+<td align="center">任播</td>
+<td align="center">一对多当中的一个通信，看似一对多，实则一对一</td>
+<td align="center">可做目的地址</td>
+</tr>
+</tbody></table>
+<h2 id="IPV4和IPV6之间的过渡"><a href="#IPV4和IPV6之间的过渡" class="headerlink" title="IPV4和IPV6之间的过渡"></a>IPV4和IPV6之间的过渡</h2><p>如果是IPV6的数据报到了IPV4，就用IPV4重新封装，把IPV6数据报前面加上IPV4伪装成IPV4数据报继续传输，直至到了IPV路由再解开IPV4伪装<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@db89cc02f565b69a1337312003e871c9ed58058b/2021/02/08/d93364a60baec72c99021667f3434e67.png"></p>
+<h1 id="IP组播（多播）"><a href="#IP组播（多播）" class="headerlink" title="IP组播（多播）"></a>IP组播（多播）</h1><h2 id="IP组播概述"><a href="#IP组播概述" class="headerlink" title="IP组播概述"></a>IP组播概述</h2><p>IP数据报的三种传输方式</p>
+<ul>
+<li><p><strong>单播</strong>用于发送数据包到单个目的地，且每发送一份单播报文都使用一个单播IP地址，作为目的地址。是一种<code>点对点</code>传输方式</p>
+</li>
+<li><p><strong>广播</strong>是指发送数据包到同一广播域或子网内的所有设备的一-种数据传输方式，是一种<code>点对多点</code>传输方式</p>
+</li>
+<li><p><strong>组播</strong>（多播）：当网络中的某些用户需要特定数据时,组播数据发送者仅发送一-次数据，借助组播路由协议为组播数据包建立组播分发树，被传递的数据到达距离用户端尽可能近的节点后才开始复制和分发，是一种<code>点对多点</code>传输方式</p>
+</li>
+<li><p>单播所占资源多<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@36df1e8b4e8c3893ea100d2a01814b787fcf345b/2021/02/08/c55bf61564af10adc46e90aca726d15d.png"></p>
+</li>
+<li><p>组播明显减轻了压力<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@123628439379cf63f8baaa784a04bea1cea5484d/2021/02/08/1382f9726c2754de2555d88b8a32b1d1.png"></p>
+</li>
+</ul>
+<h2 id="IP组播地址"><a href="#IP组播地址" class="headerlink" title="IP组播地址"></a>IP组播地址</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2fc6ed5ec13769fdee2125cf79b62af58a3eb1ff/2021/02/08/dc316efe61f173cc3ca56b4faceb6642.png"></p>
+<h2 id="硬件组播"><a href="#硬件组播" class="headerlink" title="硬件组播"></a>硬件组播</h2><ul>
+<li>就像全F的mac地址代表广播一样，00-10-5E打头的MAC地址就代表组播</li>
+<li>7为什么最大是00-10-5E-7F-FF-FF？<br>  因为只有最后23位决定</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6a1391cbe1d060b27304f549ee80439a95b025f9/2021/02/08/35e741a63061c28aaaa93558b3d7412a.png"></p>
+<h2 id="IGMP协议"><a href="#IGMP协议" class="headerlink" title="IGMP协议"></a>IGMP协议</h2><ul>
+<li>IGMP只能知道有没有组播组成员，对有几个组播组成员，成员在哪个地方都不知道</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@01d93bf57d2770a16004c63d131cdc8ccfc2e713/2021/02/08/e815f6d09dc794e91b0389c5e68187ea.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b99e6370eb378f84ea0ef560779617c5b33b28ec/2021/02/08/5ec0196e91f6d3cd24b8223823d20811.png"></p>
+<h2 id="组播路由选择协议"><a href="#组播路由选择协议" class="headerlink" title="组播路由选择协议"></a>组播路由选择协议</h2><ul>
+<li>有了这个，成员可以自行找到转发组，自行决定参加哪个组播（就像电视机选台一样）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0ced86c1f17093cdd68c342bab4525687dd06381/2021/02/08/ca7b3c9d3fe02749b479becd55504797.png"></p>
+<ul>
+<li>组播路由选择协议常使用的三种算法:<ul>
+<li>基于链路状态的路由选择</li>
+<li>基于距离-向量的路由选择</li>
+<li>协议无关的组播(稀疏/密集)</li>
+</ul>
+</li>
+</ul>
+<h1 id="移动IP"><a href="#移动IP" class="headerlink" title="移动IP"></a>移动IP</h1><p>移动IP<strong>不等于</strong>动态IP（DHCP获得的）<br>移动IP的可以让用户因为地理原因等等，即使不在内网也可以访问内网的东西</p>
+<h2 id="移动IP的相关术语"><a href="#移动IP的相关术语" class="headerlink" title="移动IP的相关术语"></a>移动IP的相关术语</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c7612699781e85d6b778d1e722e47085a3d85c5c/2021/02/08/1cbc4c30f45e6992628e48495a8be8b8.png"></p>
+<h2 id="移动IP通信过程"><a href="#移动IP通信过程" class="headerlink" title="移动IP通信过程"></a>移动IP通信过程</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5065b5b422f3b6c4e3a750b959fbde5d838b6fc9/2021/02/08/925b20c25de5b9e53b9c4faa505c5f41.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@33b210cf6acf7e1e38f17d1560e1859ab5a35678/2021/02/08/1b5649bf0964180c2ae3bed0ebd28157.png"></p>
+<h1 id="网络层设备"><a href="#网络层设备" class="headerlink" title="网络层设备"></a>网络层设备</h1><h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><h3 id="路由器的构造"><a href="#路由器的构造" class="headerlink" title="路由器的构造"></a>路由器的构造</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@34f508ae2731e36593b80e52abbfb96a2f742702/2021/02/08/3e6cc1a2d5e9ce10d29c3027754bcd7b.png"></p>
+<h3 id="路由器输入输出端口构造"><a href="#路由器输入输出端口构造" class="headerlink" title="路由器输入输出端口构造"></a>路由器输入输出端口构造</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@80c62c45f1f5ef5d59f2900b623dbb1f034e01d9/2021/02/08/7fd46f22e4383f89fc28412a6db98bc7.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0bbadd90fdbbe97adf44126e104f6559ef899646/2021/02/08/4e22433d58ef69c870bb535a9203ceb3.png"></p>
+<h3 id="集线器，网桥，路由表几层设备比较"><a href="#集线器，网桥，路由表几层设备比较" class="headerlink" title="集线器，网桥，路由表几层设备比较"></a>集线器，网桥，路由表几层设备比较</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@fa8da3f67ef44bbbcc55d98892cd46dd80ee3d4b/2021/02/08/bb9176174a30fe89ce62fbb18518be49.png"></p>
+<h3 id="路由器的路由表和转发表"><a href="#路由器的路由表和转发表" class="headerlink" title="路由器的路由表和转发表"></a>路由器的路由表和转发表</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@73158fad0e2d8ea4717c70d040e6629cbfa99185/2021/02/08/513c7aba08c68e10c0de3a4520928150.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoliblog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/net05.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络🌈传输层</div></div></a></div><div class="next-post pull-right"><a href="/page/net02.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络🌈数据链路层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/net01.html" title="计算机网络🌈计算机网络体系结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈计算机网络体系结构</div></div></a></div><div><a href="/page/net05.html" title="计算机网络🌈传输层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="title">计算机网络🌈传输层</div></div></a></div><div><a href="/page/net06.html" title="计算机网络🌈应用层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="title">计算机网络🌈应用层</div></div></a></div><div><a href="/page/net03.html" title="计算机网络🌈物理层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈物理层</div></div></a></div><div><a href="/page/net02.html" title="计算机网络🌈数据链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="title">计算机网络🌈数据链路层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">111</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="tencent://message/?uin=2312057536&amp;Site=Senlon.Net&amp;Menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">城市的轮廓，你的孤独<img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/33a1542ce0a798e62e404f0bd948149f.png"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">网络层概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">数据交换方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">电路交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E4%BA%A4%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">报文交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="toc-number">2.3.</span> <span class="toc-text">分组交换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">2.4.</span> <span class="toc-text">方式的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8A%A5%E4%B8%8E%E8%99%9A%E7%94%B5%E8%B7%AF"><span class="toc-number">2.5.</span> <span class="toc-text">数据报与虚电路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95%E5%92%8C%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">路由算法和路由协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RIP%E5%8D%8F%E8%AE%AE%E5%92%8C%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">RIP协议和距离向量算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RIP%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">3.1.1.</span> <span class="toc-text">RIP协议概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">3.1.2.</span> <span class="toc-text">如何建立路由表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%9D%E7%A6%BB%E5%90%91%E9%87%8F%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.3.</span> <span class="toc-text">距离向量算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RIP%E5%8D%8F%E8%AE%AE%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.4.</span> <span class="toc-text">RIP协议报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RIP%E5%8D%8F%E8%AE%AE%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.5.</span> <span class="toc-text">RIP协议特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF%E5%8D%8F%E8%AE%AE%E5%92%8C%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">OSPF协议和链路状态算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">OSPF协议概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E7%8A%B6%E6%80%81%E8%B7%AF%E7%94%B1%E7%AE%97%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text">链路状态路由算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%8C%BA%E5%9F%9F"><span class="toc-number">3.2.3.</span> <span class="toc-text">OSPF区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%88%86%E7%BB%84"><span class="toc-number">3.2.4.</span> <span class="toc-text">OSPF分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF%E5%85%B6%E4%BB%96%E7%89%B9%E7%82%B9"><span class="toc-number">3.2.5.</span> <span class="toc-text">OSPF其他特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.3.</span> <span class="toc-text">BGP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">3.3.1.</span> <span class="toc-text">BGP协议概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE%E4%BA%A4%E6%8D%A2%E4%BF%A1%E6%81%AF%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">3.3.2.</span> <span class="toc-text">BGP协议交换信息的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.3.3.</span> <span class="toc-text">BGP协议报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE%E7%89%B9%E7%82%B9"><span class="toc-number">3.3.4.</span> <span class="toc-text">BGP协议特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BGP%E5%9B%9B%E7%A7%8D%E6%8A%A5%E6%96%87"><span class="toc-number">3.3.5.</span> <span class="toc-text">BGP四种报文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="toc-number">3.4.</span> <span class="toc-text">三种路由协议的笔记</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="toc-number">4.</span> <span class="toc-text">IP数据报</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.1.</span> <span class="toc-text">IP数据报格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%88%86%E7%89%87"><span class="toc-number">4.2.</span> <span class="toc-text">IP数据报分片</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP%E6%A6%82%E8%BF%B0"><span class="toc-number">5.</span> <span class="toc-text">IP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPv4"><span class="toc-number">5.1.</span> <span class="toc-text">IPv4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E5%9C%B0%E5%9D%80%E5%88%86%E7%B1%BB"><span class="toc-number">5.1.1.</span> <span class="toc-text">IP地址分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8AIP%E5%9C%B0%E5%9D%80"><span class="toc-number">5.1.2.</span> <span class="toc-text">特殊IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E6%9C%89IP%E5%9C%B0%E5%9D%80"><span class="toc-number">5.1.3.</span> <span class="toc-text">私有IP地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2NAT"><span class="toc-number">5.2.</span> <span class="toc-text">网络地址转换NAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%92%8C%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">5.3.</span> <span class="toc-text">子网划分和子网掩码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">5.3.1.</span> <span class="toc-text">子网划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number">5.3.2.</span> <span class="toc-text">子网掩码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%88%86%E7%B1%BB%E7%BC%96%E5%88%B6CIDR"><span class="toc-number">5.4.</span> <span class="toc-text">无分类编制CIDR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.5.</span> <span class="toc-text">ARP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DHCP%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.6.</span> <span class="toc-text">DHCP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.7.</span> <span class="toc-text">ICMP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">5.7.1.</span> <span class="toc-text">ICMP协议概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E5%B7%AE%E9%94%99%E6%8A%A5%E5%91%8A%E6%8A%A5%E6%96%87"><span class="toc-number">5.7.2.</span> <span class="toc-text">ICMP差错报告报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E8%AF%A2%E9%97%AE%E6%8A%A5%E6%96%87"><span class="toc-number">5.7.3.</span> <span class="toc-text">ICMP询问报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICMP%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">5.7.4.</span> <span class="toc-text">ICMP的应用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IPV6"><span class="toc-number">6.</span> <span class="toc-text">IPV6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPV6%E5%9C%B0%E5%9D%80%E8%A1%A8%E7%A4%BA%E5%BD%A2%E5%BC%8F"><span class="toc-number">6.1.</span> <span class="toc-text">IPV6地址表示形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPV6%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">IPV6数据报格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPV4%E5%92%8CIPV6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.3.</span> <span class="toc-text">IPV4和IPV6的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPV6%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9D%80%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.4.</span> <span class="toc-text">IPV6基本地址类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPV4%E5%92%8CIPV6%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BF%87%E6%B8%A1"><span class="toc-number">6.5.</span> <span class="toc-text">IPV4和IPV6之间的过渡</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP%E7%BB%84%E6%92%AD%EF%BC%88%E5%A4%9A%E6%92%AD%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">IP组播（多播）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E7%BB%84%E6%92%AD%E6%A6%82%E8%BF%B0"><span class="toc-number">7.1.</span> <span class="toc-text">IP组播概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP%E7%BB%84%E6%92%AD%E5%9C%B0%E5%9D%80"><span class="toc-number">7.2.</span> <span class="toc-text">IP组播地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%92%AD"><span class="toc-number">7.3.</span> <span class="toc-text">硬件组播</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IGMP%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.4.</span> <span class="toc-text">IGMP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%92%AD%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.5.</span> <span class="toc-text">组播路由选择协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8IP"><span class="toc-number">8.</span> <span class="toc-text">移动IP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8IP%E7%9A%84%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="toc-number">8.1.</span> <span class="toc-text">移动IP的相关术语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8IP%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">8.2.</span> <span class="toc-text">移动IP通信过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-number">9.</span> <span class="toc-text">网络层设备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-number">9.1.</span> <span class="toc-text">路由器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-number">9.1.1.</span> <span class="toc-text">路由器的构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AB%AF%E5%8F%A3%E6%9E%84%E9%80%A0"><span class="toc-number">9.1.2.</span> <span class="toc-text">路由器输入输出端口构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BA%BF%E5%99%A8%EF%BC%8C%E7%BD%91%E6%A1%A5%EF%BC%8C%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%87%A0%E5%B1%82%E8%AE%BE%E5%A4%87%E6%AF%94%E8%BE%83"><span class="toc-number">9.1.3.</span> <span class="toc-text">集线器，网桥，路由表几层设备比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%92%8C%E8%BD%AC%E5%8F%91%E8%A1%A8"><span class="toc-number">9.1.4.</span> <span class="toc-text">路由器的路由表和转发表</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/net06.html" title="计算机网络🌈应用层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈应用层"/></a><div class="content"><a class="title" href="/page/net06.html" title="计算机网络🌈应用层">计算机网络🌈应用层</a><time datetime="2021-02-08T08:52:00.591Z" title="发表于 2021-02-08 16:52:00">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net05.html" title="计算机网络🌈传输层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈传输层"/></a><div class="content"><a class="title" href="/page/net05.html" title="计算机网络🌈传输层">计算机网络🌈传输层</a><time datetime="2021-02-08T05:34:26.622Z" title="发表于 2021-02-08 13:34:26">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net04.html" title="计算机网络🌈网络层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈网络层"/></a><div class="content"><a class="title" href="/page/net04.html" title="计算机网络🌈网络层">计算机网络🌈网络层</a><time datetime="2021-02-07T09:17:41.914Z" title="发表于 2021-02-07 17:17:41">2021-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net02.html" title="计算机网络🌈数据链路层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈数据链路层"/></a><div class="content"><a class="title" href="/page/net02.html" title="计算机网络🌈数据链路层">计算机网络🌈数据链路层</a><time datetime="2021-02-06T05:20:50.487Z" title="发表于 2021-02-06 13:20:50">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net03.html" title="计算机网络🌈物理层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈物理层"/></a><div class="content"><a class="title" href="/page/net03.html" title="计算机网络🌈物理层">计算机网络🌈物理层</a><time datetime="2021-02-05T09:10:53.096Z" title="发表于 2021-02-05 17:10:53">2021-02-05</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🌟Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><a target="_blank" href="https://su.baidu.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/6a2bc771a2ead2434fa80740eaa22924.png" align="absmiddle" width="70px" height="20px"></a><span>&nbsp;&&nbsp;&nbsp;</span><a target="_blank"  href="https://www.jsdelivr.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/7b059f8e9de1a268fdeb80109a192925.png" align="absmiddle" width="70px" height="20px"></a></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘公安网备43092302000139号</span></a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-11-02 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='🌎本站已安全运行 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒🌎';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
  <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     loader: {

@@ -1,0 +1,480 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络🌈传输层 | 小李博客</title><meta name="keywords" content="计算机网络"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="传输层概述传输层的意义 网络层可以把数据从一个主机传送到另一个主机，但是没有和进程建立联系 传输层就是讲进程和收到的数据联系到一起，使数据能够为应用层服务，所以说传输层是主机才有的层次 传输层的功能 传输层提供进程和进程之间的逻辑通信 复用和分用 传输层对收到的报文进行差错检测 传输层的两种协议    传输层的两个协议   传输层协议 说明 特点    面向连接的传输控制协议TCP 传送数据之前必">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络🌈传输层">
+<meta property="og:url" content="http://xiaoliblog.cn/page/net05.html">
+<meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="传输层概述传输层的意义 网络层可以把数据从一个主机传送到另一个主机，但是没有和进程建立联系 传输层就是讲进程和收到的数据联系到一起，使数据能够为应用层服务，所以说传输层是主机才有的层次 传输层的功能 传输层提供进程和进程之间的逻辑通信 复用和分用 传输层对收到的报文进行差错检测 传输层的两种协议    传输层的两个协议   传输层协议 说明 特点    面向连接的传输控制协议TCP 传送数据之前必">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png">
+<meta property="article:published_time" content="2021-02-08T05:34:26.622Z">
+<meta property="article:modified_time" content="2021-02-08T08:50:33.776Z">
+<meta property="article:author" content="小李博客">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/271630092855cb87b3143aaa847373e6.png"><link rel="canonical" href="http://xiaoliblog.cn/page/net05"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#49B1F5&quot;,&quot;paginator&quot;:&quot;#00c4b6&quot;,&quot;button_hover&quot;:&quot;#FF7242&quot;,&quot;text_selection&quot;:&quot;#00c4b6&quot;,&quot;link_color&quot;:&quot;#99a9bf&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#00c4b6&quot;,&quot;blockquote_padding_color&quot;:&quot;#49b1f5&quot;,&quot;blockquote_background_color&quot;:&quot;#49b1f5&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: '',
+  enable_page_level_ads: 'true'
+});</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 小李博客","link":"链接: ","source":"来源: 小李博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-08 16:50:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/social_Icon.css"><link rel="stylesheet" href="/css/Icon_size.css"><link rel="stylesheet" href="/css/Myidea.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">111</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-warehouse"></i><span> 娱乐屋</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page" href="/photograph/"><i class="fa-fw fa fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://fontawesome.dashgame.com/"><i class="fa-fw fas fa-laugh-wink"></i><span> FontAwesome</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.iconfont.cn/"><i class="fa-fw fas fa-grin-hearts"></i><span> IconFont</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans"><i class="fa-fw fas fa-grin-hearts"></i><span> EmojiAll</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://dh.xiaokang.me/"><i class="fa-fw fas fa-voicemail"></i><span> 网址导航</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">计算机网络🌈传输层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-08T05:34:26.622Z" title="发表于 2021-02-08 13:34:26">2021-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-08T08:50:33.776Z" title="更新于 2021-02-08 16:50:33">2021-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="传输层概述"><a href="#传输层概述" class="headerlink" title="传输层概述"></a>传输层概述</h1><h2 id="传输层的意义"><a href="#传输层的意义" class="headerlink" title="传输层的意义"></a>传输层的意义</h2><ul>
+<li>网络层可以把数据从一个主机传送到另一个主机，但是没有和进程建立联系</li>
+<li>传输层就是讲进程和收到的数据联系到一起，使数据能够为应用层服务，所以说传输层是主机才有的层次</li>
+<li>传输层的功能<ol>
+<li>传输层提供进程和进程之间的逻辑通信</li>
+<li>复用和分用</li>
+<li>传输层对收到的报文进行差错检测</li>
+<li>传输层的两种协议</li>
+</ol>
+</li>
+</ul>
+<h2 id="传输层的两个协议"><a href="#传输层的两个协议" class="headerlink" title="传输层的两个协议"></a>传输层的两个协议</h2><table>
+<thead>
+<tr>
+<th align="center">传输层协议</th>
+<th align="center">说明</th>
+<th align="center">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>面向连接的传输控制协议</strong><code>TCP</code></td>
+<td align="center">传送数据之前必须建立连接，数据传送结束后要释放连接。不提供广播或多播服务。由于TCP要提供可靠的面向连接的传输服务，因此不可避免增加了许多开销:确认、流量控制、计时器及连接管理等。</td>
+<td align="center">可靠，面向连接，时延大，适用于大文件。</td>
+</tr>
+<tr>
+<td align="center"><strong>无连接的用户数据报协议</strong><code>UDP</code></td>
+<td align="center">传送数据之前不需要建立连接，收到UDP报文后也不需要给出任何确认。</td>
+<td align="center">不可靠，无连接, 时延小，适用于小文件</td>
+</tr>
+</tbody></table>
+<h2 id="传输层的寻址和端口"><a href="#传输层的寻址和端口" class="headerlink" title="传输层的寻址和端口"></a>传输层的寻址和端口</h2><ul>
+<li>端口号只用于计算机分辨本地进程，总共有2<sup>16</sup>=65536种端口号，端口号有很多种，不能随便使用</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0b75d7cccdcc7f3e247dded4159f83413f8ff99a/2021/02/08/34060d0f5aeda76ac2b4477b92322420.png"></p>
+<h3 id="常见的应用程序端口号"><a href="#常见的应用程序端口号" class="headerlink" title="常见的应用程序端口号"></a>常见的应用程序端口号</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@99ce17698336185b30d6fea63b35c7e4930282c5/2021/02/08/e867abc630fdb3941a27b20665ae486a.png"></p>
+<h1 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h1><h2 id="UDP概述"><a href="#UDP概述" class="headerlink" title="UDP概述"></a>UDP概述</h2><ul>
+<li>UDP只在IP数据报服务之上增加了很少功能，即复用分用和差错检测功能。</li>
+<li>UDP的主要特点:<ol>
+<li>UDP是<strong>无连接</strong>的，减少开销和发送数据之前的时延。</li>
+<li>UDP使用最大努力交付，即<strong>不保证可靠交付</strong>。</li>
+<li>UDP是<strong>面向报文</strong>的，适合一次性 传输少量数据的网络应用。</li>
+<li>UDP无拥塞控制， 适合很多实时应</li>
+<li>UDP首部开销小，8B， TCP20B。</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@573f577429d51c213e26fd7b064e619bafc13984/2021/02/08/c384db31c14e03091c8d74f024b1c2e2.png"></p>
+<h2 id="UDP首部格式"><a href="#UDP首部格式" class="headerlink" title="UDP首部格式"></a>UDP首部格式</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b73a472999b99c26e2d7bf8caece8d9dab664801/2021/02/08/732099637919e658e44378b8e927da2f.png"></p>
+<h3 id="UDP的校验位构成"><a href="#UDP的校验位构成" class="headerlink" title="UDP的校验位构成"></a>UDP的校验位构成</h3><ul>
+<li>这里的伪首部只是用来计算检验和的，计算完了就丢弃，可以见下UDP的校验方式</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@72f39c2a257271663e57a0f912511f93aec59e1e/2021/02/08/0ef90e1b87d289cf30c3f6802e39ec0c.png"></p>
+<h3 id="UDP校验方式"><a href="#UDP校验方式" class="headerlink" title="UDP校验方式"></a>UDP校验方式</h3><ul>
+<li><strong>在发送端的时候</strong><ol>
+<li>就是将每一行（4字节）拆成两部分，左右平均2字节大小，将这两字节数据写成二进制，那么2字节一共就需要2*8=16位。此时检验和没有计算，默认填充0，同时如果数据字段不整齐，则用0补齐，这样就可以写出几十行二进制数，如图中方所示</li>
+<li>计算着几十行二进制数按<strong>二进制反码运算求和</strong>，二进制反码运算可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jcchan/p/10400504.html">二进制反码求和运算</a>，得到的最后简介再反码，之后<strong>将反码之后的</strong>放入原来的检验和字段</li>
+</ol>
+</li>
+<li><strong>在接收端的时候</strong><br>  <strong>与发送端的时候不同的是，此时检验和字段不是0了</strong><br>  按照发送端的步骤再将所有数据写成二进制进行二进制反码运算求和<br>  如果最后得到结果全1就是没问题，否则丢弃</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@58d5b9900e45387d8572e879aec9db9f8465b42c/2021/02/08/102394919f69fbd8bb86fdd334af5cf4.png"></p>
+<h1 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h1><h2 id="TCP协议的特点"><a href="#TCP协议的特点" class="headerlink" title="TCP协议的特点"></a>TCP协议的特点</h2><ul>
+<li>TCP必须要建立连接之后才可以进行数据交换，所以TCP是面向连接的</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ec3929c17232608902946625ee56993b4d7b2277/2021/02/08/5cbc2c29f11824c09edf368fb6cb137e.png"></p>
+<ul>
+<li>TCP传输数据是随机切割数据的</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6d2b1b5f0b334f4c141663a81c030b861e03a8f9/2021/02/08/83dc3e893bf8d00bec4ead65757dcec7.png"></p>
+<h2 id="TCP报文段的首部"><a href="#TCP报文段的首部" class="headerlink" title="TCP报文段的首部"></a>TCP报文段的首部</h2><ul>
+<li>见上图，可以看到TCP是将数据随机分割后加上TCP头传输的<ul>
+<li>所以<strong>序号</strong>就是为了标记这些随机分割之后的数据，这里把第一个字节的编号当成序号</li>
+<li><strong>确认号</strong>就是收到之后做一下标记，代表这之前的都收到了，希望收到的下一个编号的数据就是确认号打头的那个数据</li>
+<li><strong>偏移量</strong>就是为了标记一下距离TCP开始多少字节是数据，这里的单位是4B，这个偏移量就是TCP首部长度</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@1efb5edf5cc17ac7a41673141bccf59817a35e20/2021/02/08/071f0f8cab95e0dd8f70a1252f4b02ad.png"></p>
+<ul>
+<li><strong>窗口</strong>就是接收方告诉发送方，还有多少地方（缓存）可以放数据</li>
+<li><strong>紧急指针</strong>就是告诉TCP从哪里到哪里是紧急数据</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f41c08dd28411ea20b3203fa11987e1268a55ef9/2021/02/08/677c277e431e46c0d667f48e38d621fa.png"></p>
+<h3 id="TCP的六个控制位"><a href="#TCP的六个控制位" class="headerlink" title="TCP的六个控制位"></a>TCP的六个控制位</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@4d2c28a9b6665dd2138b46bc555b2c148a39cda7/2021/02/08/308de01c5967b3718d4406c64c2f8d55.png"></p>
+<h2 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h2><ul>
+<li>TCP连接传输三个阶段:<ol>
+<li>连接建立</li>
+<li>数据传送</li>
+<li>连接释放</li>
+</ol>
+</li>
+<li>TCP连接的建立采用<strong>客户服务器方式</strong>，主动发起连接建立的应用进程叫做客户，而被动等待连接建立的应用进程叫服务器</li>
+</ul>
+<h3 id="TCP三次握手（建立连接）"><a href="#TCP三次握手（建立连接）" class="headerlink" title="TCP三次握手（建立连接）"></a>TCP三次握手（建立连接）</h3><ul>
+<li>第一段的意思是<br>  SYN=1：(A)要建立连接了！<br>  seq=x（随机）：因为还没有数据，所以写什么都无所谓</li>
+<li>第二段的意思是<br>  SYN=1：我(B)同意你(A)建立连接！<br>  ACK=1：连接建立了，之后的ACK必须都置为1<br>  seq=y（随机）：因为还没有数据，所以写什么都无所谓<br>  ack=x+1：之前发送方(A)说发送的是第x位数据（虽然发送方是瞎说的），所以我(B)要的是x+1位数据</li>
+<li>第三段的意思是<br>  SYN=0：SYN只有在建立连接时才为1，其他时候均设为0<br>  ACK=1：连接建立了，之后的ACK必须都置为1<br>  seq=x+1：我(A)发送的报文段的第一个字节就是x+1<br>  ack=y+1：之前接收方(B)说发送的是第y位数据（虽然接收方是瞎说的），所以我(A)要的是y+1位数据</li>
+<li>注意一下，TCP是双向的，所以不存在绝对不变的发送方接收方，这里的两台主机都同时是发送方和接收方</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@649098558caada59939b33aaeecae1921f0e6610/2021/02/08/3dea3c773f205bc6f787abef0e930e42.png"></p>
+<ul>
+<li><strong>TCP三次握手特定导致的SYN洪泛攻击</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@1cdbce5828bb030f89708a62e310e3c2fe80860e/2021/02/08/de1a86ea0351141ee1ed94a52ec97778.png"></p>
+<h3 id="TCP四次挥手（连接释放）"><a href="#TCP四次挥手（连接释放）" class="headerlink" title="TCP四次挥手（连接释放）"></a>TCP四次挥手（连接释放）</h3><ul>
+<li>第一段的意思是<br>  FIN=1：(A)要释放连接了！<br>  seq=u：发了好多数据，这里只是用u指代一下，这里u是有确定值的</li>
+<li>第二段的意思是<br>  ACK=1：连接建立了，之后的ACK必须都置为1<br>  seq=v：发了好多数据，这里只是用v指代一下，这里v是有确定值的<br>  ack=u+1：之前发送方(A)说发送的是第u位数据，所以我(B)要的是u+1位数据（尽管此时A已经决定释放连接了）</li>
+<li>第三段的意思是<br>  FIN=1：(B)要释放连接了！<br>  ACK=1：连接建立了，之后的ACK必须都置为1<br>  seq=w：发了好多数据，这里只是用w指代一下，这里w是有确定值的<br>  ack=u+1：之前发送方(A)说发送的是第u位数据，所以我(B)要的是u+1位数据（因为A直接不发数据了，所以第二段第三段的ack都是u+1）</li>
+<li>第四段的意思是<br>  ACK=1：连接建立了，之后的ACK必须都置为1<br>  seq=u+1：之前发的数据时第u位数据，B也要第u+1位数据，所以我发第u+1位数据<br>  ack=w+1：之前发送方(B)说发送的是第w位数据，所以我(A)要的是w+1位数据</li>
+<li>为什么需要等待计时2MSL？<br>  因为这样可以保证B可以收到A的终止报文段进而进入关闭状态<br>  比如说如果A的第四段报文丢失，那么等待一个MSL之后B就会重传第三段报文，花费小于1MSL之后A就会再收到第三段报文，之后就可以再次向B发送第四段报文提示B关闭连接</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@73432ce5e635261cfe7e3b9aee13bbe4cf33e46b/2021/02/08/3f2b11ba1157f30b57a185f1bbc5aab9.png"></p>
+<h2 id="TCP可靠传输"><a href="#TCP可靠传输" class="headerlink" title="TCP可靠传输"></a>TCP可靠传输</h2><ul>
+<li>TCP是提供可靠传输，UDP这种本身还是不可靠传输的就再靠应用层解决了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@147906f443cf05a47b089475bed9aaafb6933aa1/2021/02/08/1a306ebf8558909d0a18e038c98e57b2.png"></p>
+<h3 id="序号"><a href="#序号" class="headerlink" title="序号"></a>序号</h3><ul>
+<li>就是TCP根据下方数据链路层的MTU（最大传输单元）来随即将数据切割成好几端并且进行编号</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@8843122b58a54c8d1dfbd3767cedb1fb9286cbe1/2021/02/08/56e8e7ac1e79fef6cec86f95fc5a176d.png"></p>
+<h3 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h3><ul>
+<li>发送方每一次发送数据之后都需要接收方进行确认。<br>T- CP使用的是累计确认机制，就是从第一个丢失的字节开始请求丢失的报文段。如图中456丢失，78到达，但仍然请求发送的数据序号是4</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@9f76926f4190993335b7e88f19116b29b574535a/2021/02/08/5daafc3996ae60c3049c2954450f2fc8.png"></p>
+<h3 id="重传"><a href="#重传" class="headerlink" title="重传"></a>重传</h3><ul>
+<li>为什么要使用自适应算法？<br>  网络环境太复杂，路径又长又短，RTT设置短了照顾不了距离远的，RTT设置长了又导致网络利用率降低，所以使用RTTs</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c92d5e823bf2ebb2862b3a3cd9c169b994bffcfa/2021/02/08/82688c323132937ab85c297de577920f.png"></p>
+<h2 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h2><ul>
+<li>简单来说就是接收方可以动态的发送信息告诉发送方发送窗口的大小。</li>
+<li>接收方接受不过来了就让发送方发送窗口小点，这样发送方发送的速率就慢下来了，接收方就有时间处理它的数据了</li>
+<li>接受方处理完了也可以发送请求让发送方发送窗口大点，这样发送方发送的速率就快起来了，接收方就可以处理更多数据而不是空闲等着收数据了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@d1781aaec5dcb613eaff7259a564ed80068d5324/2021/02/08/a1802a2b8039dca1d96e917ec35aa42f.png"></p>
+<h3 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h3><ul>
+<li>在本例子中，使用的累计确认机制（一次回复收到ack=201）和三次流量控制机制。</li>
+<li>但是有一个情况就是，如果最后B不允许A再发送数据了，B在处理完数据之后想要恢复窗口大小时发送的有rwnd大小的数据报丢了怎么办？此时A有B的指令在前，发送窗口为0无法发送数据，B也在等待A回复，造成了类似死锁的现象</li>
+<li>解决方法：使用计时器</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7636e73bd9b11d1d1c3fff91025a5260724def49/2021/02/08/ed7bf10a72d29c9152553b202e593451.png"></p>
+<h2 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h2><p>流量控制是对单独一个来说的，拥塞控制是一群<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@811dcf69afae10bff4179c1d44190f6d7dd6e5e1/2021/02/08/d206311a42ee557f7e24979e9f36c29f.png"></p>
+<h3 id="拥塞控制四种算法"><a href="#拥塞控制四种算法" class="headerlink" title="拥塞控制四种算法"></a>拥塞控制四种算法</h3><p>这里虽然是四种算法，但是通常是两两结合进行使用<br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@78953b8418cfc501f9aba245928a5676a0cb1ac3/2021/02/08/332d474a66f7329f09cfc7f464bd95a8.png"></p>
+<h3 id="慢开始和拥塞避免"><a href="#慢开始和拥塞避免" class="headerlink" title="慢开始和拥塞避免"></a>慢开始和拥塞避免</h3><ul>
+<li>这里开始时以指数形式增长，ssthresh的意思是慢开始门限，代表从这个地方注入的报文段就比较多了，需要开始慢速增加了。</li>
+<li>之后一段都是线性增长，每次增加1，直至达到网络拥塞状态</li>
+<li>瞬间将cwnd设置为1，同时调整原来的ssthresh的值到之前达到网络拥塞状态的1/2,（这里是24降到12）</li>
+<li>重复以上步骤，但是注意此时ssthresh变了之后线性增长的转折点也变了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2e8d7aa6cdee7b154087e2a38e9f603ea21caa06/2021/02/08/d3d03f3fd09ff81e78124f826965ee83.png"></p>
+<h3 id="快重传和快恢复"><a href="#快重传和快恢复" class="headerlink" title="快重传和快恢复"></a>快重传和快恢复</h3><ul>
+<li>这里和上面的慢开始和拥塞避免的一开始步骤差不多，都是先指数增长再转变为线性增长。</li>
+<li>不同的点是快重传和快恢复算法是在收到连续的ack确认之后执行，这里的ack就是冗余ack，冗余ack的特点是如果多次对某一段请求的数据没有被收到，达到一定数目之后就会立即执行重传。但是此时只是降到现在cwnd的一半，再重新线性增长。而不是像慢开始和拥塞避免的从头开始</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@3d4b7f693d79ded8f25d5e4d1ee633086b3c8b83/2021/02/08/c1a83c70dc123f5962e85302c92d4b03.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoliblog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/net06.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络🌈应用层</div></div></a></div><div class="next-post pull-right"><a href="/page/net04.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络🌈网络层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/net01.html" title="计算机网络🌈计算机网络体系结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈计算机网络体系结构</div></div></a></div><div><a href="/page/net06.html" title="计算机网络🌈应用层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="title">计算机网络🌈应用层</div></div></a></div><div><a href="/page/net03.html" title="计算机网络🌈物理层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈物理层</div></div></a></div><div><a href="/page/net04.html" title="计算机网络🌈网络层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-07</div><div class="title">计算机网络🌈网络层</div></div></a></div><div><a href="/page/net02.html" title="计算机网络🌈数据链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="title">计算机网络🌈数据链路层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">111</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="tencent://message/?uin=2312057536&amp;Site=Senlon.Net&amp;Menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">城市的轮廓，你的孤独<img src="https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/33a1542ce0a798e62e404f0bd948149f.png"></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">传输层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">传输层的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">传输层的两个协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E5%AF%BB%E5%9D%80%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">传输层的寻址和端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-number">1.3.1.</span> <span class="toc-text">常见的应用程序端口号</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.</span> <span class="toc-text">UDP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">UDP概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">UDP首部格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E7%9A%84%E6%A0%A1%E9%AA%8C%E4%BD%8D%E6%9E%84%E6%88%90"><span class="toc-number">2.2.1.</span> <span class="toc-text">UDP的校验位构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E6%A0%A1%E9%AA%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">UDP校验方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">TCP协议的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8A%A5%E6%96%87%E6%AE%B5%E7%9A%84%E9%A6%96%E9%83%A8"><span class="toc-number">3.2.</span> <span class="toc-text">TCP报文段的首部</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%9A%84%E5%85%AD%E4%B8%AA%E6%8E%A7%E5%88%B6%E4%BD%8D"><span class="toc-number">3.2.1.</span> <span class="toc-text">TCP的六个控制位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">TCP连接管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%88%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="toc-number">3.3.1.</span> <span class="toc-text">TCP三次握手（建立连接）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%88%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE%EF%BC%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">TCP四次挥手（连接释放）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="toc-number">3.4.</span> <span class="toc-text">TCP可靠传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%8F%B7"><span class="toc-number">3.4.1.</span> <span class="toc-text">序号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4"><span class="toc-number">3.4.2.</span> <span class="toc-text">确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E4%BC%A0"><span class="toc-number">3.4.3.</span> <span class="toc-text">重传</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">3.5.</span> <span class="toc-text">TCP流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E6%97%B6%E5%99%A8"><span class="toc-number">3.5.1.</span> <span class="toc-text">计时器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">3.6.</span> <span class="toc-text">TCP拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%9B%9B%E7%A7%8D%E7%AE%97%E6%B3%95"><span class="toc-number">3.6.1.</span> <span class="toc-text">拥塞控制四种算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%85%A2%E5%BC%80%E5%A7%8B%E5%92%8C%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D"><span class="toc-number">3.6.2.</span> <span class="toc-text">慢开始和拥塞避免</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%92%8C%E5%BF%AB%E6%81%A2%E5%A4%8D"><span class="toc-number">3.6.3.</span> <span class="toc-text">快重传和快恢复</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/net06.html" title="计算机网络🌈应用层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈应用层"/></a><div class="content"><a class="title" href="/page/net06.html" title="计算机网络🌈应用层">计算机网络🌈应用层</a><time datetime="2021-02-08T08:52:00.591Z" title="发表于 2021-02-08 16:52:00">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net05.html" title="计算机网络🌈传输层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈传输层"/></a><div class="content"><a class="title" href="/page/net05.html" title="计算机网络🌈传输层">计算机网络🌈传输层</a><time datetime="2021-02-08T05:34:26.622Z" title="发表于 2021-02-08 13:34:26">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net04.html" title="计算机网络🌈网络层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈网络层"/></a><div class="content"><a class="title" href="/page/net04.html" title="计算机网络🌈网络层">计算机网络🌈网络层</a><time datetime="2021-02-07T09:17:41.914Z" title="发表于 2021-02-07 17:17:41">2021-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net02.html" title="计算机网络🌈数据链路层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈数据链路层"/></a><div class="content"><a class="title" href="/page/net02.html" title="计算机网络🌈数据链路层">计算机网络🌈数据链路层</a><time datetime="2021-02-06T05:20:50.487Z" title="发表于 2021-02-06 13:20:50">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/net03.html" title="计算机网络🌈物理层"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="计算机网络🌈物理层"/></a><div class="content"><a class="title" href="/page/net03.html" title="计算机网络🌈物理层">计算机网络🌈物理层</a><time datetime="2021-02-05T09:10:53.096Z" title="发表于 2021-02-05 17:10:53">2021-02-05</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🌟Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><a target="_blank" href="https://su.baidu.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/6a2bc771a2ead2434fa80740eaa22924.png" align="absmiddle" width="70px" height="20px"></a><span>&nbsp;&&nbsp;&nbsp;</span><a target="_blank"  href="https://www.jsdelivr.com/"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/26/7b059f8e9de1a268fdeb80109a192925.png" align="absmiddle" width="70px" height="20px"></a></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘公安网备43092302000139号</span></a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-11-02 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='🌎本站已安全运行 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒🌎';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '54O2OYplcci4GjXUK0GjalFz-gzGzoHsz',
+      appKey: 'sB0Y5Ydm1XnlyKUY5uR3RxsW',
+      placeholder: '请留下你的足迹（昵称栏输入QQ后按下Tab键，可以自动获取昵称和邮箱）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/GamerNoTitle/ValineCDN@master/',
+      emojiMaps: {"QQ1":"QQ/aini.gif","QQ2":"QQ/aixin.gif","QQ3":"QQ/aoman.gif","QQ4":"QQ/baiyan.gif","QQ5":"QQ/bangbangtang.gif","QQ6":"QQ/baojin.gif","QQ7":"QQ/baoquan.gif","QQ8":"QQ/bishi.gif","QQ9":"QQ/bizui.gif","QQ11":"QQ/cahan.gif","QQ12":"QQ/caidao.gif","QQ13":"QQ/chi.gif","QQ14":"QQ/ciya.gif","QQ15":"QQ/dabing.gif","QQ16":"QQ/daku.gif","QQ17":"QQ/dan.gif","QQ18":"QQ/deyi.gif","QQ19":"QQ/doge.gif","QQ20":"QQ/fadai.gif","QQ21":"QQ/fanu.gif","QQ22":"QQ/fendou.gif","QQ23":"QQ/ganga.gif","QQ24":"QQ/gouyin.gif","QQ25":"QQ/guzhang.gif","QQ26":"QQ/haixiu.gif","QQ27":"QQ/hanxiao.gif","QQ28":"QQ/haobang.gif","QQ29":"QQ/haqian.gif","QQ30":"QQ/hecai.gif","QQ31":"QQ/hexie.gif","QQ32":"QQ/huaixiao.gif","QQ33":"QQ/jie.gif","QQ34":"QQ/jingkong.gif","QQ35":"QQ/jingxi.gif","QQ36":"QQ/jingya.gif","QQ37":"QQ/juhua.gif","QQ38":"QQ/keai.gif","QQ39":"QQ/kelian.gif","QQ40":"QQ/koubi.gif","QQ41":"QQ/ku.gif","QQ42":"QQ/kuaikule.gif","QQ43":"QQ/kulou.gif","QQ44":"QQ/kun.gif","QQ45":"QQ/lanqiu.gif","QQ46":"QQ/leiben.gif","QQ47":"QQ/lenghan.gif","QQ48":"QQ/liuhan.gif","QQ49":"QQ/liulei.gif","QQ50":"QQ/nanguo.gif","QQ51":"QQ/OK.gif","QQ52":"QQ/penxue.gif","QQ53":"QQ/piezui.gif","QQ54":"QQ/pijiu.gif","QQ55":"QQ/qiang.gif","QQ56":"QQ/qiaoda.gif","QQ57":"QQ/qinqin.gif","QQ58":"QQ/qiudale.gif","QQ59":"QQ/quantou.gif","QQ60":"QQ/saorao.gif","QQ61":"QQ/se.gif","QQ62":"QQ/shengli.gif","QQ63":"QQ/shouqiang.gif","QQ64":"QQ/shuai.gif","QQ65":"QQ/shui.gif","QQ66":"QQ/tiaopi.gif","QQ67":"QQ/touxiao.gif","QQ68":"QQ/tu.gif","QQ69":"QQ/tuosai.gif","QQ70":"QQ/weiqu.gif","QQ71":"QQ/weixiao.gif","QQ72":"QQ/woshou.gif","QQ73":"QQ/wozuimei.gif","QQ74":"QQ/wunai.gif","QQ75":"QQ/xia.gif","QQ76":"QQ/xiaojiujie.gif","QQ77":"QQ/xiaoku.gif","QQ78":"QQ/xiaoyanger.gif","QQ79":"QQ/xieyanxiao.gif","QQ80":"QQ/xigua.gif","QQ81":"QQ/xu.gif","QQ82":"QQ/yangtuo.gif","QQ83":"QQ/yinxian.gif","QQ84":"QQ/yiwen.gif","QQ85":"QQ/youhengheng.gif","QQ86":"QQ/youling.gif","QQ87":"QQ/yun.gif","QQ88":"QQ/zaijian.gif","QQ89":"QQ/zhayanjian.gif","QQ90":"QQ/zhemo.gif","QQ91":"QQ/zhouma.gif","QQ92":"QQ/zhuakuang.gif","QQ93":"QQ/zuohengheng.gif"},
+      enableQQ: true,
+      path: window.location.pathname,
+      master: '42822f7dda988c94f749472918825122'.split(','),
+      friends: 'acd4a1034596c734eeea4d7df453c3b1,01044a97464b0eb17520ce75b4c341bb'.split(','),
+      tagMeta: '博主,小伙伴,访客'.split(',')
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="https://player.lmih.cn/player/js/player.js" id="myhk" key="160561664166" m="1"></script><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
