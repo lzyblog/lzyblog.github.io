@@ -1,0 +1,638 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络🌈应用层 | 小李博客</title><meta name="keywords" content="计算机网络"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="应用层概述 两种常用的网络应用模型客户&#x2F;服务器模型（Client&#x2F;Server） P2P模型（Peer-to-Peer） 网络健壮性指的是P2P模型不容易坏掉，即使一个节点坏了也没问题，可以有其他节点代替   域名系统协议（DNS） DNS就是将打在地址栏的域名转化为IP地址的东西  域名 域名服务器（DNS服务器） DNS服务器有很多台，根据层次结构分为三层，根域名服务器，顶级域名服务器，权限域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络🌈应用层">
+<meta property="og:url" content="http://xiaoliblog.cn/page/net06.html">
+<meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="应用层概述 两种常用的网络应用模型客户&#x2F;服务器模型（Client&#x2F;Server） P2P模型（Peer-to-Peer） 网络健壮性指的是P2P模型不容易坏掉，即使一个节点坏了也没问题，可以有其他节点代替   域名系统协议（DNS） DNS就是将打在地址栏的域名转化为IP地址的东西  域名 域名服务器（DNS服务器） DNS服务器有很多台，根据层次结构分为三层，根域名服务器，顶级域名服务器，权限域">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png">
+<meta property="article:published_time" content="2021-02-08T08:52:00.591Z">
+<meta property="article:modified_time" content="2021-02-08T09:32:33.656Z">
+<meta property="article:author" content="小李博客">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png"><link rel="canonical" href="http://xiaoliblog.cn/page/net06"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"RTG4CPNBLJ","apiKey":"f1745bdad68ceec57653b78244fe332c","indexName":"MyBlogIndex","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 小李博客","link":"链接: ","source":"来源: 小李博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-08 17:32:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/MyStyle/MyStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="/css/MyStyle/tagStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zykjofficial/zykjresource@master/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">55</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">计算机网络🌈应用层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-08T08:52:00.591Z" title="发表于 2021-02-08 16:52:00">2021-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-08T09:32:33.656Z" title="更新于 2021-02-08 17:32:33">2021-02-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络🌈应用层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="应用层概述"><a href="#应用层概述" class="headerlink" title="应用层概述"></a>应用层概述</h1><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@9f3a3f5c088197025a0aa997ca6e6bc3619c983b/2021/02/08/b73e131b98e9479eb3d73a484d4ffe27.png"></p>
+<h2 id="两种常用的网络应用模型"><a href="#两种常用的网络应用模型" class="headerlink" title="两种常用的网络应用模型"></a>两种常用的网络应用模型</h2><h3 id="客户-服务器模型（Client-Server）"><a href="#客户-服务器模型（Client-Server）" class="headerlink" title="客户/服务器模型（Client/Server）"></a>客户/服务器模型（Client/Server）</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7be3a5ce9371b380c678f92b4947c69ab94abcb5/2021/02/08/5910db9ca5c1e3ba6f0c91792adfa237.png"></p>
+<h3 id="P2P模型（Peer-to-Peer）"><a href="#P2P模型（Peer-to-Peer）" class="headerlink" title="P2P模型（Peer-to-Peer）"></a>P2P模型（Peer-to-Peer）</h3><ul>
+<li><strong>网络健壮性</strong>指的是P2P模型不容易坏掉，即使一个节点坏了也没问题，可以有其他节点代替</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@71f74b3fa530411446ef4626564af2690e17d620/2021/02/08/db2bb7151fc95ccb5d721e10b241a3bd.png"></p>
+<h1 id="域名系统协议（DNS）"><a href="#域名系统协议（DNS）" class="headerlink" title="域名系统协议（DNS）"></a>域名系统协议（DNS）</h1><ul>
+<li>DNS就是将打在地址栏的<strong>域名转化为IP地址</strong>的东西</li>
+</ul>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@22e196a3fb13ec0dd79989277685a057b564e8b0/2021/02/08/aff0a6258362f57317c0fd07020167d0.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@9e2d45d9b6080727dcaee40c13434519399c36aa/2021/02/08/b676fa964c3a458bdd129efca28e720c.png"></p>
+<h2 id="域名服务器（DNS服务器）"><a href="#域名服务器（DNS服务器）" class="headerlink" title="域名服务器（DNS服务器）"></a>域名服务器（DNS服务器）</h2><ul>
+<li>DNS服务器有很多台，根据层次结构分为三层，根域名服务器，顶级域名服务器，权限域名服务器</li>
+<li>本地域名服务器不算层次结构，特点是里主机比较近，当主机和另一台比较近的主机通信时，就不用走哪些更高级的服务器了</li>
+<li>根域名服务器并不是一个域名只有一台，而是一个域名对应多台域名服务器，全世界一共有13个这样的域名，分别是a.rootservers.net，b.rootservers.net，c.rootservers.net，~m.rootservers.net</li>
+<li>在权限域名服务器中，虽然看似abc.com比y.abc.com少了一位，但是他们的地位仍是对等的，对应的两台权限域名服务器</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7b2e0eb29adea49c1ed5976ede1968c621151349/2021/02/08/e2862e656489b8a296fd8a487465e389.png"></p>
+<h2 id="域名解析过程"><a href="#域名解析过程" class="headerlink" title="域名解析过程"></a>域名解析过程</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@fb80f8dd5cbed865b861a06ea83ad5101cce3ee3/2021/02/08/84c67d8d00f509024de364a722393305.png"></p>
+<h3 id="递归查询"><a href="#递归查询" class="headerlink" title="递归查询"></a>递归查询</h3><ul>
+<li>在上图中，主机先是想本地域名服务器发送请求，如果查不到的话，</li>
+<li><strong>本地域名服务器</strong>向根域名服务器发送请求（找别人），如果还是查不到的话，</li>
+<li><strong>根域名域名服务器</strong>向顶级域名服务器发送请求（找别人），如果还是查不到的话，</li>
+<li><strong>顶级域名服务器</strong>向权限域名服务器发送请求（找别人）</li>
+<li>可以看到每一次向下一个查询的服务器都变了，不是主机一个个去问，而是<strong>服务器自己一个个问下去</strong>，靠别人</li>
+</ul>
+<h3 id="迭代查询"><a href="#迭代查询" class="headerlink" title="迭代查询"></a>迭代查询</h3><ul>
+<li>在上图中，主机先是想本地域名服务器发送请求，如果查不到的话，</li>
+<li>本地域名服务器就让<strong>主机</strong>去向根域名服务器发送请求（主机去找，本地域名给目标根域名服务器的IP地址），如果还是查不到的话，</li>
+<li>根域名域名服务器让<strong>主机</strong>去向对应的顶级域名服务器发送请求（主机去找，根域名给目标顶级域名服务器的IP地址），如果还是查不到的话，</li>
+<li>顶级域名服务器让<strong>主机</strong>去向权限域名服务器发送请求（主机去找，顶级域名给目标权限域名服务器的IP地址）</li>
+<li>可以看到这里是<strong>主机一个个挨个问的地址</strong>，靠自己</li>
+</ul>
+<h3 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h3><ul>
+<li>为了减少多次查询同一个域名的资源浪费，<strong>本地域名服务器</strong>会存储最近使用的ip地址解析，下次再访问同一个域名就不需要这么多查询步骤了。同时这个高速缓存<strong>主机本身也有存储</strong></li>
+<li>同时本地域名服务器还可以对顶级域名服务器，权限域名服务器的地址进行缓存，下一次即使是不知道的ip地址，查询也可以更快</li>
+<li>高速缓存为了保持正确性，需要定时更新</li>
+</ul>
+<h1 id="文件传输协议"><a href="#文件传输协议" class="headerlink" title="文件传输协议"></a>文件传输协议</h1><ul>
+<li><strong>文件传送协议</strong><code>FTP</code> ( File Transfer Protocol)：提供不同种类主机系统(硬、软件体系等都可以不同)之间的文件传输能力</li>
+<li><strong>简单文件传送协议</strong><code>TFTP</code> (Trivial File Transfer Protocol)是一个轻量的，比较容易实现的，面对小文件的，UDP的文件传输协议</li>
+</ul>
+<h2 id="FTP的服务端和客户端"><a href="#FTP的服务端和客户端" class="headerlink" title="FTP的服务端和客户端"></a>FTP的服务端和客户端</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@672a28d3dc03cefdb2f3cc1d1bfe686b7c16c36a/2021/02/08/2200dde500372ef3aebec91a473ad62c.png"></p>
+<h2 id="FTP的工作原理"><a href="#FTP的工作原理" class="headerlink" title="FTP的工作原理"></a>FTP的工作原理</h2><ul>
+<li>为什么有匿名登陆?<br>  对于一些公共服务器来说，增加验证阶段就是增加资源开销，减少验证阶段就可以节省资源来更好地服务</li>
+<li>主进程和从属进程的区别<br>  主进程是打开端口，让外部发送的数据可以进来，并且将这些数据逐个分配各从属进程。从属进程则是单独为这些数据服务</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@1f615b85e216ad03e84b91b2a948ed78c74f2d5a/2021/02/08/4ba1630643d75c52a55af292043e4a2d.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@34a621145633d966df4c48612a5ebbc6329933e3/2021/02/08/d32ec99bc76bc0b922769fa7ff961926.png"></p>
+<ul>
+<li><p>先注释一下这里的主进程被忽略掉了，只是没标在上面，不是没有啊</p>
+</li>
+<li><p>这里客户端和服务器端先建立TCP连接，端口是21，称为控制连接</p>
+</li>
+<li><p>然后看情况是主动建立连接还是被动建立连接</p>
+</li>
+<li><p>主动建立连接是指服务器端主动发送请求和客户端进行连接，此时端口号固定是20</p>
+</li>
+<li><p>被动连接是指客户端发送请求和服务器端建立数据传送连接，此时端口号是不确定，有两者协商得到</p>
+</li>
+<li><p>数据传输完成之后，数据连接断开，控制连接继续保持，直至两边发送断开请求</p>
+</li>
+<li><p><strong>FTP传输模式</strong></p>
+<ul>
+<li><strong>文本模式</strong>: ASCII模式，以文本序列传输数据</li>
+<li><strong>二进制模式</strong>: Binary模式，以二进制序列传输数据</li>
+</ul>
+</li>
+</ul>
+<h1 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="电子邮件的格式"><a href="#电子邮件的格式" class="headerlink" title="电子邮件的格式"></a>电子邮件的格式</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@052176891e1147333197f2a7af9594b3586056d9/2021/02/08/96e009648e592855dfc3353468d89eb4.png"></p>
+<h3 id="电子邮件系统的组成结构"><a href="#电子邮件系统的组成结构" class="headerlink" title="电子邮件系统的组成结构"></a>电子邮件系统的组成结构</h3><ul>
+<li><p>用户代理的四个功能解释：<br>  <strong>撰写</strong>就是给用户编辑信件的环境<br>  <strong>显示</strong>就是可以看到自己写的和自己收的信件内容<br>  <strong>处理</strong>就是对信件进行操作，包括删除，打印，转发等等<br>  <strong>通信</strong>就是可以将邮件发送到邮件服务器当中，同时可以从邮件服务器当中读取邮件</p>
+</li>
+<li><p>邮件服务器的功能注释<br>  邮件服务器端的发送和接受是指从自己的用户代理处接收邮件，之后向对面的邮件服务器发送邮件<br>  邮件服务器的报告邮件发送结果就是投递是否成功这种情况<br>  邮件服务器既可以作为客户端又可以作为服务器端，使用的是C/S方式</p>
+</li>
+<li><p>协议的功能注释<br>  发邮件用的是<code>SMTP</code><br>  收邮件的是<code>POP3</code>或者<code>IMAP</code></p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@26e0b8602185d76b0c4bbad33ef92d5d5552e4cc/2021/02/08/34acf40b2a665b537b8f147335632285.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f2da2e3ed166fbbee619ce9f7bc67d70594563ab/2021/02/08/7ce5ff4e541beca6caeda8860f0740b0.png"></p>
+<h2 id="邮件协议"><a href="#邮件协议" class="headerlink" title="邮件协议"></a>邮件协议</h2><h3 id="简单邮件传送协议SMTP"><a href="#简单邮件传送协议SMTP" class="headerlink" title="简单邮件传送协议SMTP"></a>简单邮件传送协议SMTP</h3><ul>
+<li>注意一下，这里STMP客户和服务器不是固定死的，可以也可以成为服务器，服务器也可以成为用户，由发送方和接收方决定，发送方就是客户，接收方就是服务器</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ca40eca2190313452c3ce9b2fdb4c548d5e67466/2021/02/08/1cb4795c290caa0efc3e1156aa35b00b.png"></p>
+<ul>
+<li>可以看见这里比如</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">220 service ready</span><br><span class="line">250 OK</span><br><span class="line">421 service not available</span><br><span class="line">550 xxx</span><br><span class="line">354 xxx</span><br></pre></td></tr></table></figure>
+<p>都是应答信息</p>
+<ul>
+<li>这里RCPT能有多条命令的原因是，电子邮件可以有多个收件人，就是群发，所以允许多个RCPT</li>
+<li>再强调一下，<strong>这里服务器和客户端可以互换，视具体情况而定，发送方是客户端，接收方是服务器端</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5aa8781cc160f1b2a7ee8835113ed887aaa07781/2021/02/08/f024cc4d07d7745b51a3f499b1cfb4ca.png"></p>
+<h3 id="改进SMTP缺点的MIME协议"><a href="#改进SMTP缺点的MIME协议" class="headerlink" title="改进SMTP缺点的MIME协议"></a>改进SMTP缺点的MIME协议</h3><ul>
+<li>MIME改善SMTP发送数据的缺点，是SMTP的功能性扩展</li>
+<li>MIME协议已经逐渐开始应用到浏览器当中，通过对不同文件类型用不同的标识符标识，来让浏览器读取通过MIME的相关文件</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e872da5e577ce8be05e3458323513964cd1c6aab/2021/02/08/4a43b305d3ddd32b798f56a5a7b768c1.png"></p>
+<h3 id="邮局协议POP3"><a href="#邮局协议POP3" class="headerlink" title="邮局协议POP3"></a>邮局协议POP3</h3><ul>
+<li>这里接收方是客户端，邮件服务器是服务器端</li>
+<li>POP3确实很简单，但是有不少缺点，比较难受的就是邮件一旦下载就自动删除了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e64b5d4951fa78d6cfc6a4e34741c2d92bef4d9d/2021/02/08/13d8a7d7cabe6cfeb778463e51965bf6.png"></p>
+<h3 id="比较复杂的读取邮件的IMAP协议"><a href="#比较复杂的读取邮件的IMAP协议" class="headerlink" title="比较复杂的读取邮件的IMAP协议"></a>比较复杂的读取邮件的IMAP协议</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f5ee1805fb2196834c67ffb5eca02d00d6f68616/2021/02/08/bd46a43051b947db28acdb8b94face0d.png"></p>
+<h2 id="基于万维网的电子邮件"><a href="#基于万维网的电子邮件" class="headerlink" title="基于万维网的电子邮件"></a>基于万维网的电子邮件</h2><ul>
+<li>与之前的不同的地方就是，基于万维网的电子邮件的<strong>邮件服务器端可以不同</strong></li>
+<li>同时，发送邮件使用的SMTP/MIME和收邮件时的POP3/IMAP协议都<strong>换成了HTTP协议</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5beabfa281be4cd9fab466720a2a7c86a982f820/2021/02/08/59b20cc8cf7b1a11fffa663d216cde0d.png"></p>
+<h1 id="万维网和HTTP协议"><a href="#万维网和HTTP协议" class="headerlink" title="万维网和HTTP协议"></a>万维网和HTTP协议</h1><h2 id="万维网概述"><a href="#万维网概述" class="headerlink" title="万维网概述"></a>万维网概述</h2><ul>
+<li>URL用来标识整个互联网当中的某一个资源（文字，视屏，音频等）的位置</li>
+<li>HTTP用来将这些资源传送给用户</li>
+<li>HTML帮助设计者来设计页面，让不同设计者设计的页面都可以在界面上显示</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6005a4bb03c54954706e7efb60f3b08a2705d137/2021/02/08/a36d7040ca098fe0156b4e8a8067b372.png"></p>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="HTTP协议的过程"><a href="#HTTP协议的过程" class="headerlink" title="HTTP协议的过程"></a>HTTP协议的过程</h3><p>下面这张图里讲了HTTP的具体过程</p>
+<ul>
+<li>服务器通过TCP 80端口来监听HTTP请求</li>
+<li>注意HTTP可以不一次性下载完页面的所有资源，可以只下载文本部分，其他音频视频等待用户下一步请求之后再传输</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@9c5bea70d40c2ffc175bcb334319ee9a373b0279/2021/02/08/0ec619ad2d775b729b96f2251cf81c44.png"></p>
+<h3 id="HTTP协议的特点"><a href="#HTTP协议的特点" class="headerlink" title="HTTP协议的特点"></a>HTTP协议的特点</h3><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@56cdf0d7cf6909304d4694f63ce02c4abb47cd03/2021/02/08/1d7c73b99e16c46416b3dc78fb38b502.png"></p>
+<h3 id="HTTP的连接方式"><a href="#HTTP的连接方式" class="headerlink" title="HTTP的连接方式"></a>HTTP的连接方式</h3><ul>
+<li><p><strong>非持久连接</strong>在TCP三次握手的第三次握手时发生，将HTTP请求作为第三次握手的数据部分发给服务器，服务器收到请求之后将HTTP相应报文传输给客户。耗时就是RTT*2+文档传输时间。</p>
+</li>
+<li><p>缺点就是这样如果再想传输，那么就需要重新建立TCP连接从头开始</p>
+</li>
+<li><p><strong>持久连接</strong>和非持久连接类似，都是在第三次握手时发生，将HTTP请求作为第三次握手的数据部分发给服务器，服务器收到请求之后将HTTP相应报文传输给客户。但是持久连接再需要请资源的时候就不需要建立新的TCP连接了</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7c17213e181cf130edb509f2f41f96745ae5837d/2021/02/08/990a9f25aaa941735de5c1b54c5b85b0.png"></p>
+<ul>
+<li>持久连接的两种方式——非流水线和流水线<ul>
+<li>非流水线就是发一个，确认一个，才能再发下一个</li>
+<li>流水线就是一个个连着发，然后多个确认</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP的报文结构"><a href="#HTTP的报文结构" class="headerlink" title="HTTP的报文结构"></a>HTTP的报文结构</h3><ul>
+<li>开始行用于区别请求报文和响应报文。可以明显的看到两者第一行的东西都不一样</li>
+<li>请求报文的方法是指命令，就是对所请求的对象进行什么操作，如获取/删除等等</li>
+<li>URL就是之间说的资源标识符</li>
+<li>版本是指使用的是什么版本的HTTP协议</li>
+<li>CRLF相当于我们程序里面的；标识一行的结束。同时，在整个首部行结束时，为了区别首部行和实体主体还会有一行单独的CRLF</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@fb3055936838c36a303880ca77d23e9c7f99313c/2021/02/08/af14f7c9407133efba24220b4c8374df.png"></p>
+<ul>
+<li>这里举了请求报文的例子，和一些常用的状态码</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@92206ffb91612d29da452c6f3a85824f5a9c95cf/2021/02/08/3a1f1d4e935765637c42d9a13a6da9a7.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xiaoliblog</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/datastructure01.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@170825f3fe726ef404054fa1a22fc88705908435/2021/02/10/ebbbfc85c4e95c3eb205da9f26d8428f.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据结构💰数据结构绪论</div></div></a></div><div class="next-post pull-right"><a href="/page/net05.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络🌈传输层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/net05.html" title="计算机网络🌈传输层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="title">计算机网络🌈传输层</div></div></a></div><div><a href="/page/net01.html" title="计算机网络🌈计算机网络体系结构"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈计算机网络体系结构</div></div></a></div><div><a href="/page/net03.html" title="计算机网络🌈物理层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-05</div><div class="title">计算机网络🌈物理层</div></div></a></div><div><a href="/page/net04.html" title="计算机网络🌈网络层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-07</div><div class="title">计算机网络🌈网络层</div></div></a></div><div><a href="/page/net02.html" title="计算机网络🌈数据链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@57a212f1cb972dec8580913d3d3c552e0ea670a6/2021/02/05/c2d3432bf97c8ea1f2248c4f9c27ee2b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="title">计算机网络🌈数据链路层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">55</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2312057536&amp;site=CSDN&amp;menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">正在考研备考中💦</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">应用层概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">两种常用的网络应用模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%9E%8B%EF%BC%88Client-Server%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">客户&#x2F;服务器模型（Client&#x2F;Server）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%E6%A8%A1%E5%9E%8B%EF%BC%88Peer-to-Peer%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">P2P模型（Peer-to-Peer）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%E5%8D%8F%E8%AE%AE%EF%BC%88DNS%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">域名系统协议（DNS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-number">2.1.</span> <span class="toc-text">域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">域名服务器（DNS服务器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">域名解析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.3.1.</span> <span class="toc-text">递归查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.3.2.</span> <span class="toc-text">迭代查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-number">2.3.3.</span> <span class="toc-text">高速缓存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.</span> <span class="toc-text">文件传输协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%92%8C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">3.1.</span> <span class="toc-text">FTP的服务端和客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">FTP的工作原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">电子邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">4.1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.1.1.</span> <span class="toc-text">电子邮件的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">电子邮件系统的组成结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.2.</span> <span class="toc-text">邮件协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%82%AE%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AESMTP"><span class="toc-number">4.2.1.</span> <span class="toc-text">简单邮件传送协议SMTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9%E8%BF%9BSMTP%E7%BC%BA%E7%82%B9%E7%9A%84MIME%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.2.2.</span> <span class="toc-text">改进SMTP缺点的MIME协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E5%B1%80%E5%8D%8F%E8%AE%AEPOP3"><span class="toc-number">4.2.3.</span> <span class="toc-text">邮局协议POP3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E5%A4%8D%E6%9D%82%E7%9A%84%E8%AF%BB%E5%8F%96%E9%82%AE%E4%BB%B6%E7%9A%84IMAP%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.2.4.</span> <span class="toc-text">比较复杂的读取邮件的IMAP协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text">基于万维网的电子邮件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%87%E7%BB%B4%E7%BD%91%E5%92%8CHTTP%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text">万维网和HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%87%E7%BB%B4%E7%BD%91%E6%A6%82%E8%BF%B0"><span class="toc-number">5.1.</span> <span class="toc-text">万维网概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.2.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">5.2.1.</span> <span class="toc-text">HTTP协议的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">5.2.2.</span> <span class="toc-text">HTTP协议的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">5.2.3.</span> <span class="toc-text">HTTP的连接方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-number">5.2.4.</span> <span class="toc-text">HTTP的报文结构</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs11.html" title="Vue.js前端框架🎯Pagination+PageHelper实现分页"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Pagination+PageHelper实现分页"/></a><div class="content"><a class="title" href="/page/Vuejs11.html" title="Vue.js前端框架🎯Pagination+PageHelper实现分页">Vue.js前端框架🎯Pagination+PageHelper实现分页</a><time datetime="2021-04-26T14:48:39.701Z" title="发表于 2021-04-26 22:48:39">2021-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs10.html" title="Vue.js前端框架🎯Vue-Element-admin模版"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Vue-Element-admin模版"/></a><div class="content"><a class="title" href="/page/Vuejs10.html" title="Vue.js前端框架🎯Vue-Element-admin模版">Vue.js前端框架🎯Vue-Element-admin模版</a><time datetime="2021-04-19T16:00:00.000Z" title="发表于 2021-04-20 00:00:00">2021-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs09.html" title="Vue.js前端框架🎯Webpack-Vue模块"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Webpack-Vue模块"/></a><div class="content"><a class="title" href="/page/Vuejs09.html" title="Vue.js前端框架🎯Webpack-Vue模块">Vue.js前端框架🎯Webpack-Vue模块</a><time datetime="2021-04-18T16:00:00.000Z" title="发表于 2021-04-19 00:00:00">2021-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs08.html" title="Vue.js前端框架🎯路由模块"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯路由模块"/></a><div class="content"><a class="title" href="/page/Vuejs08.html" title="Vue.js前端框架🎯路由模块">Vue.js前端框架🎯路由模块</a><time datetime="2021-04-17T16:00:00.000Z" title="发表于 2021-04-18 00:00:00">2021-04-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs07.html" title="Vue.js前端框架🎯Axios发送Ajax"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Axios发送Ajax"/></a><div class="content"><a class="title" href="/page/Vuejs07.html" title="Vue.js前端框架🎯Axios发送Ajax">Vue.js前端框架🎯Axios发送Ajax</a><time datetime="2021-04-16T16:00:00.000Z" title="发表于 2021-04-17 00:00:00">2021-04-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🎯Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><span><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></span></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘ICP备2021002541号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/main.js"></script><script defer src="/js/tw_cn.js"></script><script defer src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script defer src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script defer src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="//lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script><script defer src="https://myhkw.cn/api/player/160561664166" id="myhk" key="160561664166" m="1"></script><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><scrip async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></scrip><scrip defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></scrip><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: true, 
+    user: 'xiaoliblog',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'python-github-calendar-api-ruby.vercel.app' ? 'https://python-github-calendar-api-ruby.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500) {
+  gitcalendar.simplemode = false
+}
+
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>

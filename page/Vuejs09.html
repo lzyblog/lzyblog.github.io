@@ -1,0 +1,744 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vue.js前端框架🎯Webpack-Vue模块 | 小李博客</title><meta name="keywords" content="Vue.js"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Webpack-Vue创建工程 创建一个名为 Webpack-vue-demo 的工程，根据需求选择  12# 使用 webpack 打包工具初始化一个名为 Webpack-vue-demo 的工程vue init webpack Webpack-vue-demo  安装依赖 我们需要安装 vue-router、element-ui、sass-loader 和 node-sass 四个插件  12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js前端框架🎯Webpack-Vue模块">
+<meta property="og:url" content="http://xiaoliblog.cn/page/Vuejs09.html">
+<meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="Webpack-Vue创建工程 创建一个名为 Webpack-vue-demo 的工程，根据需求选择  12# 使用 webpack 打包工具初始化一个名为 Webpack-vue-demo 的工程vue init webpack Webpack-vue-demo  安装依赖 我们需要安装 vue-router、element-ui、sass-loader 和 node-sass 四个插件  12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png">
+<meta property="article:published_time" content="2021-04-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-26T10:47:10.814Z">
+<meta property="article:author" content="小李博客">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png"><link rel="canonical" href="http://xiaoliblog.cn/page/Vuejs09"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: {"appId":"RTG4CPNBLJ","apiKey":"f1745bdad68ceec57653b78244fe332c","indexName":"MyBlogIndex","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 小李博客","link":"链接: ","source":"来源: 小李博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-26 18:47:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/MyStyle/MyStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="/css/MyStyle/tagStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zykjofficial/zykjresource@master/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">55</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Vue.js前端框架🎯Webpack-Vue模块</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-18T16:00:00.000Z" title="发表于 2021-04-19 00:00:00">2021-04-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-26T10:47:10.814Z" title="更新于 2021-04-26 18:47:10">2021-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%89%8D%E7%AB%AF/">Web前端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%89%8D%E7%AB%AF/Vue-js/">Vue.js</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vue.js前端框架🎯Webpack-Vue模块"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="Webpack-Vue"><a href="#Webpack-Vue" class="headerlink" title="Webpack-Vue"></a>Webpack-Vue</h1><h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><ul>
+<li>创建一个名为 <code>Webpack-vue-demo</code> 的工程，根据需求选择</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用 webpack 打包工具初始化一个名为 Webpack-vue-demo 的工程</span></span><br><span class="line">vue init webpack Webpack-vue-demo</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
+<li>我们需要安装 <code>vue-router</code>、<code>element-ui</code>、<code>sass-loader</code> 和 <code>node-sass</code> 四个插件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入工程目录</span></span><br><span class="line">cd Webpack-vue-demo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 vue-router</span></span><br><span class="line">npm install vue-router --save-dev</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 element-ui</span></span><br><span class="line">npm i element-ui -S</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 SASS 加载器</span></span><br><span class="line">npm install sass-loader node-sass --save-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装依赖</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装依赖</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动工程</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>附：NPM相关命令说明</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install moduleName #安装模块到项目目录下</span><br><span class="line">npm install -g moduleName #-g的意思是将模块安装到全局，具体安装到磁盘哪个位置，要看 npm config prefix 的位置</span><br><span class="line">npm install -save moduleName #--save 的意思是将模块安装到项目目录下，并在 package 文件的 dependencies 节点写入依赖，`-S` 为该命令的缩写</span><br><span class="line">npm install -save-dev moduleName #--save-dev 的意思是将模块安装到项目目录下，并在 package 文件的 devDependencies 节点写入依赖，`-D` 为该命令的缩写</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Element-UI搭建登录页"><a href="#Element-UI搭建登录页" class="headerlink" title="Element UI搭建登录页"></a>Element UI搭建登录页</h1><ul>
+<li>Element UI官方文档：<a target="_blank" rel="noopener" href="https://element.eleme.cn/#/">https://element.eleme.cn/#/</a></li>
+<li>在源码<code>src</code>目录下创建如下结构，有则忽略<ul>
+<li> <code>views</code>文件夹：用于存放Vue视图组件</li>
+<li> <code>router</code>文件夹：用于存放vue-router配置</li>
+<li> <code>components</code>文件夹：用于存放Vue功能组件</li>
+<li> <code>assets</code>文件夹：用于存放资源文件<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@054c70fd9e13a262300c2396d6c32878409c6f91/2021/04/17/872b8de19c37e3bbab1175fea9069969.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><ul>
+<li>在 <code>views</code> 目录下创建一个名为 <code>Main.vue</code> 的视图组件；用于登录后展示登录成功的跳转效果；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-container</span> <span class="attr">style</span>=<span class="string">&quot;height: 500px; border: 1px solid #eee&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-aside</span> <span class="attr">width</span>=<span class="string">&quot;200px&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: rgb(238, 241, 246)&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--默认打开1--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-menu</span> <span class="attr">:default-openeds</span>=<span class="string">&quot;[&#x27;1&#x27;]&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-submenu</span> <span class="attr">index</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">              &gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-message&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>商品管理<span class="tag">&lt;/<span class="name">template</span></span></span><br><span class="line"><span class="tag">            &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-1&quot;</span>&gt;</span>商品列表<span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-2&quot;</span>&gt;</span>商品信息<span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-submenu</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-menu</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-aside</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-container</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-header</span> <span class="attr">style</span>=<span class="string">&quot;text-align: right; font-size: 12px&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-dropdown</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-setting&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin-right: 15px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-dropdown-menu</span> <span class="attr">slot</span>=<span class="string">&quot;dropdown&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>查看<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>新增<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-dropdown-menu</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-dropdown</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>王小虎<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-main</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">&quot;tableData&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;date&quot;</span> <span class="attr">label</span>=<span class="string">&quot;日期&quot;</span> <span class="attr">width</span>=<span class="string">&quot;140&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;name&quot;</span> <span class="attr">label</span>=<span class="string">&quot;姓名&quot;</span> <span class="attr">width</span>=<span class="string">&quot;120&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;address&quot;</span> <span class="attr">label</span>=<span class="string">&quot;地址&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-main</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-container</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-container</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&quot;Main&quot;</span></span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.el-header</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#B3C0D1</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">    line-height: 60px;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="css">  <span class="selector-class">.el-aside</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 <code>views</code> 目录下创建一个名为 <code>Login.vue</code> 的视图组件，其中 <code>el-*</code> 的元素为 ElementUI 组件；</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">ref</span>=<span class="string">&quot;loginForm&quot;</span> <span class="attr">:model</span>=<span class="string">&quot;form&quot;</span> <span class="attr">:rules</span>=<span class="string">&quot;rules&quot;</span> <span class="attr">label-width</span>=<span class="string">&quot;80px&quot;</span> <span class="attr">class</span>=<span class="string">&quot;login-box&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">&quot;login-title&quot;</span>&gt;</span>欢迎登录<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;账号&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;username&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入账号&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;form.username&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;密码&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;password&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入密码&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;form.password&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">v-on:click</span>=<span class="string">&quot;onSubmit(&#x27;loginForm&#x27;)&quot;</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-dialog</span></span></span><br><span class="line"><span class="tag">      <span class="attr">title</span>=<span class="string">&quot;温馨提示&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:visible.sync</span>=<span class="string">&quot;dialogVisible&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">width</span>=<span class="string">&quot;30%&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:before-close</span>=<span class="string">&quot;handleClose&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>请输入账号和密码<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dialog-footer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;dialogVisible = false&quot;</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    name: <span class="string">&quot;Login&quot;</span>,</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line">        form: &#123;</span><br><span class="line"><span class="javascript">          username: <span class="string">&#x27;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">          password: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="comment">// 表单验证，需要在 el-form-item 元素中增加 prop 属性</span></span></span><br><span class="line">        rules: &#123;</span><br><span class="line">          username: [</span><br><span class="line"><span class="javascript">            &#123;<span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">message</span>: <span class="string">&#x27;账号不可为空&#x27;</span>, <span class="attr">trigger</span>: <span class="string">&#x27;blur&#x27;</span>&#125;</span></span><br><span class="line">          ],</span><br><span class="line">          password: [</span><br><span class="line"><span class="javascript">            &#123;<span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">message</span>: <span class="string">&#x27;密码不可为空&#x27;</span>, <span class="attr">trigger</span>: <span class="string">&#x27;blur&#x27;</span>&#125;</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="comment">// 对话框显示和隐藏</span></span></span><br><span class="line"><span class="javascript">        dialogVisible: <span class="literal">false</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line"><span class="javascript">      <span class="function"><span class="title">onSubmit</span>(<span class="params">formName</span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 为表单绑定验证功能</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">this</span>.$refs[formName].validate(<span class="function">(<span class="params">valid</span>) =&gt;</span> &#123;</span></span><br><span class="line">          if (valid) &#123;</span><br><span class="line"><span class="javascript">            <span class="comment">// 使用 vue-router 路由到指定页面，该方式称之为编程式导航</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">this</span>.$router.push(<span class="string">&quot;/main&quot;</span>);</span></span><br><span class="line"><span class="javascript">          &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">this</span>.dialogVisible = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>  <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.login-box</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#DCDFE6</span>;</span></span><br><span class="line">    width: 350px;</span><br><span class="line">    margin: 180px auto;</span><br><span class="line">    padding: 35px 35px 15px 35px;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    -webkit-border-radius: 5px;</span><br><span class="line">    -moz-border-radius: 5px;</span><br><span class="line"><span class="css">    <span class="selector-tag">box-shadow</span>: 0 0 25<span class="selector-tag">px</span> <span class="selector-id">#909399</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">  <span class="selector-class">.login-title</span> &#123;</span></span><br><span class="line">    text-align: center;</span><br><span class="line">    margin: 0 auto 40px auto;</span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#303133</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建路由"><a href="#创建路由" class="headerlink" title="创建路由"></a>创建路由</h2><ul>
+<li>在 <code>router</code> 目录下创建一个名为 <code>index.js</code> 的 vue-router 路由配置文件，这就是一个路由表</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&quot;vue-router&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">&quot;../views/Login&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Main <span class="keyword">from</span> <span class="string">&quot;../views/main&quot;</span>;</span><br><span class="line"><span class="comment">//安装路由</span></span><br><span class="line">Vue.use(Router);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&quot;/Login&quot;</span>,  <span class="comment">//到时候地址栏会显示的路径</span></span><br><span class="line">      name: <span class="string">&quot;Login&quot;</span>,</span><br><span class="line">      component: Login <span class="comment">// Login是组件的名字，这个路由对应跳转到的组件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&quot;/main&quot;</span>,  </span><br><span class="line">      name: <span class="string">&quot;main&quot;</span>,</span><br><span class="line">      component: Main </span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h2><ul>
+<li>修改 <code>main.js</code> 入口代码，导入路由模块和ElementUI</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"><span class="comment">//导入路由配置目录</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span> <span class="comment">//全局使用路由模块</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入 ElementUI</span></span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//引入Axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> VueAxios <span class="keyword">from</span> <span class="string">&quot;vue-axios&quot;</span>;</span><br><span class="line"> </span><br><span class="line">Vue.use(VueAxios, axios)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用路由和ElementUI</span></span><br><span class="line">Vue.use(VueRouter)</span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  <span class="comment">//配置路由</span></span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<code>App.vue</code>中使用</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&#x27;App&#x27;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@0f380e9f27afe52910009c3df901c0928424d90f/2021/04/17/cf2d216cdf3ac2be9478242e66a761e9.png"></p>
+<h1 id="Mock数据"><a href="#Mock数据" class="headerlink" title="Mock数据"></a>Mock数据</h1><ul>
+<li>每次前端测试的时候，都需要搭建一个后端环境，很麻烦，这时候可以使用Mock假数据，即提供假数据，可以让前端不需要等待后端的接口，而直接进行下一步的开发。一个常用的工具：Easy-Mock或者fastmock</li>
+<li>Gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/mirrors/Easy-Mock">https://gitee.com/mirrors/Easy-Mock</a></li>
+<li>由于Esay-Mock最近好像崩了，推荐另一款在线工具<code>fastmock</code>：<a target="_blank" rel="noopener" href="https://www.fastmock.site/#/">https://www.fastmock.site/#/</a></li>
+<li>fastmock使用文档：<a target="_blank" rel="noopener" href="https://marvengong.gitee.io/fastmock/#/default">https://marvengong.gitee.io/fastmock/#/default</a></li>
+<li>fastmock可以让你在没有后端程序的情况下能真实地在线模拟ajax请求，你可以用fatmock实现项目初期纯前端的效果演示，也可以用fastmock实现开发中的数据模拟从而实现前后端分离</li>
+</ul>
+<h2 id="注册登录"><a href="#注册登录" class="headerlink" title="注册登录"></a>注册登录</h2><ul>
+<li>进入<a target="_blank" rel="noopener" href="https://www.fastmock.site/#/register">注册页面</a>进行注册</li>
+<li>用户名备忘：<psw>li1234</psw></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@610f815edd7a1a79a47c8a42b640735173afe90f/2021/04/18/015e3f4ea8154a38bb9e7cc2fb75c295.png" width="50%">
+
+<h2 id="创建接口"><a href="#创建接口" class="headerlink" title="创建接口"></a>创建接口</h2><ul>
+<li>点击【创建项目】，自定义名称和接口</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b6429cd88f6748b7ce0e6b100f9651f69a170423/2021/04/18/c3847d85745d540d1e09001f87eb8f8e.png" width="50%">
+
+<ul>
+<li>项目如下所示，点击【新增接口】</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@36a1b9a2856c64377efec7c642eeceb2891f6fdd/2021/04/18/e506c6aa9a1d8205ac29bec5f46af273.png"></p>
+<ul>
+<li>填写接口相关信息，创建一个<code>users</code>的JSON数组</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@50c397070f352295fd8f6fccee3f63808ad406b2/2021/04/18/63eb0db0d6959cb8d50b46162828cc99.png" width="100%">
+
+<ul>
+<li>复制好完整接口地址，用于前端发送Ajax</li>
+</ul>
+<h2 id="测试接口"><a href="#测试接口" class="headerlink" title="测试接口"></a>测试接口</h2><ul>
+<li>通过<code>main.vue</code>测试接口</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-container</span> <span class="attr">style</span>=<span class="string">&quot;height: 500px; border: 1px solid #eee&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-aside</span> <span class="attr">width</span>=<span class="string">&quot;200px&quot;</span> <span class="attr">style</span>=<span class="string">&quot;background-color: rgb(238, 241, 246)&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--默认打开1--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-menu</span> <span class="attr">:default-openeds</span>=<span class="string">&quot;[&#x27;1&#x27;]&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-submenu</span> <span class="attr">index</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">              &gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-message&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>商品管理<span class="tag">&lt;/<span class="name">template</span></span></span><br><span class="line"><span class="tag">            &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-1&quot;</span>&gt;</span>商品列表<span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-2&quot;</span>&gt;</span>商品信息<span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-submenu</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-menu</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-aside</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-container</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-header</span> <span class="attr">style</span>=<span class="string">&quot;text-align: right; font-size: 12px&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-dropdown</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-setting&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin-right: 15px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-dropdown-menu</span> <span class="attr">slot</span>=<span class="string">&quot;dropdown&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>查看<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>新增<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">el-dropdown-item</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">el-dropdown-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-dropdown-menu</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-dropdown</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>王小虎<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-header</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--数据显示，从后端拿取,:data为创建一个属性对应值为users--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-main</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">&quot;users&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;uid&quot;</span> <span class="attr">label</span>=<span class="string">&quot;用户ID&quot;</span> <span class="attr">width</span>=<span class="string">&quot;140&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;name&quot;</span> <span class="attr">label</span>=<span class="string">&quot;姓名&quot;</span> <span class="attr">width</span>=<span class="string">&quot;120&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">&quot;age&quot;</span> <span class="attr">label</span>=<span class="string">&quot;年龄&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-main</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;/<span class="name">el-container</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-container</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&quot;Main&quot;</span>,</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">//users对应:data,是一个JSON数组，对应Mock接口里的数据</span></span></span><br><span class="line">          users:[</span><br><span class="line">            </span><br><span class="line">          ]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="javascript">  <span class="comment">//调用生命周期钩子函数，页面加载完就调用</span></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="title">created</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="comment">//axios内部的then是调用不到this</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">//因为this是当前axios对象，而不是当前Vue对象，因此把当前Vue对象用vm来指明，这样this不会冲突</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> vm = <span class="built_in">this</span>;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.axios(&#123;</span></span><br><span class="line"><span class="javascript">          method:<span class="string">&quot;get&quot;</span>,</span></span><br><span class="line"><span class="javascript">          <span class="comment">//mock接口地址</span></span></span><br><span class="line"><span class="javascript">          url:<span class="string">&quot;https://www.fastmock.site/mock/00daa94229c45f62263030ffe4b715db/myVuedemo/getUserList&quot;</span>,</span></span><br><span class="line"><span class="javascript">      &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span>&#123;  <span class="comment">//请求成功后的回调函数</span></span></span><br><span class="line"><span class="javascript">          vm.users = resp.data.users  <span class="comment">//后端的值赋给Vue实例对象的users</span></span></span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.el-header</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#B3C0D1</span>;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">    line-height: 60px;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="css">  <span class="selector-class">.el-aside</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="selector-tag">color</span>: <span class="selector-id">#333</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以看到拿到了mock的假数据</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ac328754fbd8dc4609202f74acf5703fa683c9e4/2021/04/18/8352516083825b2e5f808d51681bd761.png"></p>
+<ul>
+<li>重点：在发送axios请求时，如何调用到当前vue对象中的内容<ul>
+<li><strong>因为axios内部的then内的this是当前axios对象，而不是当前vue对象，因此把当前vue对象用vm来指明。这样this不会冲突</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">&quot;Main&quot;</span>,</span><br><span class="line">  <span class="comment">//调用生命周期钩子函数，页面加载完就调用</span></span><br><span class="line">  <span class="function"><span class="title">created</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">//axios内部的then是调用不到this</span></span><br><span class="line">      <span class="comment">//因为this是当前axios对象，而不是当前Vue对象，因此把当前Vue对象用vm来指明，这样this不会冲突</span></span><br><span class="line">      <span class="keyword">var</span> vm = <span class="built_in">this</span>;</span><br><span class="line">      <span class="built_in">this</span>.axios(&#123;</span><br><span class="line">          method:<span class="string">&quot;get&quot;</span>,</span><br><span class="line">          <span class="comment">//mock接口地址</span></span><br><span class="line">          url:<span class="string">&quot;https://www.fastmock.site/mock/00daa94229c45f62263030ffe4b715db/myVuedemo/getUserList&quot;</span>,</span><br><span class="line">      &#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">resp</span>)</span>&#123;  <span class="comment">//请求成功后的回调函数</span></span><br><span class="line">          vm.users = resp.data.users  <span class="comment">//后端的值赋给Vue实例对象的users</span></span><br><span class="line">          <span class="built_in">console</span>.log = (resp.data.users)</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h1><ul>
+<li>在路由显示的组件内部，又嵌套着路由，称为嵌套路由也叫子路由。在实际应用中，通常由多层嵌套的组件组合而成。同样地，URL 中各段动态路径也按某种结构对应嵌套的各层组件，例如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;user&#x2F;foo&#x2F;profile                     &#x2F;user&#x2F;foo&#x2F;posts</span><br><span class="line">+------------------+                  +-----------------+</span><br><span class="line">| User             |                  | User            |</span><br><span class="line">| +--------------+ |                  | +-------------+ |</span><br><span class="line">| | Profile      | |  +------------&gt;  | | Posts       | |</span><br><span class="line">| |              | |                  | |             | |</span><br><span class="line">| +--------------+ |                  | +-------------+ |</span><br><span class="line">+------------------+                  +-----------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置路由表"><a href="#配置路由表" class="headerlink" title="配置路由表"></a>配置路由表</h2><ul>
+<li>环境场景是<code>main.vue</code>下有两个子路由<code>ProductInfo.vue</code>和<code>ProductList.vue</code></li>
+<li>首先配置子路由<code>ProductInfo.vue</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        商品信息...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> (&#123;</span></span><br><span class="line"><span class="javascript">    name:<span class="string">&quot;ProductInfo&quot;</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置子路由<code>ProductList.vue</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        商品列表...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> (&#123;</span></span><br><span class="line"><span class="javascript">    name:<span class="string">&quot;ProductList&quot;</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<code>route/index.js</code>中引入，在父路由下配置路由表</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">&quot;vue-router&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">&quot;../views/Login&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> Main <span class="keyword">from</span> <span class="string">&quot;../views/main&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> ProductInfo <span class="keyword">from</span> <span class="string">&quot;../views/ProductInfo&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> ProductList <span class="keyword">from</span> <span class="string">&quot;../views/ProductList&quot;</span>;</span><br><span class="line"><span class="comment">//安装路由</span></span><br><span class="line">Vue.use(Router);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&quot;/Login&quot;</span>,  <span class="comment">//到时候地址栏会显示的路径</span></span><br><span class="line">      name: <span class="string">&quot;Login&quot;</span>,</span><br><span class="line">      component: Login <span class="comment">// Login是组件的名字，这个路由对应跳转到的组件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&quot;/main&quot;</span>,  <span class="comment">//到时候地址栏会显示的路径</span></span><br><span class="line">      name: <span class="string">&quot;main&quot;</span>,</span><br><span class="line">      component: Main, <span class="comment">// Login是组件的名字，这个路由对应跳转到的组件</span></span><br><span class="line">      <span class="comment">// main主页面下有两个子路由</span></span><br><span class="line">      children:[</span><br><span class="line">        &#123;</span><br><span class="line">          path:<span class="string">&quot;/ProductList&quot;</span>, <span class="comment">//注意,使用路由时的地址:/productlist</span></span><br><span class="line">          name:<span class="string">&quot;ProductList&quot;</span>,</span><br><span class="line">          component: ProductList, <span class="comment">//显示在main的&lt;routerview&gt;&lt;/routerview&gt;标签里面</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path:<span class="string">&quot;/ProductInfo&quot;</span>,</span><br><span class="line">          name:<span class="string">&quot;ProductLInfo&quot;</span>,</span><br><span class="line">          component: ProductInfo,</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用嵌套路由"><a href="#使用嵌套路由" class="headerlink" title="使用嵌套路由"></a>使用嵌套路由</h2><ul>
+<li>在父路由<code>main.vue</code>中使用<ul>
+<li> 通过<code>&lt;router-link to=&quot;/ProductInfo&quot;&gt;商品信息&lt;/router-link&gt;</code>跳转</li>
+<li> 通过<code>&lt;router-view&gt;&lt;/router-view&gt;</code>显示</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--跳转有两种实现方法：1.to=&quot;/路径&quot; 2. 通过@click点击事件--&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--跳转到ProductList,不需要带/main/--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-1&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/ProductList&quot;</span>&gt;</span>商品列表<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">el-menu-item</span> <span class="attr">index</span>=<span class="string">&quot;1-2&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/ProductInfo&quot;</span>&gt;</span>商品信息<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span><span class="tag">&lt;/<span class="name">el-menu-item</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">el-menu-item-group</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="comment">&lt;!--数据显示，从后端拿取,:data为创建一个属性对应值为users--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">el-main</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--显示商品列表--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">el-main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  name: <span class="string">&quot;Main&quot;</span>,</span></span><br><span class="line">  methods:&#123;</span><br><span class="line"><span class="javascript">  <span class="comment">//方法跳转</span></span></span><br><span class="line"><span class="javascript">     toProductInfo:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">         <span class="built_in">this</span>.$router.push(<span class="string">&quot;/ProductInfo&quot;</span>)</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试结果，可以看到在父路由页面不改变的情况下，切换页面</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@42e026e9e4b17acb737dd608d205b1aa54b06a85/2021/04/18/347b8027c32a7921a7d5929a9618666c.png"></p>
+<h1 id="组件重定向"><a href="#组件重定向" class="headerlink" title="组件重定向"></a>组件重定向</h1><ul>
+<li>Vue 中的重定向是作用在路径不同但组件相同的情况下</li>
+</ul>
+<h2 id="配置重定向"><a href="#配置重定向" class="headerlink" title="配置重定向"></a>配置重定向</h2><ul>
+<li>直接调用另一个已配置好的路由对象即可</li>
+<li>比如实现一个退出功能，访问<code>/logout</code>就跳转到<code>/Login</code>登录页面</li>
+<li>跳转就需要用到路由，去<code>router/index.js</code>中配置路由，使用<code>redirect</code>设置跳转路径</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">&quot;/Login&quot;</span>,  <span class="comment">//到时候地址栏会显示的路径</span></span><br><span class="line">      name: <span class="string">&quot;Login&quot;</span>,</span><br><span class="line">      component: Login <span class="comment">// Login是组件的名字，这个路由对应跳转到的组件</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path:<span class="string">&quot;/logout&quot;</span>,</span><br><span class="line">      redirect:<span class="string">&quot;/Login&quot;</span> <span class="comment">//重定向到登录页面</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在<code>main.vue</code>中使用</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/logout&quot;</span>&gt;</span>退出<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@54654d5e45313ed487d2610ac9800a25cbbb47e7/2021/04/18/f609fbbce416425657babea9828544de.png"></p>
+<h1 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h1><ul>
+<li>我们经常需要把某种模式匹配到的所有路由，全都映射到同个组件。例如，我们有一个 User 组件，对于所有 ID 各不相同的用户，都要使用这个组件来渲染。此时我们就需要传递参数了；</li>
+</ul>
+<h2 id="使用路径匹配方式"><a href="#使用路径匹配方式" class="headerlink" title="使用路径匹配方式"></a>使用路径匹配方式</h2><ul>
+<li>此方法有局限性，<code>/ProductInfo/1</code>后面一定要接一个参数才能访问，而且只能接一个参数</li>
+</ul>
+<h3 id="配置路由-1"><a href="#配置路由-1" class="headerlink" title="配置路由"></a>配置路由</h3><ul>
+<li>修改<code>ProductInfo</code>路由配置</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">   path:<span class="string">&quot;/ProductInfo/:id&quot;</span>,</span><br><span class="line">   name:<span class="string">&quot;ProductLInfo&quot;</span>,</span><br><span class="line">   component: ProductInfo,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note success simple"><p>说明：主要是在 <code>path</code> 属性中增加了 <code>:id</code> 这样的占位符</p>
+</div>
+
+<h3 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h3><ul>
+<li>在<code>main.vue</code>中配置<code>router-link</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/ProductInfo/1&quot;</span>&gt;</span>商品信息<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取得参数"><a href="#取得参数" class="headerlink" title="取得参数"></a>取得参数</h3><ul>
+<li>在<code>ProductInfo.vue</code>中通过插值表达式取值</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      商品信息...参数为：&#123;&#123;this.$route.params.id&#125;&#125;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行结果取得参数1</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2dda7614359c65b3acc01ae36a99d28c6d0b8fb3/2021/04/18/1459bcaee885c106517516146419d98d.png" width="80%">
+
+<ul>
+<li>运行原理</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@32faa2def4a8ddd3304ef832519e821efdc22ba2/2021/04/18/7b666edf2cf8aa35d70f133876966d63.png"></p>
+<h2 id="使用-props的方式"><a href="#使用-props的方式" class="headerlink" title="使用 props的方式"></a>使用 props的方式</h2><ul>
+<li>第二种方法参用对象方式的传递，只在传参部分不同</li>
+</ul>
+<h3 id="配置路由-2"><a href="#配置路由-2" class="headerlink" title="配置路由"></a>配置路由</h3><ul>
+<li>修改<code>ProductInfo</code>路由，配置和第一种方法相同</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">   path:<span class="string">&quot;/ProductInfo/:id&quot;</span>,</span><br><span class="line">   name:<span class="string">&quot;ProductInfo&quot;</span>, <span class="comment">//注意这个name参数，后面传参要用到</span></span><br><span class="line">   component: ProductInfo,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="传递参数-1"><a href="#传递参数-1" class="headerlink" title="传递参数"></a>传递参数</h3><ul>
+<li><code>router-link</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--params指定参数,可以指定多个参数,以键值对形式存在--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123;name:&#x27;ProductInfo&#x27;,params:&#123;id:1001&#125;&#125;&quot;</span>&gt;</span>商品信息<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div class="note success simple"><p>说明：此时我们将 <code>to</code> 改为了 <code>:to</code>，是为了将这一属性当成对象使用，注意 <strong>router-link 中的 name 属性名称</strong> 一定要和 <strong>路由中的 name 属性名称</strong> 匹配，因为这样 Vue 才能找到对应的路由路径；</p>
+</div>
+
+<h3 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h3><ul>
+<li>在目标组件中使用以下来接收参数，接参不变</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      商品信息...参数为：&#123;&#123;this.$route.params.id&#125;&#125;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行结果取得参数1001</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@ab8d7ef6717faa4e5caaee6d91783378c66c1ecb/2021/04/18/e5c835dd0141d90f65db01bace79713d.png" width="60%">
+
+<ul>
+<li>运行原理</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6a68b1575e948dca1e337e7efabd9371340f54ab/2021/04/18/306a9dfac1b61b2989757c2c2f1feb0b.png"></p>
+<h1 id="路由钩子与异步请求"><a href="#路由钩子与异步请求" class="headerlink" title="路由钩子与异步请求"></a>路由钩子与异步请求</h1><h2 id="路由中的钩子函数"><a href="#路由中的钩子函数" class="headerlink" title="路由中的钩子函数"></a>路由中的钩子函数</h2><ul>
+<li><code>beforeRouteEnter</code>：在进入路由前执行</li>
+<li><code>beforeRouteLeave</code>：在离开路由前执行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: [<span class="string">&#x27;id&#x27;</span>],</span><br><span class="line">  name: <span class="string">&quot;UserProfile&quot;</span>,</span><br><span class="line">  beforeRouteEnter: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;准备进入个人信息页&quot;</span>);</span><br><span class="line">    next();</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteLeave: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;准备离开个人信息页&quot;</span>);</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数说明：</li>
+<li><code>to</code>：路由将要跳转的路径信息</li>
+<li><code>from</code>：路径跳转前的路径信息</li>
+<li><code>next</code>：路由的控制参数<ul>
+<li><code>next()</code> 跳入下一个页面</li>
+<li><code>next(&#39;/path&#39;)</code> 改变路由的跳转方向，使其跳到另一个路由</li>
+<li><code>next(false)</code>  返回原来的页面</li>
+<li><code>next((vm)=&gt;&#123;&#125;)</code>  <strong>仅在 beforeRouteEnter 中可用，vm 是组件实例</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="在钩子函数中使用异步请求"><a href="#在钩子函数中使用异步请求" class="headerlink" title="在钩子函数中使用异步请求"></a>在钩子函数中使用异步请求</h2><ul>
+<li>安装 Axios</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios -s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>引用 Axios</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line">Vue.prototype.axios = axios;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 <code>beforeRouteEnter</code> 中进行异步请求，案例代码如下：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    props: [<span class="string">&#x27;id&#x27;</span>],</span><br><span class="line">    name: <span class="string">&quot;UserProfile&quot;</span>,</span><br><span class="line">    beforeRouteEnter: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;准备进入个人信息页&quot;</span>);</span><br><span class="line">      <span class="comment">// 注意，一定要在 next 中请求，因为该方法调用时 Vue 实例还没有创建，此时无法获取到 this 对象，在这里使用官方提供的回调函数拿到当前实例</span></span><br><span class="line">      next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</span><br><span class="line">        vm.getData();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    beforeRouteLeave: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;准备离开个人信息页&quot;</span>);</span><br><span class="line">      next();</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      getData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.axios(&#123;</span><br><span class="line">          method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">          url: <span class="string">&#x27;http://localhost:8080/data.json&#x27;</span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">repos</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(repos);</span><br><span class="line">        &#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小李博客</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Vue-js/">Vue.js</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/Vuejs10.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vue.js前端框架🎯Vue-Element-admin模版</div></div></a></div><div class="next-post pull-right"><a href="/page/Vuejs08.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue.js前端框架🎯路由模块</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/Vuejs07.html" title="Vue.js前端框架🎯Axios发送Ajax"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="title">Vue.js前端框架🎯Axios发送Ajax</div></div></a></div><div><a href="/page/Vuejs05.html" title="Vue.js前端框架🎯Axios网络应用"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-16</div><div class="title">Vue.js前端框架🎯Axios网络应用</div></div></a></div><div><a href="/page/Vuejs11.html" title="Vue.js前端框架🎯Pagination+PageHelper实现分页"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-26</div><div class="title">Vue.js前端框架🎯Pagination+PageHelper实现分页</div></div></a></div><div><a href="/page/Vuejs04.html" title="Vue.js前端框架🎯Vue开发模式"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">Vue.js前端框架🎯Vue开发模式</div></div></a></div><div><a href="/page/Vuejs01.html" title="Vue.js前端框架🎯Vue概述及属性"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-13</div><div class="title">Vue.js前端框架🎯Vue概述及属性</div></div></a></div><div><a href="/page/Vuejs03.html" title="Vue.js前端框架🎯Vue组件"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-14</div><div class="title">Vue.js前端框架🎯Vue组件</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">207</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">55</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2312057536&amp;site=CSDN&amp;menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">正在考研备考中💦</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Webpack-Vue"><span class="toc-number">1.</span> <span class="toc-text">Webpack-Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">创建工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.2.</span> <span class="toc-text">安装依赖</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Element-UI%E6%90%AD%E5%BB%BA%E7%99%BB%E5%BD%95%E9%A1%B5"><span class="toc-number">2.</span> <span class="toc-text">Element UI搭建登录页</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">创建视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1"><span class="toc-number">2.2.</span> <span class="toc-text">创建路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1"><span class="toc-number">2.3.</span> <span class="toc-text">配置路由</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mock%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">Mock数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E7%99%BB%E5%BD%95"><span class="toc-number">3.1.</span> <span class="toc-text">注册登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.2.</span> <span class="toc-text">创建接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3"><span class="toc-number">3.3.</span> <span class="toc-text">测试接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1"><span class="toc-number">4.</span> <span class="toc-text">嵌套路由</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text">配置路由表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1"><span class="toc-number">4.2.</span> <span class="toc-text">使用嵌套路由</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">5.</span> <span class="toc-text">组件重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">5.1.</span> <span class="toc-text">配置重定向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">6.</span> <span class="toc-text">参数传递</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">6.1.</span> <span class="toc-text">使用路径匹配方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1-1"><span class="toc-number">6.1.1.</span> <span class="toc-text">配置路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0"><span class="toc-number">6.1.2.</span> <span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E5%BE%97%E5%8F%82%E6%95%B0"><span class="toc-number">6.1.3.</span> <span class="toc-text">取得参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-props%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">使用 props的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1-2"><span class="toc-number">6.2.1.</span> <span class="toc-text">配置路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0-1"><span class="toc-number">6.2.2.</span> <span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E5%8F%82%E6%95%B0"><span class="toc-number">6.2.3.</span> <span class="toc-text">接收参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E9%92%A9%E5%AD%90%E4%B8%8E%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82"><span class="toc-number">7.</span> <span class="toc-text">路由钩子与异步请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E4%B8%AD%E7%9A%84%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-number">7.1.</span> <span class="toc-text">路由中的钩子函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82"><span class="toc-number">7.2.</span> <span class="toc-text">在钩子函数中使用异步请求</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs11.html" title="Vue.js前端框架🎯Pagination+PageHelper实现分页"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Pagination+PageHelper实现分页"/></a><div class="content"><a class="title" href="/page/Vuejs11.html" title="Vue.js前端框架🎯Pagination+PageHelper实现分页">Vue.js前端框架🎯Pagination+PageHelper实现分页</a><time datetime="2021-04-26T14:48:39.701Z" title="发表于 2021-04-26 22:48:39">2021-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs10.html" title="Vue.js前端框架🎯Vue-Element-admin模版"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Vue-Element-admin模版"/></a><div class="content"><a class="title" href="/page/Vuejs10.html" title="Vue.js前端框架🎯Vue-Element-admin模版">Vue.js前端框架🎯Vue-Element-admin模版</a><time datetime="2021-04-19T16:00:00.000Z" title="发表于 2021-04-20 00:00:00">2021-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs09.html" title="Vue.js前端框架🎯Webpack-Vue模块"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Webpack-Vue模块"/></a><div class="content"><a class="title" href="/page/Vuejs09.html" title="Vue.js前端框架🎯Webpack-Vue模块">Vue.js前端框架🎯Webpack-Vue模块</a><time datetime="2021-04-18T16:00:00.000Z" title="发表于 2021-04-19 00:00:00">2021-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs08.html" title="Vue.js前端框架🎯路由模块"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯路由模块"/></a><div class="content"><a class="title" href="/page/Vuejs08.html" title="Vue.js前端框架🎯路由模块">Vue.js前端框架🎯路由模块</a><time datetime="2021-04-17T16:00:00.000Z" title="发表于 2021-04-18 00:00:00">2021-04-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Vuejs07.html" title="Vue.js前端框架🎯Axios发送Ajax"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@61bf4245f6d84d2d0f66d163b89c916788cc1845/2021/04/13/ec6b232f8fe5a840e4bd8c3eabcf49b2.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Vue.js前端框架🎯Axios发送Ajax"/></a><div class="content"><a class="title" href="/page/Vuejs07.html" title="Vue.js前端框架🎯Axios发送Ajax">Vue.js前端框架🎯Axios发送Ajax</a><time datetime="2021-04-16T16:00:00.000Z" title="发表于 2021-04-17 00:00:00">2021-04-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🎯Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><span><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></span></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘ICP备2021002541号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/main.js"></script><script defer src="/js/tw_cn.js"></script><script defer src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script defer src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script defer src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="//lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script><script defer src="https://myhkw.cn/api/player/160561664166" id="myhk" key="160561664166" m="1"></script><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><scrip async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></scrip><scrip defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></scrip><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: true, 
+    user: 'xiaoliblog',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'python-github-calendar-api-ruby.vercel.app' ? 'https://python-github-calendar-api-ruby.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500) {
+  gitcalendar.simplemode = false
+}
+
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
