@@ -4,19 +4,68 @@
   <url>
     <loc>http://xiaoliblog.cn/page/project01.html</loc>
     
-    <lastmod>2021-04-30</lastmod>
+    <lastmod>2021-05-01</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/page/WeChatpay.html</loc>
+    <loc>http://xiaoliblog.cn/page/project02.html</loc>
     
-    <lastmod>2021-04-30</lastmod>
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/project03.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/project04.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/project05.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/SpringMVC09.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/Vuejs02.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
     
   </url>
   
   <url>
     <loc>http://xiaoliblog.cn/box/index.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/link/index.html</loc>
+    
+    <lastmod>2021-05-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/page/WeChatpay.html</loc>
     
     <lastmod>2021-04-30</lastmod>
     
@@ -40,34 +89,6 @@
     <loc>http://xiaoliblog.cn/page/Alipay.html</loc>
     
     <lastmod>2021-04-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/css22.html</loc>
-    
-    <lastmod>2021-04-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/css21.html</loc>
-    
-    <lastmod>2021-04-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/css20.html</loc>
-    
-    <lastmod>2021-04-29</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/css19.html</loc>
-    
-    <lastmod>2021-04-29</lastmod>
     
   </url>
   
@@ -366,13 +387,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/link/index.html</loc>
-    
-    <lastmod>2021-04-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/about/index.html</loc>
     
     <lastmod>2021-04-24</lastmod>
@@ -600,20 +614,6 @@
     <loc>http://xiaoliblog.cn/page/Vuejs01.html</loc>
     
     <lastmod>2021-04-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/Vuejs02.html</loc>
-    
-    <lastmod>2021-04-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/page/SpringMVC09.html</loc>
-    
-    <lastmod>2021-04-14</lastmod>
     
   </url>
   
@@ -1593,14 +1593,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
+    <loc>http://xiaoliblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://xiaoliblog.cn/tags/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1628,14 +1628,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Mybatis/</loc>
+    <loc>http://xiaoliblog.cn/tags/Spring/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Spring/</loc>
+    <loc>http://xiaoliblog.cn/tags/Mybatis/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1649,14 +1649,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Linux/</loc>
+    <loc>http://xiaoliblog.cn/tags/Nginx/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Nginx/</loc>
+    <loc>http://xiaoliblog.cn/tags/Linux/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1684,7 +1684,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/JavaWeb/</loc>
+    <loc>http://xiaoliblog.cn/tags/Vue-js/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1698,7 +1698,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/Vue-js/</loc>
+    <loc>http://xiaoliblog.cn/tags/JavaWeb/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1747,28 +1747,14 @@
   </url>
   
   <url>
+    <loc>http://xiaoliblog.cn/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/tags/Webpack/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/MySQL/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/Oracle/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/tags/SQLServer/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1782,14 +1768,21 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>http://xiaoliblog.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>http://xiaoliblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1803,7 +1796,21 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
+    <loc>http://xiaoliblog.cn/tags/MySQL/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/SQLServer/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/tags/Oracle/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1847,6 +1854,13 @@
   </url>
   
   <url>
+    <loc>http://xiaoliblog.cn/categories/Hexo/Twikoo-%E8%85%BE%E8%AE%AF%E4%BA%91%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
@@ -1861,21 +1875,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E7%B3%BB%E5%88%97/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/categories/Hexo/%E5%9F%9F%E5%90%8D%E5%A4%87%E6%A1%88/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1889,7 +1889,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/Twikoo-%E8%85%BE%E8%AE%AF%E4%BA%91%E8%AF%84%E8%AE%BA%E9%85%8D%E7%BD%AE/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/Hexo/%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1903,14 +1910,14 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/Ngrok%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/</loc>
+    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/Mybatis/</loc>
+    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/JavaSE/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1931,13 +1938,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0%E5%8F%8A%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/POI%E5%8F%8AEasyExcel%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
@@ -1945,7 +1945,21 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/SpringMVC/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/Ngrok%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E4%BC%81%E4%B8%9A%E5%B8%B8%E7%94%A8%E6%8A%80%E6%9C%AF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0%E5%8F%8A%E5%AE%9D%E5%A1%94%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/Mybatis/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1966,14 +1980,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/JavaSE/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/Hexo/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</loc>
+    <loc>http://xiaoliblog.cn/categories/Java%E5%90%8E%E7%AB%AF/SpringMVC/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2029,20 +2036,6 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E5%B7%A5%E5%85%B7/Webpack%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
@@ -2050,7 +2043,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Linux%E8%BF%90%E7%BB%B4/Linux/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E5%B7%A5%E5%85%B7/Webpack%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2064,14 +2057,28 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/HTML-CSS/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B/</loc>
+    <loc>http://xiaoliblog.cn/categories/Linux%E8%BF%90%E7%BB%B4/Linux/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/HTML-CSS/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2092,7 +2099,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/JavaWeb/</loc>
+    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/Vue-js/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2106,7 +2113,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/Vue-js/</loc>
+    <loc>http://xiaoliblog.cn/categories/Web%E5%89%8D%E7%AB%AF/JavaWeb/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2127,21 +2134,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/SQLServer/</loc>
+    <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2155,21 +2148,7 @@
   </url>
   
   <url>
-    <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2021-05-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -2184,6 +2163,34 @@
   
   <url>
     <loc>http://xiaoliblog.cn/categories/%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B/%E5%89%8D%E7%AB%AF%E5%AE%9E%E4%BE%8B/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/SQLServer/</loc>
+    <lastmod>2021-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://xiaoliblog.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/</loc>
     <lastmod>2021-05-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
