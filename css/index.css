@@ -3426,12 +3426,15 @@ li.categoryBar-list-item:nth-child(8)>span::after {
   content: '数据库笔记' !important;
 }
 li.categoryBar-list-item:nth-child(9)>span::after {
-  content: '头疼的算法' !important;
+  content: '生活杂谈' !important;
 }
 li.categoryBar-list-item:nth-child(10)>span::after {
-  content: '计算机基础' !important;
+  content: '头疼的算法' !important;
 }
 li.categoryBar-list-item:nth-child(11)>span::after {
+  content: '计算机基础' !important;
+}
+li.categoryBar-list-item:nth-child(12)>span::after {
   content: '项目案例' !important;
 }
 li.categoryBar-list-item {
