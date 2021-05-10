@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
             }
             let dataTitle = data.title.trim().toLowerCase()
             const dataContent = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase()
-            const dataUrl = data.url.startsWith('/') ? data.url: "https://cdn.jsdelivr.net/gh/xiaoliblog/xiaoliblog.github.io/search.xml"
+            const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
             let indexTitle = -1
             let indexContent = -1
             let firstOccur = -1
