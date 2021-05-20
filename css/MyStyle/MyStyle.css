@@ -401,27 +401,7 @@ font-style: normal;
 
 /*********************其他基础美化********************************************/
 
-  /*图片虚影*/
-.post_bg{
-    -webkit-animation: imgblur 2s 1 ease-in-out;
-    animation: imgblur 2s 1 ease-in-out;
-}
-@-webkit-keyframes imgblur {
-  0% {
-    -webkit-filter: blur(5px);
-  }
-  100% {
-    -webkit-filter: blur(0px);
-  }
-}
-@keyframes imgblur {
-  0% {
-    filter: blur(5px);
-  }
-  100% {
-    filter: blur(0px);
-  }
-}
+  
 /*设置鼠标样式*/
 body {
   cursor: url(https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur),
