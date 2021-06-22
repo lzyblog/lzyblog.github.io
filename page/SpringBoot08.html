@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpringBoot🍃MVC自动配置原理 | 小李博客</title><meta name="keywords" content="SpringBoot"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MVC自动配置原理官网阅读 在进行项目编写前，我们还需要知道一个东西，就是SpringBoot对我们的SpringMVC还做了哪些配置，包括如何扩展，如何定制 我们可以源码分析，或者阅读官方文档进行学习  12345678910111213141516171819202122232425262728293031323334353637383940Spring MVC Auto-configurat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot🍃MVC自动配置原理">
+<meta property="og:url" content="http://xiaoliblog.cn/page/SpringBoot08.html">
+<meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="MVC自动配置原理官网阅读 在进行项目编写前，我们还需要知道一个东西，就是SpringBoot对我们的SpringMVC还做了哪些配置，包括如何扩展，如何定制 我们可以源码分析，或者阅读官方文档进行学习  12345678910111213141516171819202122232425262728293031323334353637383940Spring MVC Auto-configurat">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png">
+<meta property="article:published_time" content="2021-06-22T06:33:13.807Z">
+<meta property="article:modified_time" content="2021-06-22T08:28:25.698Z">
+<meta property="article:author" content="小李博客">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png"><link rel="canonical" href="http://xiaoliblog.cn/page/SpringBoot08"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-22 16:28:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/MyStyle/MyStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="/css/MyStyle/tagStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zykjofficial/zykjresource@master/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/MyCDNRepo/img/headerimg.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">SpringBoot🍃MVC自动配置原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-22T06:33:13.807Z" title="发表于 2021-06-22 14:33:13">2021-06-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-22T08:28:25.698Z" title="更新于 2021-06-22 16:28:25">2021-06-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/">Java后端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SpringBoot🍃MVC自动配置原理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="MVC自动配置原理"><a href="#MVC自动配置原理" class="headerlink" title="MVC自动配置原理"></a>MVC自动配置原理</h1><h2 id="官网阅读"><a href="#官网阅读" class="headerlink" title="官网阅读"></a>官网阅读</h2><ul>
+<li>在进行项目编写前，我们还需要知道一个东西，就是SpringBoot对我们的SpringMVC还做了哪些配置，包括如何扩展，如何定制</li>
+<li>我们可以源码分析，或者阅读<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-auto-configuration">官方文档</a>进行学习</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Spring MVC Auto-configuration</span><br><span class="line"><span class="comment">// Spring Boot为Spring MVC提供了自动配置，它可以很好地与大多数应用程序一起工作。</span></span><br><span class="line">Spring Boot provides auto-configuration <span class="keyword">for</span> Spring MVC that works well with most applications.</span><br><span class="line"><span class="comment">// 自动配置在Spring默认设置的基础上添加了以下功能：</span></span><br><span class="line">The auto-configuration adds the following features on top of Spring’s defaults:</span><br><span class="line"><span class="comment">// 包含视图解析器</span></span><br><span class="line">Inclusion of ContentNegotiatingViewResolver and BeanNameViewResolver beans.</span><br><span class="line"><span class="comment">// 支持静态资源文件夹的路径，以及webjars</span></span><br><span class="line">Support <span class="keyword">for</span> serving <span class="keyword">static</span> resources, including support <span class="keyword">for</span> WebJars </span><br><span class="line"><span class="comment">// 自动注册了Converter：</span></span><br><span class="line"><span class="comment">// 转换器，这就是我们网页提交数据到后台自动封装成为对象的东西，比如把&quot;1&quot;字符串自动转换为int类型</span></span><br><span class="line"><span class="comment">// Formatter：【格式化器，比如页面给我们了一个2019-8-10，它会给我们自动格式化为Date对象】</span></span><br><span class="line">Automatic registration of Converter, GenericConverter, and Formatter beans.</span><br><span class="line"><span class="comment">// HttpMessageConverters</span></span><br><span class="line"><span class="comment">// SpringMVC用来转换Http请求和响应的的，比如我们要把一个User对象转换为JSON字符串，可以去看官网文档解释；</span></span><br><span class="line"><span class="function">Support <span class="keyword">for</span> <span class="title">HttpMessageConverters</span> <span class="params">(covered later in <span class="keyword">this</span> document)</span>.</span></span><br><span class="line"><span class="function"><span class="comment">// 定义错误代码生成规则的</span></span></span><br><span class="line"><span class="function">Automatic registration of <span class="title">MessageCodesResolver</span> <span class="params">(covered later in <span class="keyword">this</span> document)</span>.</span></span><br><span class="line"><span class="function"><span class="comment">// 首页定制</span></span></span><br><span class="line"><span class="function">Static index.html support.</span></span><br><span class="line"><span class="function"><span class="comment">// 图标定制</span></span></span><br><span class="line"><span class="function">Custom Favicon <span class="title">support</span> <span class="params">(covered later in <span class="keyword">this</span> document)</span>.</span></span><br><span class="line"><span class="function"><span class="comment">// 初始化数据绑定器：帮我们把请求数据绑定到JavaBean中！</span></span></span><br><span class="line"><span class="function">Automatic use of a ConfigurableWebBindingInitializer <span class="title">bean</span> <span class="params">(covered later in <span class="keyword">this</span> document)</span>.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">/*</span></span></span><br><span class="line"><span class="function"><span class="comment">如果您希望保留Spring Boot MVC功能，并且希望添加其他MVC配置（拦截器、格式化程序、视图控制器和其他功能），则可以添加自己</span></span></span><br><span class="line"><span class="function"><span class="comment">的@configuration类，类型为webmvcconfiguer，但不添加@EnableWebMvc。如果希望提供</span></span></span><br><span class="line"><span class="function"><span class="comment">RequestMappingHandlerMapping、RequestMappingHandlerAdapter或ExceptionHandlerExceptionResolver的自定义</span></span></span><br><span class="line"><span class="function"><span class="comment">实例，则可以声明WebMVCregistrationAdapter实例来提供此类组件。</span></span></span><br><span class="line"><span class="function"><span class="comment">*/</span></span></span><br><span class="line"><span class="function">If you want to keep Spring Boot MVC features and you want to add additional MVC configuration </span></span><br><span class="line"><span class="function"><span class="params">(interceptors, formatters, view controllers, and other features)</span>, you can add your own </span></span><br><span class="line"><span class="function">@Configuration class of type WebMvcConfigurer but without @EnableWebMvc. If you wish to provide </span></span><br><span class="line"><span class="function">custom instances of RequestMappingHandlerMapping, RequestMappingHandlerAdapter, or </span></span><br><span class="line"><span class="function">ExceptionHandlerExceptionResolver, you can declare a WebMvcRegistrationsAdapter instance to provide such components.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">// 如果您想完全控制Spring MVC，可以添加自己的@Configuration，并用@EnableWebMvc进行注释。</span></span></span><br><span class="line"><span class="function">If you want to take complete control of Spring MVC, you can add your own @Configuration annotated with @EnableWebMvc.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内容协商视图解析器"><a href="#内容协商视图解析器" class="headerlink" title="内容协商视图解析器"></a>内容协商视图解析器</h2><ul>
+<li>SpringBoot自动配置了ViewResolver，也就是SpringMVC的视图解析器；即根据方法的返回值取得视图对象（View），然后由视图对象决定如何渲染（转发，重定向）</li>
+<li>找到 WebMvcAutoConfiguration ， 然后搜索<code>ContentNegotiatingViewResolver</code>。找到如下方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnBean(ViewResolver.class)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(name = &quot;viewResolver&quot;, value = ContentNegotiatingViewResolver.class)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ContentNegotiatingViewResolver <span class="title">viewResolver</span><span class="params">(BeanFactory beanFactory)</span> </span>&#123;</span><br><span class="line">    ContentNegotiatingViewResolver resolver = <span class="keyword">new</span> ContentNegotiatingViewResolver();</span><br><span class="line">    resolver.setContentNegotiationManager(beanFactory.getBean(ContentNegotiationManager.class));</span><br><span class="line">    <span class="comment">// ContentNegotiatingViewResolver使用所有其他视图解析器来定位视图，因此它应该具有较高的优先级</span></span><br><span class="line">    resolver.setOrder(Ordered.HIGHEST_PRECEDENCE);</span><br><span class="line">    <span class="keyword">return</span> resolver;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以点进这类看看！找到对应的解析视图的代码；</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Nullable</span> <span class="comment">// 注解说明：@Nullable 即参数可为null</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">resolveViewName</span><span class="params">(String viewName, Locale locale)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    RequestAttributes attrs = RequestContextHolder.getRequestAttributes();</span><br><span class="line">    Assert.state(attrs <span class="keyword">instanceof</span> ServletRequestAttributes, <span class="string">&quot;No current ServletRequestAttributes&quot;</span>);</span><br><span class="line">    List&lt;MediaType&gt; requestedMediaTypes = <span class="keyword">this</span>.getMediaTypes(((ServletRequestAttributes)attrs).getRequest());</span><br><span class="line">    <span class="keyword">if</span> (requestedMediaTypes != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 获取候选的视图对象</span></span><br><span class="line">        List&lt;View&gt; candidateViews = <span class="keyword">this</span>.getCandidateViews(viewName, locale, requestedMediaTypes);</span><br><span class="line">        <span class="comment">// 选择一个最适合的视图对象，然后把这个对象返回</span></span><br><span class="line">        View bestView = <span class="keyword">this</span>.getBestView(candidateViews, requestedMediaTypes, attrs);</span><br><span class="line">        <span class="keyword">if</span> (bestView != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> bestView;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// .....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>继续点进去看，他是怎么获得候选的视图的呢？<code>getCandidateViews</code>中看到他是把所有的视图解析器拿来，进行<code>while</code>循环，挨个解析！</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iterator var5 = <span class="keyword">this</span>.viewResolvers.iterator();</span><br></pre></td></tr></table></figure>
+
+<div class="note success simple"><p><strong>得出结论：<code>ContentNegotiatingViewResolver</code> 这个视图解析器就是用来组合所有的视图解析器的</strong></p>
+</div>
+
+<ul>
+<li>再去研究下他的组合逻辑，看到有个属性<code>viewResolvers</code>，看看它是在哪里进行赋值的！</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initServletContext</span><span class="params">(ServletContext servletContext)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 这里它是从beanFactory工具中获取容器中的所有视图解析器</span></span><br><span class="line">    <span class="comment">// ViewRescolver.class 把所有的视图解析器来组合的</span></span><br><span class="line">    Collection&lt;ViewResolver&gt; matchingBeans = BeanFactoryUtils.beansOfTypeIncludingAncestors(<span class="keyword">this</span>.obtainApplicationContext(), ViewResolver.class).values();</span><br><span class="line">    ViewResolver viewResolver;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.viewResolvers == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.viewResolvers = <span class="keyword">new</span> ArrayList(matchingBeans.size());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...............</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>既然它是在容器中去找视图解析器，我们是否可以猜想，我们就可以去实现一个视图解析器了呢？</li>
+<li>我们可以自己给容器中去添加一个视图解析器；这个类就会帮我们自动的将它组合进来；我们去实现一下</li>
+<li>创建一个<code>MyMvcConfig</code>的类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//扩展springmvc</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="comment">//Bean放入Spring</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ViewResolver <span class="title">myViewResolver</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyViewResolver();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//自定义一个自己的视图解析器MyViewResolver</span></span><br><span class="line">    <span class="comment">//我们写一个静态内部类，视图解析器就需要实现ViewResolver接口</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewResolver</span> <span class="keyword">implements</span> <span class="title">ViewResolver</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> View <span class="title">resolveViewName</span><span class="params">(String s, Locale locale)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后通过<code>Ctrl + N</code>搜索<code>dispatcherServlet</code>源码，找到<code>doDispatch</code>点进去打个断点。因为每个请求都经过<code>doDispatch</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@1fe9baec2f6fd8367c5f169e131d77d72cf6925a/2021/06/22/44537c89bc9cdf02ea768c91b81e4087.png"></p>
+<ul>
+<li>打好断点后进行<code>debug</code>，重启后随便访问一个页面，查看控制台输出</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@4d4d38523b162aa7b48444d6ae0f6524670686ed/2021/06/22/0191ef06d5623747c6587ef5b0b62997.png"></p>
+<ul>
+<li>找到视图解析器<code>ViewResolver</code>,到我们自己定义的就在这里了；</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6d4b150d78ba23cd5a05a2f39bea65f2ddf2e711/2021/06/22/8a78a7d35ca2fef143840352ac61b880.png"></p>
+<ul>
+<li>所以说，我们如果想要使用自己定制化的东西，我们只需要给Spring容器中添加这个组件(Bean)就好了！剩下的事情SpringBoot就会帮我们做了！</li>
+</ul>
+<h2 id="转换器和格式化器"><a href="#转换器和格式化器" class="headerlink" title="转换器和格式化器"></a>转换器和格式化器</h2><ul>
+<li><code>Ctrl+N</code>搜索<code>WebMvcAutoConfiguration</code>找到格式化转换器：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> FormattingConversionService <span class="title">mvcConversionService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 拿到配置文件中的格式化规则</span></span><br><span class="line">    WebConversionService conversionService = </span><br><span class="line">        <span class="keyword">new</span> WebConversionService(<span class="keyword">this</span>.mvcProperties.getDateFormat());</span><br><span class="line">    addFormatters(conversionService);</span><br><span class="line">    <span class="keyword">return</span> conversionService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>点开<code>mvcProperties</code>，再点开<code>WebMvcProperties</code>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* Date format to use. For instance, `dd/MM/yyyy`. 默认的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> String dateFormat;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDateFormat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dateFormat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDateFormat</span><span class="params">(String dateFormat)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.format.setDate(dateFormat);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以看到在我们的<code>Properties</code>文件中，我们可以进行自动配置它！</li>
+<li>如果配置了自己的格式化方式，就会注册到<code>Bean</code>中生效，我们可以在配置文件中配置日期格式化的规则：</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mvc:</span></span><br><span class="line">    <span class="attr">format:</span></span><br><span class="line">      <span class="attr">date:</span> <span class="string">dd/MM/yyyy</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展SpringMVC"><a href="#扩展SpringMVC" class="headerlink" title="扩展SpringMVC"></a>扩展SpringMVC</h1><h2 id="修改默认配置"><a href="#修改默认配置" class="headerlink" title="修改默认配置"></a>修改默认配置</h2><ul>
+<li>这么多的自动配置，原理都是一样的，通过这个<code>WebMVC</code>的自动配置原理分析，我们要学会一种学习方式，通过源码探究，得出结论；这个结论一定是属于自己的，而且一通百通。</li>
+<li>SpringBoot的底层，大量用到了这些设计细节思想，所以，没事需要多阅读源码！得出结论；</li>
+<li>SpringBoot在自动配置很多组件的时候，先看容器中有没有用户自己配置的（如果用户自己配置<code>@bean</code>），如果有就用用户配置的，如果没有就用自动配置的；</li>
+<li>如果有些组件可以存在多个，比如我们的视图解析器，就将用户配置的和自己默认的组合起来！</li>
+<li>我们要做的就是编写一个<code>@Configuration</code>注解类，并且类型要为<code>WebMvcConfigurer</code>，还不能标注<code>@EnableWebMvc</code>注解；我们去自己写一个；我们新建一个包叫<code>config</code>，写一个类<code>MyMvcConfig</code>:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//应为类型要求为WebMvcConfigurer，所以我们实现其接口</span></span><br><span class="line"><span class="comment">//可以使用自定义类扩展MVC的功能</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span></span>&#123;</span><br><span class="line">        registry.addViewController(<span class="string">&quot;/test&quot;</span>).setViewName(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问页面测试一下。确实也跳转过来了！所以说，我们要扩展SpringMVC，官方就推荐我们这么去使用，既保SpringBoot留所有的自动配置，也能用我们扩展的配置！</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@21640a704be46f602f642869079ce974fba25d5d/2021/06/22/7c61aa50afc5fdec6b00db92dc766e17.png"></p>
+<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><ul>
+<li><code>WebMvcAutoConfiguration</code> 是 SpringMVC的自动配置类，里面有一个类<code>WebMvcAutoConfigurationAdapter</code></li>
+<li>这个类上有一个注解，在做其他自动配置时会导入：<code>@Import(EnableWebMvcConfiguration.class)</code></li>
+<li>我们点进<code>EnableWebMvcConfiguration</code>这个类看一下，它继承了一个父类：<code>DelegatingWebMvcConfiguration</code></li>
+<li>这个父类中有这样一段代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DelegatingWebMvcConfiguration</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> WebMvcConfigurerComposite configurers = <span class="keyword">new</span> WebMvcConfigurerComposite();</span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 从容器中获取所有的webmvcConfigurer</span></span><br><span class="line">    <span class="meta">@Autowired(required = false)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setConfigurers</span><span class="params">(List&lt;WebMvcConfigurer&gt; configurers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!CollectionUtils.isEmpty(configurers)) &#123;</span><br><span class="line">            <span class="keyword">this</span>.configurers.addWebMvcConfigurers(configurers);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们可以在这个类中去寻找一个我们刚才设置的<code>viewController</code>当做参考，发现它调用了一个</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.configurers.addViewControllers(registry);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们点进去看一下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addViewControllers</span><span class="params">(ViewControllerRegistry registry)</span> </span>&#123;</span><br><span class="line">    Iterator var2 = <span class="keyword">this</span>.delegates.iterator();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(var2.hasNext()) &#123;</span><br><span class="line">        <span class="comment">// 将所有的WebMvcConfigurer相关配置来一起调用！包括我们自己配置的和Spring给我们配置的</span></span><br><span class="line">        WebMvcConfigurer delegate = (WebMvcConfigurer)var2.next();</span><br><span class="line">        delegate.addViewControllers(registry);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note success simple"><p><strong>所以得出结论：所有的<code>WebMvcConfiguration</code>都会被作用，不止Spring自己的配置类，我们自己的配置类当然也会被调用；</strong></p>
+</div>
+
+<h2 id="全面接管SpringMVC"><a href="#全面接管SpringMVC" class="headerlink" title="全面接管SpringMVC"></a>全面接管SpringMVC</h2><ul>
+<li>全面接管即：SpringBoot对SpringMVC的自动配置不需要了，所有都是我们自己去配置！</li>
+<li>只需在我们的配置类中要加一个<code>@EnableWebMvc</code></li>
+<li>如果我们全面接管了SpringMVC了，我们之前SpringBoot给我们配置的静态资源映射一定会无效，比如给配置类加上注解：<code>@EnableWebMvc</code>，就无法访问了，所有的SpringMVC自动配置都失效了！回归到了最初的样子</li>
+<li><strong>当然，我们开发中，不推荐使用全面接管SpringMVC</strong></li>
+<li>思考问题？为什么加了一个注解，自动配置就失效了！我们看下源码：</li>
+<li>这里发现它是导入了一个类，我们可以继续进去看</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import(&#123;DelegatingWebMvcConfiguration.class&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableWebMvc &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>它继承了一个父类 <code>WebMvcConfigurationSupport</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DelegatingWebMvcConfiguration</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>回顾一下Webmvc自动配置类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="meta">@ConditionalOnWebApplication(type = Type.SERVLET)</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(&#123; Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class &#125;)</span></span><br><span class="line"><span class="comment">// 这个注解的意思就是：容器中没有这个组件的时候，这个自动配置类才生效</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)</span></span><br><span class="line"><span class="meta">@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)</span></span><br><span class="line"><span class="meta">@AutoConfigureAfter(&#123; DispatcherServletAutoConfiguration.class, TaskExecutionAutoConfiguration.class,</span></span><br><span class="line"><span class="meta">    ValidationAutoConfiguration.class &#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcAutoConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总结一句话：<code>@EnableWebMvc</code>将<code>WebMvcConfigurationSupport</code>组件导入进来了；而导入的<code>WebMvcConfigurationSupport</code>只是SpringMVC最基本的功能！</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小李博客</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SpringBoot/">SpringBoot</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/SpringBoot09.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringBoot🍃员工管理系统准备及国际化</div></div></a></div><div class="next-post pull-right"><a href="/page/SpringBoot07.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SpringBoot🍃Thymeleaf模板引擎</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/SpringBoot04.html" title="SpringBoot🍃JSR303数据校验及多环境切换"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-14</div><div class="title">SpringBoot🍃JSR303数据校验及多环境切换</div></div></a></div><div><a href="/page/SpringBoot02.html" title="SpringBoot🍃SpringBoot原理探究"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-14</div><div class="title">SpringBoot🍃SpringBoot原理探究</div></div></a></div><div><a href="/page/SpringBoot11.html" title="SpringBoot🍃员工管理系统之CRUD"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-22</div><div class="title">SpringBoot🍃员工管理系统之CRUD</div></div></a></div><div><a href="/page/SpringBoot07.html" title="SpringBoot🍃Thymeleaf模板引擎"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-21</div><div class="title">SpringBoot🍃Thymeleaf模板引擎</div></div></a></div><div><a href="/page/SpringBoot06.html" title="SpringBoot🍃Web开发静态资源处理"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-21</div><div class="title">SpringBoot🍃Web开发静态资源处理</div></div></a></div><div><a href="/page/SpringBoot09.html" title="SpringBoot🍃员工管理系统准备及国际化"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-22</div><div class="title">SpringBoot🍃员工管理系统准备及国际化</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/MyCDNRepo/img/headerimg.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">228</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2312057536&amp;site=CSDN&amp;menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">正在考研备考中💦</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MVC%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">MVC自动配置原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E7%BD%91%E9%98%85%E8%AF%BB"><span class="toc-number">1.1.</span> <span class="toc-text">官网阅读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E5%8D%8F%E5%95%86%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">内容协商视图解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E5%99%A8%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">转换器和格式化器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%A9%E5%B1%95SpringMVC"><span class="toc-number">2.</span> <span class="toc-text">扩展SpringMVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">修改默认配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%9D%A2%E6%8E%A5%E7%AE%A1SpringMVC"><span class="toc-number">2.3.</span> <span class="toc-text">全面接管SpringMVC</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/SpringBoot11.html" title="SpringBoot🍃员工管理系统之CRUD"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="SpringBoot🍃员工管理系统之CRUD"/></a><div class="content"><a class="title" href="/page/SpringBoot11.html" title="SpringBoot🍃员工管理系统之CRUD">SpringBoot🍃员工管理系统之CRUD</a><time datetime="2021-06-22T12:37:41.527Z" title="发表于 2021-06-22 20:37:41">2021-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/SpringBoot10.html" title="SpringBoot🍃员工管理系统之登录拦截"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="SpringBoot🍃员工管理系统之登录拦截"/></a><div class="content"><a class="title" href="/page/SpringBoot10.html" title="SpringBoot🍃员工管理系统之登录拦截">SpringBoot🍃员工管理系统之登录拦截</a><time datetime="2021-06-22T11:44:50.051Z" title="发表于 2021-06-22 19:44:50">2021-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/SpringBoot09.html" title="SpringBoot🍃员工管理系统准备及国际化"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="SpringBoot🍃员工管理系统准备及国际化"/></a><div class="content"><a class="title" href="/page/SpringBoot09.html" title="SpringBoot🍃员工管理系统准备及国际化">SpringBoot🍃员工管理系统准备及国际化</a><time datetime="2021-06-22T08:33:52.422Z" title="发表于 2021-06-22 16:33:52">2021-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/SpringBoot08.html" title="SpringBoot🍃MVC自动配置原理"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="SpringBoot🍃MVC自动配置原理"/></a><div class="content"><a class="title" href="/page/SpringBoot08.html" title="SpringBoot🍃MVC自动配置原理">SpringBoot🍃MVC自动配置原理</a><time datetime="2021-06-22T06:33:13.807Z" title="发表于 2021-06-22 14:33:13">2021-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/SpringBoot07.html" title="SpringBoot🍃Thymeleaf模板引擎"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@5f04918f878a80de9ab9fbc07c412eefd759940c/2021/06/14/cd714bbc8d4adaa11783609b2a739032.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="SpringBoot🍃Thymeleaf模板引擎"/></a><div class="content"><a class="title" href="/page/SpringBoot07.html" title="SpringBoot🍃Thymeleaf模板引擎">SpringBoot🍃Thymeleaf模板引擎</a><time datetime="2021-06-21T12:54:00.078Z" title="发表于 2021-06-21 20:54:00">2021-06-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🎯Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><div><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://www.upyun.com/"><img src="https://img.shields.io/badge/CDN-又拍云-blue?style=flat&logo=appveyor" title="本站使用又拍云CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></div></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘ICP备2021002541号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/main.js"></script><script defer src="/js/tw_cn.js"></script><script defer src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script defer src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script defer src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="//lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script><script defer src="https://myhkw.cn/api/player/160561664166" id="myhk" key="160561664166" m="1"></script><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><scrip async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></scrip><scrip defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></scrip><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: true, 
+    user: 'xiaoliblog',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'python-github-calendar-api-ruby.vercel.app' ? 'https://python-github-calendar-api-ruby.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500) {
+  gitcalendar.simplemode = false
+}
+
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
