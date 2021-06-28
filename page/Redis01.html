@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Redis🎯NoSQL及Redis概述和安装 | 小李博客</title><meta name="keywords" content="Redis"><meta name="author" content="小李博客"><meta name="copyright" content="小李博客"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NoSQL单价MySQL时代 在90年代，一个网站的访问量一般都不大，用单个数据库完全可以轻松应付。 在那个时候，更多的都是静态网页，动态交互类型的网站不多 网站应用并不是直接访问数据库的，而是通过DAL （Data Access Layer）数据访问层进入MySQL实例。但是数据量的总大小一个机器放不下时，数据的索引（B+ Tree）一个机器的内存放不下时。访问量（读写混合）一个实例不能承受时。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis🎯NoSQL及Redis概述和安装">
+<meta property="og:url" content="http://xiaoliblog.cn/page/Redis01.html">
+<meta property="og:site_name" content="小李博客">
+<meta property="og:description" content="NoSQL单价MySQL时代 在90年代，一个网站的访问量一般都不大，用单个数据库完全可以轻松应付。 在那个时候，更多的都是静态网页，动态交互类型的网站不多 网站应用并不是直接访问数据库的，而是通过DAL （Data Access Layer）数据访问层进入MySQL实例。但是数据量的总大小一个机器放不下时，数据的索引（B+ Tree）一个机器的内存放不下时。访问量（读写混合）一个实例不能承受时。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png">
+<meta property="article:published_time" content="2021-06-28T06:55:38.832Z">
+<meta property="article:modified_time" content="2021-06-28T14:38:53.417Z">
+<meta property="article:author" content="小李博客">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6b5e7ef72be1c8973d94e5a9c49accbf775ad820/2021/02/01/c485da031fe0e464d04eaba8a66c4a8f.png"><link rel="canonical" href="http://xiaoliblog.cn/page/Redis01"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-28 22:38:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/MyStyle/MyStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="/css/MyStyle/tagStyle.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zykjofficial/zykjresource@master/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css" media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="小李博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/MyCDNRepo/img/headerimg.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">242</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">67</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小李博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fa fa-briefcase"></i><span> 工具箱</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-address-card"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Redis🎯NoSQL及Redis概述和安装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-28T06:55:38.832Z" title="发表于 2021-06-28 14:55:38">2021-06-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-28T14:38:53.417Z" title="更新于 2021-06-28 22:38:53">2021-06-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/">Java后端</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%90%8E%E7%AB%AF/Redis/">Redis</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Redis🎯NoSQL及Redis概述和安装"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h1><h2 id="单价MySQL时代"><a href="#单价MySQL时代" class="headerlink" title="单价MySQL时代"></a>单价MySQL时代</h2><ul>
+<li>在90年代，一个网站的访问量一般都不大，用单个数据库完全可以轻松应付。 在那个时候，更多的都是静态网页，动态交互类型的网站不多</li>
+<li>网站应用并不是直接访问数据库的，而是通过<code>DAL</code> （Data Access Layer）数据访问层进入MySQL实例。但是数据量的总大小一个机器放不下时，数据的索引（B+ Tree）一个机器的内存放不下时。访问量（读写混合）一个实例不能承受时。如果满足了上述1 or 3个时，只能对数据库的整体架构进行重构</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@a92e5c2eb8daea7d752cbf03e177e244c4503d77/2021/06/28/c12a8dad4f2c72e9d5dfc5c6d648e82f.png"></p>
+<ul>
+<li>后来，随着访问量的上升，几乎大部分使用MySQL架构的网站在数据库上都开始出现了性能问题。程序员们开始大量的使用缓存技术来缓解数据库的压力，优化数据库的结构和索引。开始比较流行的是通过文件缓存来缓解数据库压力，但是当访问量继续增大的时候，多台web机器通过文件缓存不能共享，大量的小文件缓存也带了了比较高的IO压力。在这个时候，<code>Memcached</code>就自然的成为一个非常时尚的技术产品。</li>
+<li>Memcached作为一个独立的分布式的缓存服务器，为多个web服务器提供了一个共享的高性能缓存服务，在Memcached服务器上，又发展了根据hash算法来进行多台Memcached缓存服务的扩展，然后又出现了一致性hash来解决增加或减少缓存服务器导致重新hash带来的大量缓存失效的弊端</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@deeac35f865d96460f08608b1744328e39cbb7d4/2021/06/28/7eb34b89f180c82ed3ad826125c8ceb4.png"></p>
+<ul>
+<li>由于数据库的写入压力增加，Memcached只能缓解数据库的读取压力。读写集中在一个数据库上让数据库不堪重负，大部分网站开始使用主从复制技术来达到读写分离，以提高读写性能和读库的可扩展性。Mysql的master-slave模式成为这个时候的网站标配了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7b03ff956d5f81b8479ab7b1b6d9c84637cf779c/2021/06/28/ddcd9b49e1efd71d8ba61e3a0690e74b.png"></p>
+<ul>
+<li>在Memcached的高速缓存，MySQL的主从复制，读写分离的基础之上，这时MySQL主库的写压力开始出现瓶颈，而数据量的持续猛增，由于MyISAM在写数据的时候会使用表锁，在高并发写数据的情况下会出现严重的锁问题，大量的高并发MySQL应用开始使用InnoDB引擎（行锁）代替MyISAM</li>
+<li>同时，开始流行使用分表分库来缓解写压力和数据增长的扩展问题。这个时候，分表分库成了一个热门技术，是面试的热门问题也是业界讨论的热门技术问题。也就在这个时候，MySQL推出了还不太稳定的表分区，这也给技术实力一般的公司带来了希望。虽然MySQL推出了MySQL Cluster集群，但性能也不能很好满足互联网的要求，只是在高可靠性上提供了非常大的保证</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b2c683833c2cb036bb7db8b8242bfed2be825b0d/2021/06/28/690e104bf6aadb9669b23cfb621e354c.png"></p>
+<ul>
+<li>MySQL数据库也经常存储一些大文本字段，导致数据库表非常的大，在做数据库恢复的时候就导致非常的慢，不容易快速恢复数据库。比如1000万4KB大小的文本就接近40GB的大小，如果能把这些数据从MySQL省去，MySQL将变得非常的小。关系数据库很强大，但是它并不能很好的应付所有的应用场景。MySQL的扩展性差（需要复杂的技术来实现），大数据下IO压力大，表结构更改困难，正是当前使用MySQL的开发人员面临的问题</li>
+<li>如今的架构如下所示：最前面的是企业级防火墙，后面通过负载均衡主机（软负载：Nginx，硬负载：F5）在 web 服务器集群之间进行调度，再由具体的 web 服务器（Tomcat）去访问缓存，访问数据库</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6d853782eb5a908ff24521cfee3d9e4ed53a3970/2021/06/28/cb3ded8f8ec91a25e278325c09883304.png"></p>
+<h2 id="NoSQL简介"><a href="#NoSQL简介" class="headerlink" title="NoSQL简介"></a>NoSQL简介</h2><ul>
+<li><code>NoSQL</code>(NoSQL = Not Only SQL )，意即不仅仅是SQL，泛指<strong>非关系型</strong>的数据库</li>
+<li>随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题，包括超大规模数据的存储</li>
+<li>很多的数据比如用户个人信息、社交网络、地理位置。这些数据类型的存储不需要一个固定的格式，且不需要多余的操作就可以横向扩展！在Java中使用<code>Map&lt;String,Object&gt;</code>键值对来存放万事万物</li>
+<li>NoSQL特点<ul>
+<li>易扩展。数据之间无关系，这样就非常容易扩展。</li>
+<li>大数据量，高性能。Redis一秒写8万次，读取11万，NoSQL的缓存记录级，是一种细粒度的缓存，性能高</li>
+<li>数据类型多样，不需要事先设计数据库</li>
+</ul>
+</li>
+<li>传统的 RDBMS 和 NoSQL的区别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">传统的 RDBMS(关系型数据库)</span><br><span class="line">- 结构化组织</span><br><span class="line">- SQL</span><br><span class="line">- 数据和关系都存在单独的表中 row col</span><br><span class="line">- 操作，数据定义语言</span><br><span class="line">- 严格的一致性</span><br><span class="line">- 基础的事务</span><br><span class="line">- ...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Nosql</span><br><span class="line">- 不仅仅是数据</span><br><span class="line">- 没有固定的查询语言</span><br><span class="line">- 键值对存储，列存储，文档存储，图形数据库（社交关系）</span><br><span class="line">- 最终一致性</span><br><span class="line">- CAP定理和BASE</span><br><span class="line">- 高性能，高可用，高扩展</span><br><span class="line">- ...</span><br></pre></td></tr></table></figure>
+
+<div class="note success simple"><p>大数据时代3V+3高</p>
+</div>
+
+<ul>
+<li>大数据时代的3V ：主要是描述问题的<ul>
+<li>海量Velume</li>
+<li>多样Variety</li>
+<li>实时Velocity</li>
+</ul>
+</li>
+<li>大数据时代的3高 ： 主要是对程序的要求<ul>
+<li>高并发</li>
+<li>高可扩</li>
+<li>高性能</li>
+</ul>
+</li>
+</ul>
+<h2 id="阿里巴巴演进分析"><a href="#阿里巴巴演进分析" class="headerlink" title="阿里巴巴演进分析"></a>阿里巴巴演进分析</h2><div class="note success simple"><p>推荐阅读：阿里云的这群疯子<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/653511">https://developer.aliyun.com/article/653511</a></p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@e325a026c2601d273f80634becae653e9e80d103/2021/06/28/9f8f0f7adb339bf3735cb02e59082611.png"><br><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b14245e5944f1957cfd9d090d53bed58d295f681/2021/06/28/39b222aebee31166ae9ba4b034ccb69e.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 商品信息</span><br><span class="line">- 一般存放在关系型数据库：Mysql,阿里巴巴使用的Mysql都是经过内部改动的。</span><br><span class="line"></span><br><span class="line"># 商品描述、评论(文字居多)</span><br><span class="line">- 文档型数据库：MongoDB</span><br><span class="line"></span><br><span class="line"># 图片</span><br><span class="line">- 分布式文件系统 FastDFS</span><br><span class="line">- 淘宝：TFS</span><br><span class="line">- Google: GFS</span><br><span class="line">- Hadoop: HDFS</span><br><span class="line">- 阿里云: oss</span><br><span class="line"></span><br><span class="line"># 商品关键字 用于搜索</span><br><span class="line">- 搜索引擎：solr,elasticsearch</span><br><span class="line">- 阿里：Isearch 多隆</span><br><span class="line"></span><br><span class="line"># 商品热门的波段信息</span><br><span class="line">- 内存数据库：Redis，Memcache</span><br><span class="line"></span><br><span class="line"># 商品交易，外部支付接口</span><br><span class="line">- 第三方应用</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nosql四大分类"><a href="#Nosql四大分类" class="headerlink" title="Nosql四大分类"></a>Nosql四大分类</h2><p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@2b9d1b556006c112d61f4256fcca686596625832/2021/06/28/9c0e418f5d4eccfe37faf6271e54306e.png"></p>
+<div class="note success simple"><p>MongoDB是基于分布式文件存储的数据库。C++编写，用于处理大量文档。 MongoDB是RDBMS和NoSQL的中间产品。MongoDB是非关系型数据库中功能最丰富的，NoSQL中最像关系型数据库的数据库</p>
+</div>
+
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h2><ul>
+<li><code>Redis</code>（Remote Dictionary Server )，即远程字典服务。是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、<code>Key-Value</code>数据库，并提供多种语言的API</li>
+<li>与memcached一样，为了保证效率，<strong>数据都是缓存在内存中</strong>。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</li>
+<li>Redis官网：<a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a></li>
+<li>Redis中文网：<a target="_blank" rel="noopener" href="http://www.redis.cn/">http://www.redis.cn/</a></li>
+<li>Redis能该干什么？<ul>
+<li>内存存储、持久化，内存是断电即失的，所以需要持久化（RDB、AOF）</li>
+<li>高效率、用于高速缓冲</li>
+<li>发布订阅系统</li>
+<li>地图信息分析</li>
+<li>计时器、计数器(eg：浏览量)</li>
+</ul>
+</li>
+<li>Redis特性<ul>
+<li>多样的数据类型</li>
+<li>持久化</li>
+<li>集群</li>
+<li>事务</li>
+</ul>
+</li>
+</ul>
+<h2 id="Widows安装"><a href="#Widows安装" class="headerlink" title="Widows安装"></a>Widows安装</h2><ul>
+<li>推荐使用Linux服务器学习。Windows版本的Redis已经停更很久了</li>
+<li>Redis官网没有安装包需要去Github上安装：<a target="_blank" rel="noopener" href="https://github.com/MicrosoftArchive/redis/releases">https://github.com/MicrosoftArchive/redis/releases</a></li>
+<li>下载后解压安装包 </li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@b9542fb1adfeb8edf6270fdad3faca59c280f90c/2021/06/28/6f266421d1308c0144ed507280f1c193.png" width="70%">
+
+<ul>
+<li>开启<code>redis-server.exe</code></li>
+<li>启动<code>redis-cli.exe</code>测试</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@13ad33d3b3a0fe830a00e0fbca1cf57c7662666a/2021/06/28/c73f189c763f2bf7315205c0629eed2c.png"></p>
+<h2 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h2><ul>
+<li>进入官方网站<a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a>下载安装包！<code>redis-6.2.4.tar.gz</code></li>
+<li>压缩包上传到远程服务器并解压。程序一般放在 <code>/opt</code> 目录下。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@657924257ca31e9b387cb724ea7c1fb4c9c9ab40/2021/06/28/8500abdb348e590d3311b41355ec6e44.png"></p>
+<ul>
+<li>进入解压后的文件，可以看到我们Redis的配置文件</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@dda39495a28ba2a5937cadcaa31e4030bd786c7d/2021/06/28/5cae8f0fda94526c2c229c4c39545f87.png"></p>
+<ul>
+<li>基本环境安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装6.0以上版本需要升级gcc到5.3及以上</span></span><br><span class="line">yum -y install centos-release-scl</span><br><span class="line">yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils</span><br><span class="line"><span class="comment"># scl命令启用只是临时的，退出shell或重启就会恢复原系统gcc版本。</span></span><br><span class="line"><span class="comment"># 如果要长期使用gcc 9.3的话,执行以下命令</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source /opt/rh/devtoolset-9/enable&quot;</span> &gt;&gt;/etc/profile</span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="comment"># 配置编译</span></span><br><span class="line">make</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@a361924b7ac7c2b7b7bd70190269691cc5e7216f/2021/06/28/725f0546ae97f1dec59836b2c30dcbfb.png"></p>
+<ul>
+<li>Redis默认安装路径 <code>/usr/local/bin</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7fb61aa38d5f9103fde91e1770c2d12984a0b974/2021/06/28/fe7ae29ae803f8c02cb7668e15ef17ca.png"></p>
+<ul>
+<li>将Redis的配置文件复制到程序安装目录 <code>/usr/local/bin/config</code>下，新建<code>config</code>文件夹。之后就使用<code>config</code>下的配置文件</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6cb6061ef298d3467ca885086a2304095c367c7b/2021/06/28/1dcb2c3338be90f861812ee52e011498.png"></p>
+<ul>
+<li>Redis默认不是后台启动的，需要修改配置文件！</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@7f4203c331113f0079683f73db90d9811d239f7d/2021/06/28/18322e366721c3bedadb3bbd0a33b2c9.png"></p>
+<ul>
+<li>通过制定的配置文件启动Redis服务</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@dbb6c237ea541943acd0af40b3ebbf1dd60e78b5/2021/06/28/0905edb1e79fff611c9f2b5e0493be39.png"></p>
+<ul>
+<li>6.2.4版本启动后并没有任何的返回值，只需要使用<code>ps -ef|grep redis</code>查看启动的<code>6379</code>端口即可</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@11a7628050c9bbfaddf84cfee8d9e48cc5c23a09/2021/06/28/0184d0fc97df7e88024a440f7430234f.png"></p>
+<ul>
+<li>使用<code>redis-cli</code>连接指定的端口号测试，Redis的默认端口<code>6379</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@6548aa0413cb256b3a24c2d9bee2d903e1b8f4c1/2021/06/28/596e0c7f8d95b45ef56efff5c7a20c47.png"></p>
+<ul>
+<li>关闭Redis服务 <code>shutdown</code></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f5bbaa4e47e1e38afa2acff44cf7a8f62911ad8d/2021/06/28/1722291b91e0031045db83594b62f92f.png"></p>
+<ul>
+<li>再次查看进程是否存在</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@95593a1f037faa24f8c6f610f6f46ce072b2e4ee/2021/06/28/d8c0316be401dfa2eeada3fb9f0e2a64.png"></p>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><ul>
+<li><code>redis-benchmark</code>  是Redis官方提供的性能测试工具，参数选项如下：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@c98c0c55c48ae8ac9ba0e55a64cca992de5e671b/2021/06/28/79928b5a3825bbf903f58f0729e0f489.png"></p>
+<ul>
+<li>简单测试</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先要启动服务</span></span><br><span class="line">redis-server config/redis.conf</span><br><span class="line"><span class="comment"># 测试：100个并发连接 100000请求</span></span><br><span class="line">redis-benchmark -h localhost -p 6379 -c 100 -n 100000</span><br></pre></td></tr></table></figure>
+<p><img src="https://origins-xiaoliblog.oss-cn-shanghai.aliyuncs.com/PicGo_img/%28S%60I_I%24M%7D%24FACZ97U%7E8%28007.png"></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>Redis默认有16个数据库</li>
+</ul>
+<p><img src="https://origins-xiaoliblog.oss-cn-shanghai.aliyuncs.com/PicGo_img/QQ%E5%9B%BE%E7%89%8720210628222217.png"></p>
+<ul>
+<li>16个数据库为：DB 0~DB 15， 默认使用DB 0 ，可以使用<code>select n</code>切换到DB n，<code>dbsize</code>可以查看当前数据库的大小，与key数量相关</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[root@iZbp17eop7f43w7293w2pcZ config]<span class="comment"># redis-server redis.conf</span></span><br><span class="line">[root@iZbp17eop7f43w7293w2pcZ config]<span class="comment"># redis-cli -p 6379</span></span><br><span class="line">127.0.0.1:6379&gt; config get databases <span class="comment"># 命令行查看数据库数量databases</span></span><br><span class="line">1) <span class="string">&quot;databases&quot;</span></span><br><span class="line">2) <span class="string">&quot;16&quot;</span></span><br><span class="line">128.127.0.0.1:6379&gt; select 3 <span class="comment"># 切换数据库 DB 8</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; DBSIZE <span class="comment"># 查看数据库大小</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不同数据库之间 数据是不能互通的，并且dbsize 是根据库中key的个数</span></span><br><span class="line">127.0.0.1:6379[3]&gt; <span class="built_in">set</span> name xiaoliblog</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; DBSIZE <span class="comment"># size和key个数相关</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379[3]&gt; get name <span class="comment"># 获得键name的值</span></span><br><span class="line"><span class="string">&quot;xiaoliblog&quot;</span></span><br><span class="line">127.0.0.1:6379[3]&gt; keys *  <span class="comment"># 查看当前数据库中所有的key</span></span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">127.0.0.1:6379[3]&gt; flushdb <span class="comment"># 空当前数据库中的键值对</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt; keys *</span><br><span class="line">(empty array)</span><br><span class="line">127.0.0.1:6379[3]&gt; select 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;mylist&quot;</span></span><br><span class="line">2) <span class="string">&quot;myhash&quot;</span></span><br><span class="line">3) <span class="string">&quot;name&quot;</span></span><br><span class="line">4) <span class="string">&quot;counter:__rand_int__&quot;</span></span><br><span class="line">5) <span class="string">&quot;key:__rand_int__&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; flushall <span class="comment"># 清空所有数据库的键值对</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>keys *</code> ：查看当前数据库中所有的key</li>
+<li><code>flushdb</code>：清空当前数据库中的键值对</li>
+<li><code>flushall</code>：清空所有数据库的键值</li>
+</ul>
+<div class="note success simple"><p>Redis是单线程的，Redis是基于内存操作的</p>
+</div>
+
+<ul>
+<li>所以Redis的性能瓶颈不是CPU，而是机器内存和网络带宽，既然可以使用单线程实现，就使用单线程了</li>
+<li>那么为什么Redis的速度如此快呢，性能这么高呢？Redis是C语言写的，QPS达到10W+</li>
+</ul>
+<div class="note success simple"><p>Redis为什么单线程还这么快？</p>
+</div>
+
+<ul>
+<li>误区1：高性能的服务器一定是多线程的？</li>
+<li>误区2：多线程（CPU上下文会切换！）一定比单线程效率高！</li>
+<li>核心：Redis是将所有的数据放在内存中的，所以说使用单线程去操作效率就是最高的，多线程（CPU上下文会切换：耗时的操作！），<strong>对于内存系统来说，如果没有上下文切换效率就是最高的，多次读写都是在一个CPU上的</strong>，在内存存储数据情况下，单线程就是最佳的方案。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小李博客</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiaoliblog.cn">https://xiaoliblog.cn</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://xiaoliblog.cn" target="_blank">小李博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Redis/">Redis</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/page/Redis02.html"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Redis🎯Redis五大数据类型</div></div></a></div><div class="next-post pull-right"><a href="/page/MybatisPlus03.html"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f400c83d2711087369e74ba0ae353c5fa5bfbf19/2021/06/27/b4c24a624d446d2be23640c5f458f74b.png" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MybatisPlus🎯MyBatisPlus插件扩展</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/page/Redis02.html" title="Redis🎯Redis五大数据类型"><img class="cover" src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-28</div><div class="title">Redis🎯Redis五大数据类型</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/xiaoliblog/MyCDNRepo/img/headerimg.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">小李博客</div><div class="author-info__description">越努力，越幸运！</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">242</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">67</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiaoliblog"><i class="fab fa-github"></i><span>博主的GitHub首页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/xiaoliblog" target="_blank" title="Gitee"><i class="iconfont icon-gitee card_icon_gitee"></i></a><a class="social-icon" href="https://space.bilibili.com/390969485" target="_blank" title="BiliBili"><i class="iconfont icon-bilibili card_icon_bilibili"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2312057536&amp;site=CSDN&amp;menu=yes" target="_blank" title="QQ"><i class="iconfont icon-qq card_icon_qq"></i></a><a class="social-icon" href="https://github.com/xiaoliblog" target="_blank" title="GitHub"><i class="iconfont icon-git card_icon_git"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43266250?spm=1010.2135.3001.5113" target="_blank" title="CSDN"><i class="iconfont icon-csdn card_icon_csdn"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">正在考研备考中💦</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NoSQL"><span class="toc-number">1.</span> <span class="toc-text">NoSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BB%B7MySQL%E6%97%B6%E4%BB%A3"><span class="toc-number">1.1.</span> <span class="toc-text">单价MySQL时代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL%E7%AE%80%E4%BB%8B"><span class="toc-number">1.2.</span> <span class="toc-text">NoSQL简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E6%BC%94%E8%BF%9B%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">阿里巴巴演进分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nosql%E5%9B%9B%E5%A4%A7%E5%88%86%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">Nosql四大分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">Redis概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Widows%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">Widows安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Linux安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.4.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">2.5.</span> <span class="toc-text">基础知识</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/page/Redis02.html" title="Redis🎯Redis五大数据类型"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Redis🎯Redis五大数据类型"/></a><div class="content"><a class="title" href="/page/Redis02.html" title="Redis🎯Redis五大数据类型">Redis🎯Redis五大数据类型</a><time datetime="2021-06-28T14:41:00.411Z" title="发表于 2021-06-28 22:41:00">2021-06-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/Redis01.html" title="Redis🎯NoSQL及Redis概述和安装"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@23919bef0beacf72e9d2de4e021d4f16cafe88f3/2021/06/28/65dc5b469173df4241921bad1e7bf82b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="Redis🎯NoSQL及Redis概述和安装"/></a><div class="content"><a class="title" href="/page/Redis01.html" title="Redis🎯NoSQL及Redis概述和安装">Redis🎯NoSQL及Redis概述和安装</a><time datetime="2021-06-28T06:55:38.832Z" title="发表于 2021-06-28 14:55:38">2021-06-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/MybatisPlus03.html" title="MybatisPlus🎯MyBatisPlus插件扩展"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f400c83d2711087369e74ba0ae353c5fa5bfbf19/2021/06/27/b4c24a624d446d2be23640c5f458f74b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="MybatisPlus🎯MyBatisPlus插件扩展"/></a><div class="content"><a class="title" href="/page/MybatisPlus03.html" title="MybatisPlus🎯MyBatisPlus插件扩展">MybatisPlus🎯MyBatisPlus插件扩展</a><time datetime="2021-06-27T13:51:24.596Z" title="发表于 2021-06-27 21:51:24">2021-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/MybatisPlus02.html" title="MybatisPlus🎯CRUD操作扩展"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f400c83d2711087369e74ba0ae353c5fa5bfbf19/2021/06/27/b4c24a624d446d2be23640c5f458f74b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="MybatisPlus🎯CRUD操作扩展"/></a><div class="content"><a class="title" href="/page/MybatisPlus02.html" title="MybatisPlus🎯CRUD操作扩展">MybatisPlus🎯CRUD操作扩展</a><time datetime="2021-06-27T12:16:35.858Z" title="发表于 2021-06-27 20:16:35">2021-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/page/MybatisPlus01.html" title="MybatisPlus🎯日志配置及主键策略"><img src="https://cdn.jsdelivr.net/gh/xiaoliblog/image@f400c83d2711087369e74ba0ae353c5fa5bfbf19/2021/06/27/b4c24a624d446d2be23640c5f458f74b.png" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/lzyblog/image@main/2020/11/19/bd16b394f7359083b1f6072a67e3f968.png'" alt="MybatisPlus🎯日志配置及主键策略"/></a><div class="content"><a class="title" href="/page/MybatisPlus01.html" title="MybatisPlus🎯日志配置及主键策略">MybatisPlus🎯日志配置及主键策略</a><time datetime="2021-06-27T10:06:42.465Z" title="发表于 2021-06-27 18:06:42">2021-06-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 小李博客</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">🎯Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">🎉Butterfly</a></div><div class="footer_custom_text"><div><a style="margin-inline:5px" target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a><a style="margin-inline:5px" target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a><a style="margin-inline:5px" target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://www.upyun.com/"><img src="https://img.shields.io/badge/CDN-又拍云-blue?style=flat&logo=appveyor" title="本站使用又拍云CDN加速"></a><a style="margin-inline:5px" target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a><a style="margin-inline:5px" target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a><a style="margin-inline:5px" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></div></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>湘ICP备2021002541号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/main.js"></script><script defer src="/js/tw_cn.js"></script><script defer src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script defer src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script defer src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'xiaoliblog-8gj3j5045d5b0896',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.3.0/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer src="//lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script><script defer src="https://myhkw.cn/api/player/160561664166" id="myhk" key="160561664166" m="1"></script><div><canvas id="snow" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;pointer-events:none"></canvas></div><script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script><scrip async type="text/javascript" src="https://cdn.jsdelivr.net/gh/Candinya/Kratos-Rebirth@latest/source/js/snow.min.js"></scrip><scrip defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></scrip><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: true, 
+    user: 'xiaoliblog',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'python-github-calendar-api-ruby.vercel.app' ? 'https://python-github-calendar-api-ruby.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500) {
+  gitcalendar.simplemode = false
+}
+
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body></html>
